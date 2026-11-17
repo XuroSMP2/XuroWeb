@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>XuroSMP Wiki &amp; Regeln</title>
+<meta name="description" content="Alles zum XuroSMP: Währungen, Shop, Crates, Clans, Ränge, Kits und die Server-Regeln.">
+<meta property="og:title" content="XuroSMP Wiki &amp; Regeln"><meta property="og:description" content="Währungen, Shop, Crates, Clans, Ränge, Kits und Regeln. IP: xurosmp.daronlo.com"><meta name="theme-color" content="#120e1e">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%23ffaa00' d='M3 0h2v3h3v2H5v3H3V5H0V3h3z'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@700&family=Nunito+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#120e1e;--s1:#1c1630;--s2:#262040;--tx:#efeaff;--mu:#a49fc4;--bd:#3a3260;--e1:#ff5555;--e2:#ffaa00;--cr:#b78cff;--ok:#4ade80}
+@media(prefers-color-scheme:light){:root:not([data-theme=dark]){--bg:#f3f1fa;--s1:#fff;--s2:#ebe7f7;--tx:#1c1830;--mu:#625d7e;--bd:#cfc8e6;--e1:#d63a3a;--e2:#b86a00;--cr:#7c3aed;--ok:#15803d}}
+:root[data-theme=light]{--bg:#f3f1fa;--s1:#fff;--s2:#ebe7f7;--tx:#1c1830;--mu:#625d7e;--bd:#cfc8e6;--e1:#d63a3a;--e2:#b86a00;--cr:#7c3aed;--ok:#15803d}
+*{box-sizing:border-box}[hidden]{display:none!important}html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.65 'Nunito Sans',system-ui,sans-serif}
+#fx{position:fixed;inset:0;pointer-events:none;z-index:1}
+#bar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--e1),var(--e2));z-index:20}
+header{position:sticky;top:0;z-index:10;display:flex;gap:10px;align-items:center;padding:10px 16px;background:var(--s1);border-bottom:3px solid var(--bd)}
+.logo{font:700 1.35rem 'Pixelify Sans',monospace;background:linear-gradient(90deg,var(--e1),var(--e2));-webkit-background-clip:text;background-clip:text;color:transparent;cursor:pointer;user-select:none;white-space:nowrap}
+header input{flex:1;min-width:0;max-width:360px;padding:8px 12px;border:2px solid var(--bd);background:var(--bg);color:var(--tx);font:inherit}
+header input:focus,select:focus,.tool input:focus{outline:2px solid var(--cr);outline-offset:1px}
+button{cursor:pointer;border:0;padding:8px 14px;background:var(--cr);color:#120e1e;font:700 .95rem 'Nunito Sans',sans-serif;box-shadow:inset -3px -3px 0 rgba(0,0,0,.25),inset 3px 3px 0 rgba(255,255,255,.3)}
+button:hover{filter:brightness(1.1)}button:active{transform:translateY(2px)}button:focus-visible,a:focus-visible{outline:3px solid var(--e2);outline-offset:2px}
+#ip{margin-left:auto}#menu{display:none}
+.hero{max-width:1200px;margin:0 auto;padding:48px 20px 24px;display:grid;grid-template-columns:1.1fr 1fr;gap:32px;align-items:center;position:relative;z-index:2}
+.hero h1{font:700 clamp(2.6rem,8vw,5rem)/1 'Pixelify Sans',monospace;margin:0 0 .3em;background:linear-gradient(90deg,var(--e1),var(--e2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{max-width:52ch}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:18px}
+.pill{display:inline-flex;gap:8px;align-items:center;padding:6px 12px;background:var(--s2);border:2px solid var(--bd);font-weight:700}
+.pill:before{content:"";width:10px;height:10px;background:var(--mu)}.pill.on:before{background:var(--ok)}.pill.off:before{background:var(--e1)}
+#star{background:none;box-shadow:none;color:var(--cr);font-size:1.8rem;padding:0 6px;text-shadow:0 0 14px var(--cr)}
+.mc{background:#0c0a14;color:#f1eefc;border:3px solid var(--bd);box-shadow:8px 8px 0 rgba(0,0,0,.35);font:14px/1.5 ui-monospace,Consolas,monospace}
+.mc>div:first-child{background:var(--s2);color:var(--mu);padding:6px 12px;border-bottom:3px solid var(--bd)}
+#chat{padding:12px 14px;min-height:240px}#chat p{margin:0 0 4px}.pr{color:#8a85a8}.tg{color:var(--ok)}
+.wrap{display:flex;max-width:1200px;margin:auto;position:relative;z-index:2}
+nav{width:240px;flex:none;position:sticky;top:64px;align-self:flex-start;max-height:calc(100vh - 64px);overflow:auto;padding:16px}
+nav a{display:flex;gap:8px;padding:6px 10px;color:var(--mu);text-decoration:none;font-size:.95rem;border-left:3px solid transparent}
+nav a i{font-style:normal;width:1.4em}nav a:hover{color:var(--tx);background:var(--s1)}nav a.act{color:var(--tx);background:var(--s1);border-left-color:var(--e2);font-weight:700}
+main{flex:1;min-width:0;padding:16px 20px 40px}
+.sec{background:var(--s1);border:3px solid var(--bd);box-shadow:inset -4px -4px 0 rgba(0,0,0,.18),inset 4px 4px 0 rgba(255,255,255,.04);padding:22px 26px;margin-bottom:20px}
+h2{font:700 1.7rem/1.2 'Pixelify Sans',monospace;margin:0 0 .5em;display:flex;gap:10px;align-items:center}h2 a{opacity:0;color:var(--mu);text-decoration:none;font-size:1rem}h2:hover a{opacity:1}h3{margin:1.3em 0 .3em;color:var(--e2)}
+a{color:var(--cr)}code{background:var(--bg);border:1px solid var(--bd);padding:1px 6px;font:.88em ui-monospace,Consolas,monospace}code.cp{cursor:copy}code.cp:hover{border-color:var(--e2);color:var(--e2)}
+table{width:100%;border-collapse:collapse;margin:.6em 0;font-size:.93rem}th,td{padding:8px 10px;border-bottom:1px solid var(--bd);text-align:left;vertical-align:top}th{color:var(--mu)}tbody tr:hover,tr:hover td{background:var(--s2)}
+.tw{overflow-x:auto}.tip{border-left:4px solid var(--e2);background:var(--s2);padding:10px 14px;margin:.8em 0}.mu{color:var(--mu);font-size:.9rem}
+.rule{counter-increment:r}.rule h3:before{content:"§" counter(r) " ";color:var(--e1)}
+.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}.tool{background:var(--s2);border:2px solid var(--bd);padding:4px 16px 14px}.tool h3{margin-top:.8em}
+label{display:block;margin:.6em 0;font-size:.9rem;color:var(--mu)}select,.tool input{width:100%;padding:7px;background:var(--bg);color:var(--tx);border:2px solid var(--bd);font:inherit;margin-top:3px}.tool input[type=range]{padding:0;accent-color:var(--e2)}
+.out{font-weight:700;color:var(--tx);min-height:3em}.chips{display:flex;flex-wrap:wrap;gap:8px}.chips button{background:var(--s2);color:var(--tx);border:2px solid var(--bd);box-shadow:none}.chips button.on{border-color:var(--c);color:var(--c)}
+.pb{display:block;height:8px;background:var(--c);min-width:2px}
+#none{text-align:center;padding:40px;color:var(--mu)}
+footer{position:relative;z-index:2;text-align:center;padding:30px 16px 60px;color:var(--mu);font-size:.88rem;border-top:3px solid var(--bd)}footer span{cursor:pointer}
+#top{position:fixed;right:16px;bottom:16px;z-index:9;display:none}#top.on{display:block}
+#toasts{position:fixed;top:70px;right:12px;z-index:30;display:grid;gap:8px}
+.adv{display:flex;gap:12px;align-items:center;background:#241c3d;color:#fff;border:3px solid var(--e2);padding:10px 16px;animation:in .3s steps(6)}.adv i{font-style:normal;font-size:1.6rem}.adv b{display:block;color:var(--e2)}.adv span{font-size:.9rem}
+@keyframes in{from{transform:translateX(120%)}}
+.ov{position:fixed;inset:0;z-index:40;display:none;place-items:center;pointer-events:none}.ov.on{display:grid}
+#cr{background:#0b1a0b;color:#6f6;font:700 2rem 'Pixelify Sans',monospace;text-align:center}#cr .face{display:grid;grid-template-columns:repeat(8,26px);width:208px;margin:auto}#cr s{height:26px;background:#3c9a3c}#cr s.k{background:#071407}#cr.on .face{animation:sw .35s infinite alternate}@keyframes sw{to{transform:scale(1.25)}}
+#hb{background:#000}#hb.on{animation:fd 1.8s forwards}#hb i{position:absolute;top:44%;width:46px;height:12px;background:#fff;box-shadow:0 0 24px 8px #fff}#hb i:nth-child(1){left:calc(50% - 90px)}#hb i:nth-child(2){left:calc(50% + 44px)}@keyframes fd{0%,70%{opacity:1}100%{opacity:0}}
+.shake{animation:sk .6s}@keyframes sk{20%{transform:translate(-8px,5px)}40%{transform:translate(8px,-6px)}60%{transform:translate(-6px,-4px)}80%{transform:translate(6px,4px)}}
+@media(max-width:860px){.hero{grid-template-columns:1fr;padding-top:28px}#menu{display:block}nav{display:none;position:fixed;top:64px;left:0;right:0;bottom:0;width:auto;max-height:none;background:var(--bg);z-index:8}nav.open{display:block}.sec{padding:16px}#ip{font-size:.8rem}header .logo{font-size:1.1rem}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation-duration:.01s!important}}
+header .hl{color:var(--mu);text-decoration:none;font-weight:700;padding:6px 8px}header .hl:hover{color:var(--tx)}@media(max-width:860px){header .hl{display:none}}
+@media print{header,nav,#fx,#top,#toasts,.hero .mc,footer{display:none}.sec{box-shadow:none;break-inside:avoid}body{background:#fff;color:#000}}
+</style>
+</head>
+<body>
+<div id="bar"></div><canvas id="fx"></canvas>
+<header><button id="menu" aria-label="Menü">☰</button><span class="logo" id="logo">XuroSMP Wiki</span><a class="hl" href="/">Start</a><a class="hl" href="/events">Events</a><a class="hl" href="#" data-discord>Discord</a><input id="q" type="search" placeholder="Suchen … (Strg+K)" aria-label="Suchen"><button id="theme" aria-label="Hell/Dunkel wechseln">◐</button><button id="ip" title="IP kopieren">xurosmp.daronlo.com</button></header>
+<section class="hero" id="start"><div><h1>XuroSMP</h1><p>Hier steht alles, was du zum Spielen brauchst. Java und Bedrock (Bedrock-Namen beginnen mit <code>.</code>). Die <a href="#regeln">Server-Regeln</a> gelten ab dem ersten Join.</p>
+<p><b>Schnellstart:</b> <code>/kit</code>, <code>/shop</code>, <code>/afk</code>, <code>/clan</code>, <code>/daily</code></p>
+<div class="row"><span class="pill" id="st">Status wird geladen …</span><a href="#tools"><button>Zu den Rechnern</button></a><button id="star" aria-label="Nether Star">✦</button></div></div>
+<div class="mc" aria-hidden="true"><div>Chat · Beispiel</div><div id="chat"></div></div></section>
+<div class="wrap"><nav id="nav"></nav><main>
+
+<section class="sec" id="waehrung"><h2>Die drei Währungen</h2>
+<div class="tw"><table><tr><th>Währung</th><th>Wofür</th><th>Wie bekommst du sie?</th></tr>
+<tr><td><b>Geld ($)</b></td><td>Shop, AH, Orders, Clan-Gründung, Kopfgeld</td><td>Verkaufen (<code>/sell</code>, <code>/shop</code>), AH, Orders, <code>/daily</code>, Kills mit Kopfgeld, Crates</td></tr>
+<tr><td><b>Stars</b></td><td>Stars-Shop: Ausrüstung &amp; Smart-Spawner</td><td>In der <b>AFK-Zone</b> (<code>/afk</code>): alle 60 Sekunden 1 Star (Rang-Bonus), 10 Stars pro Kill, Erze im Farm-Modus</td></tr>
+<tr><td><b>Gems</b></td><td>Gem-Shop: Ränge, Keys, Spawner, Tools</td><td>Im Server-Store; Team-Vergabe per Befehl</td></tr></table></div>
+<p><code>/balance</code> Geld · <code>/stars</code> Stars · <code>/gems</code> Gems · <code>/pay &lt;Spieler&gt; &lt;Betrag&gt;</code> · <code>/top</code> Bestenlisten. Beträge gehen auch als <code>1k</code>, <code>2.5m</code>, <code>1b</code>.</p></section>
+
+<section class="sec" id="shop"><h2>Shop &amp; Verkaufen</h2>
+<p><code>/shop</code> öffnet das Hauptmenü mit den Kategorien <b>Nether</b>, <b>Ausrüstung</b>, <b>Essen</b> und dem <b>Nether Star = Stars-Shop</b>. Die Kategorie mit dem Barrier ist noch gesperrt. In einer Kategorie wählst du ein Item und kaufst oder verkaufst 1, 16, 64 oder alles. Die rote Scheibe unten führt zurück.</p>
+<h3>/sell</h3>
+<p>Fast jedes Item ist verkaufbar, auch wenn es nicht im Shop steht (der Preis richtet sich nach der Art des Items). <code>/sell</code> öffnet ein Fenster: Items hineinlegen, Fenster schließen = verkauft. Nicht verkaufbare Items bekommst du zurück. Der Button „Alles Verkaufbare einlegen“ hilft besonders auf Bedrock. Außerdem: <code>/sell hand</code> und <code>/sell all</code>.</p>
+<h3>Stars-Shop</h3><p>Im <code>/shop</code> beim Nether Star (oder <code>/crystalshop</code>): Crystal-Ausrüstung (lila Netherite) und 7 Smart-Spawner, bezahlt mit Stars. Jeder Kauf wird noch einmal bestätigt.</p>
+<h3>Gem-Shop</h3><p><code>/gemshop</code>: Ränge (PREMIUM bis VIP), Keys, Spawner, Hammer, Excavator und Geld gegen Gems.</p></section>
+
+<section class="sec" id="handel"><h2>Auktionshaus, Orders &amp; Kopfgeld</h2>
+<h3>Auktionshaus <code>/ah</code></h3>
+<p>Item in die Hand, dann <code>/ah sell &lt;Preis&gt;</code>. Angebote laufen 48 Stunden, 5 % Steuer beim Verkauf. Suchen: <code>/ah search &lt;Text&gt;</code>. Eigene und abgelaufene Angebote holst du unter „Meine Items“. Wie viele Angebote du haben darfst, hängt von deinem Rang ab (10 bis 100).</p>
+<h3>Orders <code>/order</code></h3>
+<p>Du bestellst Items zu deinem Preis, andere liefern sie und werden sofort bezahlt. Erstellen per Menü: Item auswählen (alle, aus dem Inventar oder per Suche), dann <b>Menge</b> und <b>Preis pro Stück</b> über ein Schild eingeben und bestätigen. Das Geld wird reserviert. Gelieferte Items holst du unter <code>/order mine</code> ab; beim Schließen oder nach 72 Stunden bekommst du den Rest zurück. Direkt per Befehl: <code>/order create diamond 64 350</code>.</p>
+<h3>Kopfgeld <code>/bounty</code></h3><p><code>/bounty &lt;Spieler&gt; &lt;Betrag&gt;</code> (mindestens $1.000). Wer den Spieler tötet, bekommt das gesamte Kopfgeld. <code>/bounty</code> zeigt alle Köpfe.</p>
+<h3>Tägliches &amp; Co.</h3><p><code>/daily</code> gibt $500 plus $100 pro Streak-Tag (bis zu 7 Tage in Folge). <code>/sign</code> signiert das Item in deiner Hand mit deinem Namen (Spieler 1× pro Tag, höhere Ränge öfter).</p></section>
+
+<section class="sec" id="crates"><h2>Crates &amp; Keys</h2>
+<p>Crate-Blöcke findest du am Spawn. <b>Linksklick</b> zeigt die Rewards mit Chancen, <b>Rechtsklick</b> öffnet mit einem Key. Es gibt 7 Crates: <b>Common, Rare, Epic, Legendary, Special, Wahl-Crate</b> (du suchst deinen Reward selbst aus) und <b>Mythic</b>. Die Special-Crate enthält Smart-Spawner und Tools.</p>
+<p><b>Keys bekommst du</b> durch Keyall, im Gem-Shop und über Events/das Team. <code>/crate</code> zeigt deine Keys. <b>Keyall:</b> Alle 60 Minuten bekommt jeder Online-Spieler 1 Common-Key; der Countdown steht im Scoreboard und mit <code>/keyall</code>.</p></section>
+
+<section class="sec" id="battlepass"><h2>Battle Pass</h2>
+<p><code>/battlepass</code> (auch <code>/bp</code> oder <code>/pass</code>): Quests geben Pass-XP, jedes Level schaltet Belohnungen frei. <b>Season 1</b>, <b>30 Level</b>, <b>1.000 XP</b> pro Level. Jeden Tag gibt es <b>3 Tages-Quests</b>, jede Woche <b>3 Wochen-Quests</b> (für alle gleich, wechseln automatisch).</p>
+<div class="tip"><b>Premium-Pass:</b> kostet 1.000 Gems (oder die Permission <code>smpcore.battlepass.premium</code>) und gibt dir <b>+20 % Quest-XP</b>.</div>
+<h3>Belohnungen</h3><div class="tw"><table><tr><th>Level</th><th>Kostenlos</th><th>Premium</th></tr>
+<tr><td>jedes Level</td><td>$2.500</td><td>$7.500</td></tr>
+<tr><td>alle 3 Level</td><td>–</td><td>20 Stars</td></tr>
+<tr><td>alle 5 Level</td><td>15 Stars</td><td>25 Gems</td></tr>
+<tr><td>alle 10 Level</td><td>Rare-Key</td><td>Epic-Key</td></tr>
+<tr><td>Level 15</td><td>–</td><td>Hammer (3×3)</td></tr>
+<tr><td>Level 30</td><td>2× Legendary-Key</td><td>Crystal-Spitzhacke + 200 Gems</td></tr></table></div>
+<h3>Tages-Quests (3 zufällige aus 7)</h3><div class="tw"><table><tr><th>Quest</th><th>Aufgabe</th><th>Belohnung</th></tr><tr><td>Steinmetz</td><td>400 Stein-Blöcke abbauen</td><td>200 XP</td></tr><tr><td>Erzsucher</td><td>40 Erze abbauen</td><td>250 XP</td></tr><tr><td>Monsterjäger</td><td>30 Mobs töten</td><td>200 XP</td></tr><tr><td>Angler</td><td>12 Fische fangen</td><td>200 XP</td></tr><tr><td>Dauerspieler</td><td>45 Minuten spielen</td><td>200 XP</td></tr><tr><td>Händler</td><td>Für $50.000 verkaufen</td><td>250 XP</td></tr><tr><td>Holzfäller</td><td>150 Holzstämme abbauen</td><td>200 XP</td></tr></table></div>
+<h3>Wochen-Quests (3 zufällige aus 6)</h3><div class="tw"><table><tr><th>Quest</th><th>Aufgabe</th><th>Belohnung</th></tr><tr><td>Großer Steinmetz</td><td>3.000 Stein-Blöcke abbauen</td><td>900 XP</td></tr><tr><td>Monsterschlächter</td><td>300 Mobs töten</td><td>900 XP</td></tr><tr><td>Kopfjäger</td><td>10 Spieler töten</td><td>1000 XP</td></tr><tr><td>Großhändler</td><td>Für $1.000.000 verkaufen</td><td>1000 XP</td></tr><tr><td>Stammspieler</td><td>600 Minuten spielen</td><td>800 XP</td></tr><tr><td>Meisterangler</td><td>100 Fische fangen</td><td>800 XP</td></tr></table></div></section>
+<section class="sec" id="extras"><h2>Extras</h2>
+<h3>Farm-Modus <code>/farmmode</code></h3>
+<p>Stein abbauen gibt <b>2 XP</b> pro Block (Stein, Bruchstein, Deepslate, Tuff, Andesit, Diorit, Granit, Netherrack, Basalt, Blackstone, End Stein). Erze geben <b>Stars</b>, auch die Deepslate-Variante. Maximal <b>3.000 Stars pro Tag</b>.</p>
+<div class="tw"><table><tr><th>Erz</th><th>Kohle</th><th>Kupfer</th><th>Eisen</th><th>Gold</th><th>Nether-Gold</th><th>Redstone</th><th>Lapis</th><th>Quarz</th><th>Smaragd</th><th>Diamant</th><th>Alter Schutt</th></tr><tr><td>Stars</td><td>1</td><td>1</td><td>2</td><td>3</td><td>2</td><td>2</td><td>3</td><td>2</td><td>6</td><td>8</td><td>15</td></tr></table></div>
+<h3>Streamen <code>/live</code></h3>
+<p>Für den Rang <b>MEDIA</b> und höher. Wer live ist, bekommt einen <b>roten Punkt</b> in der TAB-Liste und eine Ankündigung im Chat (alle 10 Minuten möglich). Erlaubt sind Links von Twitch, YouTube, Kick und TikTok.</p>
+<h3>Scoreboard &amp; TAB-Liste</h3>
+<p>Das Scoreboard zeigt Geld, Gems, Stars, Kills, Tode, Clan, Ping, Keyall-Countdown, Spielzeit, die Server-IP und die Spielerzahl. Mit <code>/scoreboard</code> schaltest du es aus oder an. Die TAB-Liste zeigt Spielerzahl und Ping, jeden Namen mit [Clan-Tag] und Rang und ist nach Rang sortiert.</p>
+<h3>Weitere Befehle</h3>
+<div class="tw"><table><tr><th>Befehl</th><th>Funktion</th></tr>
+<tr><td><code>/repair</code></td><td>Reparieren, ab ULTRA (Cooldown 1 Stunde)</td></tr>
+<tr><td><code>/near</code></td><td>Spieler in deiner Nähe (100 Blöcke)</td></tr>
+<tr><td><code>/hat</code> · <code>/seen</code></td><td>Item aufsetzen · wann ein Spieler zuletzt online war</td></tr>
+<tr><td><code>/holo</code></td><td>Leaderboard-Hologramme (Team), aktualisieren sich alle 30 Minuten</td></tr>
+<tr><td><code>/rules</code> · <code>/wiki</code></td><td>Regeln im Chat · Link zu dieser Wiki</td></tr></table></div>
+<h3>Resource-Pack (Java)</h3>
+<p>Beim Joinen wird dir ein Resource-Pack angeboten (nicht erzwungen): lila Crystal-Ausrüstung, rote und orange Hammer und Excavator, Scoreboard-Icons und TAB-Logo. Bedrock-Spieler sehen stattdessen Symbole wie $, ★ und ⚔.</p></section>
+<section class="sec" id="clans"><h2>Clans</h2>
+<p><code>/clan</code> öffnet das Menü (alles per Tap). Gründen: <code>/clan create &lt;Name&gt; &lt;Tag&gt;</code> kostet $1.000.000. Name 3–16 Zeichen, Tag 2–4 Zeichen. Maximal 30 Mitglieder.</p>
+<div class="tw"><table><tr><th>Rolle</th><th>Rechte</th></tr><tr><td>Leader</td><td>Alles: befördern, kicken, Leader übertragen, Clan auflösen</td></tr><tr><td>Offizier</td><td>Einladen, Mitglieder kicken, Home setzen, Bank abheben, Friendly Fire umschalten</td></tr><tr><td>Mitglied</td><td>Einzahlen, Home nutzen, Clan-Chat</td></tr></table></div>
+<p>Weitere Funktionen: Clan-Bank, Clan-Home (<code>/clan home</code>), Clan-Chat (<code>/clan chat</code>), Friendly Fire (standardmäßig aus), Top-Clans nach Kills. Dein Clan-Tag steht im Chat und in der TAB-Liste.</p></section>
+
+<section class="sec" id="raenge"><h2>Ränge</h2><div class="tw"><table><tr><th>Rang</th><th>Homes</th><th>AH-Slots</th><th>Stars-Bonus</th><th>/sign pro Tag</th><th>Extras</th></tr><tr><td><b style="color:SPIELER">#9ca3af</b></td><td>3</td><td>10</td><td>–</td><td>1</td><td>Starter-Kit</td></tr><tr><td><b style="color:PREMIUM">#4ade80</b></td><td>5</td><td>15</td><td>+10 %</td><td>2</td><td><code>/trash</code>, PREMIUM-Kit</td></tr><tr><td><b style="color:ELITE">#ffaa00</b></td><td>7</td><td>20</td><td>+20 %</td><td>3</td><td><code>/craft</code>, ELITE-Kit</td></tr><tr><td><b style="color:MVP">#ff5555</b></td><td>10</td><td>25</td><td>+30 %</td><td>5</td><td><code>/ec</code>, MVP-Kit</td></tr><tr><td><b style="color:ULTRA">#c040ff</b></td><td>15</td><td>30</td><td>+40 %</td><td>8</td><td><code>/feed</code>, <code>/repair</code>, ULTRA-Kit</td></tr><tr><td><b style="color:VIP">#55ccff</b></td><td>20</td><td>40</td><td>+50 %</td><td>12</td><td><code>/heal</code>, VIP-Kit</td></tr><tr><td><b style="color:MEDIA">#ff3fa4</b></td><td>20</td><td>40</td><td>+50 %</td><td>12</td><td><code>/live</code></td></tr><tr><td><b style="color:MOD">#55ffff</b></td><td>25</td><td>50</td><td>–</td><td>20</td><td>Team: <code>/vanish</code>, <code>/heal</code>, <code>/feed</code>, <code>/announce</code>, Mitarbeiter-Kit, Teleport-Bypass</td></tr><tr><td><b style="color:SRMOD">#00bcbc</b></td><td>30</td><td>50</td><td>–</td><td>30</td><td>zusätzlich <code>/craft</code>, <code>/ec</code>, Befehle für andere Spieler</td></tr><tr><td><b style="color:ADMIN">#ff7a2a</b></td><td>50</td><td>100</td><td>–</td><td>100</td><td>alle Admin-Rechte</td></tr><tr><td><b style="color:SRADMIN">#ff3b3b</b></td><td>50</td><td>100</td><td>–</td><td>100</td><td>wie ADMIN</td></tr><tr><td><b style="color:OWNER">#e03030</b></td><td>50</td><td>100</td><td>–</td><td>100</td><td>alle Rechte</td></tr></table></div><p>Höhere Ränge enthalten alles der niedrigeren. In der TAB-Liste steht der Rang als fetter Name vor dem Spielernamen, und alle Spieler sind nach Rang sortiert. Ränge von PREMIUM bis VIP gibt es im Gem-Shop. MEDIA ist für Creator, MOD bis OWNER ist das Team.</p></section>
+
+<section class="sec" id="kits"><h2>Kits</h2>
+<p><code>/kit</code> zeigt alle Kits. Tippe ein Kit an, um alle Items zu sehen, und hole es mit dem grünen Button. Rüstung wird automatisch angezogen, wenn der Slot frei ist. Vorschau per Befehl: <code>/kit preview &lt;Name&gt;</code>.</p>
+<div class="tw"><table><tr><th>Kit</th><th>Für wen</th><th>Wartezeit</th></tr><tr><td>Starter</td><td>Alle</td><td>einmalig</td></tr><tr><td>Täglich</td><td>Alle</td><td>24 Stunden</td></tr><tr><td>Wöchentlich</td><td>Alle</td><td>7 Tage</td></tr><tr><td>PREMIUM · ELITE · MVP</td><td>ab dem Rang</td><td>24 Stunden</td></tr><tr><td>ULTRA · VIP (Netherite, voll verzaubert)</td><td>ab dem Rang</td><td>24 Stunden</td></tr><tr><td>MVP-Gear · ULTRA-Gear · VIP-Gear</td><td>ab dem Rang</td><td>siehe <code>/kit</code></td></tr><tr><td>MEDIA</td><td>MEDIA</td><td>siehe <code>/kit</code></td></tr><tr><td>Mitarbeiter</td><td>Team</td><td>6 Stunden</td></tr></table></div></section>
+
+<section class="sec" id="reisen"><h2>Teleport &amp; Homes</h2>
+<div class="tw"><table><tr><th>Befehl</th><th>Funktion</th></tr>
+<tr><td><code>/spawn</code></td><td>Zum Spawn</td></tr>
+<tr><td><code>/sethome [Name]</code> · <code>/home [Name]</code> · <code>/homes</code> · <code>/delhome</code></td><td>Homes (Anzahl nach Rang)</td></tr>
+<tr><td><code>/tpa &lt;Spieler&gt;</code> · <code>/tpaccept</code> · <code>/tpdeny</code></td><td>Teleport-Anfragen (60 Sekunden gültig)</td></tr>
+<tr><td><code>/rtp</code></td><td>Zufälliger Ort in Oberwelt, Nether und End (Cooldown 60 Sekunden, Nether/End nur wenn geöffnet)</td></tr>
+<tr><td><code>/warp</code></td><td>Warp-Menü</td></tr>
+<tr><td><code>/back</code></td><td>Zum letzten Ort oder Todesort</td></tr>
+<tr><td><code>/afk</code></td><td>In die AFK-Zone (Stars verdienen)</td></tr></table></div>
+<div class="tip">Teleports haben 3 Sekunden Wartezeit. Bewegst du dich, wird abgebrochen.</div></section>
+
+<section class="sec" id="spawner"><h2>Smart-Spawner &amp; Tools</h2>
+<p><b>Smart-Spawner</b> spawnen keine Mobs, sondern erzeugen Loot und XP in einem Lager. Platzieren, dann <b>Rechtsklick</b>: Lager entnehmen, XP einsammeln, alles verkaufen oder weitere Spawner stapeln (bis 100). Abbauen geht nur, wenn das Lager leer ist, und nur beim Besitzer.</p>
+<p><b>Spezial-Tools:</b> Hammer, Excavator und Mega-Hammer bauen 3×3 (Mega 5×5) auf einmal ab. <b>Schleichen</b> baut nur einen Block ab. Die lila Crystal-Ausrüstung gibt es im Stars-Shop.</p></section>
+
+<section class="sec" id="welt"><h2>Nether, End &amp; Elytra</h2>
+<p>Das Team kann <b>Nether und End jederzeit öffnen oder schließen</b>. Ist eine Dimension geschlossen, kommst du nicht hinein, und wer drin ist, wird zum Spawn gebracht. Für <code>/rtp</code> in Nether und End gilt zusätzlich eine eigene Freischaltung.</p>
+<div class="tip"><b>Elytra</b> gibt es in keinem Shop und keiner Crate. Du bekommst sie nur im <b>End</b> (End-Schiffe), über das <b>Auktionshaus</b> oder per <b>Order</b>.</div></section>
+
+<section class="sec" id="tools"><h2>Rechner &amp; Tools</h2>
+<p>Die Werte stammen aus der Plugin-Konfiguration.</p>
+<div class="tools">
+<div class="tool"><h3>Stars-Rechner</h3><label>Rang<select id="sr"></select></label><label>AFK-Zeit: <b id="sh"></b><input type="range" id="sx" min="1" max="24" value="2"></label><label>Ziel<select id="sg"></select></label><p id="so" class="out"></p></div>
+<div class="tool"><h3>AH-Rechner</h3><label>Preis (auch <code>1k</code>, <code>2.5m</code>, <code>1b</code>)<input id="ap" value="100k" inputmode="decimal"></label><p id="ao" class="out"></p><p class="mu">Angebote laufen 48 Stunden, 5 % Steuer beim Verkauf.</p></div>
+</div>
+<h3>Crate-Chancen</h3><div id="ct" class="chips"></div><p id="cm" class="mu"></p><div class="tw"><table id="cb"></table></div></section>
+<section class="sec" id="befehle"><h2>Alle wichtigen Befehle</h2>
+<div class="tw"><table><tr><th>Bereich</th><th>Befehle</th></tr>
+<tr><td>Geld</td><td><code>/balance /pay /top /stars /gems /daily /stats</code></td></tr>
+<tr><td>Handel</td><td><code>/shop /sell /ah /order /bounty /crystalshop /gemshop</code></td></tr>
+<tr><td>Spiel</td><td><code>/crate /keyall /kit /clan /sign /scoreboard</code></td></tr>
+<tr><td>Reisen</td><td><code>/spawn /home /sethome /homes /tpa /rtp /warp /back /afk</code></td></tr>
+<tr><td>Chat</td><td><code>/msg &lt;Spieler&gt; &lt;Text&gt;</code>, <code>/r</code> antworten, <code>/clan chat</code></td></tr>
+<tr><td>Extras</td><td><code>/battlepass /bp /farmmode /live /near /repair /hat /seen /rules /wiki</code></td></tr><tr><td>Rang-Extras</td><td><code>/trash /craft /ec /feed /heal /repair /live</code></td></tr></table></div></section>
+
+<section class="sec" id="regeln"><h2>Server-Regeln</h2>
+<p>Mit dem Betreten des Servers akzeptierst du diese Regeln. Das Team entscheidet im Zweifel nach dem Sinn der Regeln. Unwissenheit schützt nicht vor Strafe.</p>
+<div class="rule"><h3>Respekt</h3><p>Behandle alle fair. Beleidigungen, Hetze, Diskriminierung, Drohungen und persönliche Angriffe sind verboten, im Chat, in Namen, Clan-Namen und auf Schildern.</p></div>
+<div class="rule"><h3>Chat</h3><p>Kein Spam, kein Capslock-Missbrauch, keine Werbung für andere Server, Shops oder Links. Keine politischen oder sexuellen Inhalte. Es wird in einer Sprache gechattet, die alle verstehen können.</p></div>
+<div class="rule"><h3>Cheats &amp; Hacks</h3><p>Verboten sind Hacked Clients, X-Ray (auch per Texturpack), Fly, KillAura, Auto-Clicker, Makros und alles, was einen unfairen Vorteil bringt. Erlaubt sind Mods ohne Vorteil, z. B. Minimap ohne Höhlen- und Entity-Radar, Shader oder Optimierungs-Mods.</p></div>
+<div class="rule"><h3>Bugs &amp; Duplikation</h3><p>Fehler dürfen nicht ausgenutzt werden, auch nicht „nur einmal“. Dupes, Fehler im Shop, AH, Order oder bei Crates müssen sofort dem Team gemeldet werden. Wer sie ausnutzt, verliert die Items und das Geld und wird bestraft.</p></div>
+<div class="rule"><h3>AFK &amp; Farmen</h3><p>Stars verdienst du in der AFK-Zone. Automatisierte Eingaben, Mehrfach-Accounts (Alts) zum Farmen von Stars, Keys, Kopfgeld oder Kits und das Umgehen von Limits sind verboten. Wer nur für Belohnungen Kills mit einem Freund oder Alt abspricht, wird bestraft.</p></div>
+<div class="rule"><h3>Handel &amp; Betrug</h3><p>Scamming, Preisabsprachen mit Täuschung und das Abzocken von Spielern sind verboten. <b>Echtgeld-Handel</b> mit Items, Geld, Gems oder Accounts ist verboten. Gems gibt es nur im offiziellen Store.</p></div>
+<div class="rule"><h3>Bauen &amp; Umwelt</h3><p>Keine Lag-Maschinen, Redstone-Uhren ohne Abschaltung und riesige Entity-Farmen. Das Team darf Bauten entfernen, die den Server verlangsamen. Der Spawn darf nicht verändert werden. Baue keine anstößigen Strukturen.</p></div>
+<div class="rule"><h3>PvP &amp; Kopfgeld</h3><p>PvP ist erlaubt und gehört zum Spiel. Verboten sind Spawn-Kill im Schutzbereich, das Ausnutzen von Bugs im Kampf und Combat-Logging, also das Verlassen mitten im Kampf, um dem Tod zu entgehen.</p></div>
+<div class="rule"><h3>Namen &amp; Skins</h3><p>Namen, Skins und Clan-Namen dürfen nicht beleidigend, anstößig oder irreführend sein, z. B. Team-Namen nachzuahmen.</p></div>
+<div class="rule"><h3>Team &amp; Support</h3><p>Anweisungen des Teams ist zu folgen. Diskutiere Strafen nicht im Chat, sondern melde dich beim Team im Support. Das Imitieren von Teammitgliedern und das Melden ohne Grund sind verboten.</p></div>
+<h3>Strafen</h3>
+<div class="tw"><table><tr><th>Verstoß</th><th>Strafe</th></tr>
+<tr><td>Spam, leichte Beleidigung, Werbung</td><td>Verwarnung → Mute (1 Stunde bis 3 Tage)</td></tr>
+<tr><td>Schwere Beleidigung, Diskriminierung, Scam</td><td>Mute bis 30 Tage oder Bann 7–30 Tage</td></tr>
+<tr><td>Bug-Missbrauch, Dupe, AFK-Farming</td><td>Item- und Geld-Reset + Bann 7–30 Tage</td></tr>
+<tr><td>Cheating, Hacked Client</td><td>Permanenter Bann</td></tr>
+<tr><td>Echtgeld-Handel, Account-Handel</td><td>Permanenter Bann (alle beteiligten Accounts)</td></tr></table></div>
+<p>Das Team kann bei schweren Fällen oder Wiederholung härter strafen. Ein Bann-Umgehen mit einem Zweitaccount verlängert die Strafe.</p>
+<p style="color:var(--mu);font-size:.9rem">Stand: November 2026 · Änderungen vorbehalten</p></section>
+
+<p id="none" hidden>Nichts gefunden. Probier einen Befehl wie <code>/rtp</code> oder ein Wort wie „Clan“.</p>
+</main></div>
+<footer>XuroSMP Wiki · Kein offizielles Mojang- oder Microsoft-Produkt · Easter Eggs gefunden: <b id="eggc">0/6</b> · <span id="pick" title="Hier steckt was drin">⛏</span></footer>
+<button id="top" aria-label="Nach oben">↑</button>
+<div id="toasts" aria-live="polite"></div>
+<div class="ov" id="cr"></div><div class="ov" id="hb"><i></i><i></i></div>
+<script src="config.js"></script><script>
+const D={"crates":[{"id":"common","n":"Common Crate","c":"#4ade80","m":"RANDOM","rw":[["$2.500",30.0],["2 Stars",20.0],["32× Iron Ingot",15.0],["32× Cooked Beef",15.0],["$10.000",12.0],["4× Diamond",7.0],["10 Stars",1.0]]},{"id":"rare","n":"Rare Crate","c":"#38bdf8","m":"RANDOM","rw":[["$25.000",28.0],["8 Stars",20.0],["16× Diamond",18.0],["8× Golden Apple",15.0],["$100.000",8.0],["4× Netherite Scrap",8.0],["1× Totem Of Undying",3.0]]},{"id":"legendary","n":"Legendary Crate","c":"#fbbf24","m":"RANDOM","rw":[["$250.000",31.1],["40 Stars",20.7],["4× Netherite Ingot",15.5],["4× Enchanted Golden Apple",15.5],["3× Totem Of Undying",10.4],["$1.000.000",6.2],["Nether Star",0.5]]},{"id":"epic","n":"Epic Crate","c":"#a855f7","m":"RANDOM","rw":[["$100.000",30.0],["20 Stars",20.0],["4× Diamond Block",15.0],["16× Golden Apple",15.0],["$400.000",8.0],["2× Netherite Ingot",8.0],["2× Totem Of Undying",4.0]]},{"id":"mythic","n":"Mythic Crate","c":"#fb923c","m":"RANDOM","rw":[["$1.000.000",32.3],["100 Stars",21.5],["2× Netherite Block",16.1],["16× Enchanted Golden Apple",16.1],["$5.000.000",5.4],["Mega-Hammer (5x5)",5.4],["Iron Golem Spawner",3.2]]},{"id":"special","n":"Special Crate","c":"#e879f9","m":"RANDOM","rw":[["Zombie Spawner",25.5],["Skeleton Spawner",25.5],["25 Stars",20.4],["Hammer (3x3)",10.2],["Excavator (3x3)",10.2],["Blaze Spawner",8.2]]},{"id":"choose","n":"Wahl-Crate","c":"#fde047","m":"CHOOSE","rw":[["$50.000",25.0],["15 Stars",25.0],["4× Diamond Block",25.0],["2× Totem Of Undying",25.0]]}],"ranks":[["SPIELER",0],["PREMIUM",10],["ELITE",20],["MVP",30],["ULTRA",40],["VIP",50],["MEDIA",50]],"goals":[["Crystal Helm",400],["Crystal Brustplatte",600],["Crystal Hose",500],["Crystal Stiefel",350],["Crystal Schwert",500],["Crystal Axt",450],["Crystal Spitzhacke",500],["Zombie Spawner",200],["Skeleton Spawner",250],["Spider Spawner",250],["Creeper Spawner",300],["Blaze Spawner",500],["Wither-Skeleton Spawner",800],["Iron-Golem Spawner",1000]]};
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)],sleep=t=>new Promise(r=>setTimeout(r,t));
+const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+const root=document.documentElement,still=matchMedia('(prefers-reduced-motion:reduce)').matches;
+if(store.get('th'))root.dataset.theme=store.get('th');
+$('#theme').onclick=()=>{const cur=root.dataset.theme||(matchMedia('(prefers-color-scheme:light)').matches?'light':'dark'),n=cur==='dark'?'light':'dark';root.dataset.theme=n;store.set('th',n)};
+function toast(t,s,ic='🏆'){const e=document.createElement('div');e.className='adv';e.innerHTML='<i>'+ic+'</i><div><b></b><span></span></div>';e.querySelector('b').textContent=t;e.querySelector('span').textContent=s;$('#toasts').append(e);setTimeout(()=>e.remove(),4200)}
+const found=new Set(JSON.parse(store.get('eggs')||'[]')),upd=()=>$('#eggc').textContent=found.size+'/6';upd();
+function egg(id,name){if(found.has(id))return;found.add(id);store.set('eggs',JSON.stringify([...found]));toast('Advancement Made!',name+' ('+found.size+'/6)');upd()}
+/* Partikel */
+const cv=$('#fx'),cx=cv.getContext('2d'),cols=['#ff5555','#ffaa00','#b78cff','#4ade80','#ffffff'];let P=[],W,H;
+const rs=()=>{W=cv.width=innerWidth;H=cv.height=innerHeight};rs();addEventListener('resize',rs);
+const amb=still?[]:Array.from({length:40},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,v:.15+Math.random()*.4,s:2+(Math.random()*3|0),c:cols[Math.random()*3|0]}));
+function burst(n,x,y,s=8){for(let i=0;i<n;i++)P.push({x,y,vx:(Math.random()-.5)*s*2,vy:(Math.random()-.9)*s,s:4+(Math.random()*6|0),c:cols[Math.random()*5|0],l:90+Math.random()*60})}
+(function loop(){cx.clearRect(0,0,W,H);cx.globalAlpha=.25;for(const a of amb){a.y-=a.v;if(a.y<-6){a.y=H+6;a.x=Math.random()*W}cx.fillStyle=a.c;cx.fillRect(a.x|0,a.y|0,a.s,a.s)}cx.globalAlpha=1;P=P.filter(p=>p.l-->0);for(const p of P){p.vy+=.25;p.x+=p.vx;p.y+=p.vy;cx.fillStyle=p.c;cx.fillRect(p.x|0,p.y|0,p.s,p.s)}requestAnimationFrame(loop)})();
+/* Navigation */
+const IC={waehrung:'💰',shop:'🛒',handel:'⚖️',crates:'🎁',clans:'🛡️',raenge:'👑',kits:'🧰',reisen:'🧭',spawner:'⛏️',welt:'🔥',tools:'🧮',battlepass:'🎖️',extras:'✨',befehle:'⌨️',regeln:'📜'};
+const secs=$$('main .sec'),nav=$('#nav');
+nav.innerHTML='<a href="#start" data-i="start"><i>🏠</i>Start</a>'+secs.map(s=>'<a href="#'+s.id+'" data-i="'+s.id+'"><i>'+(IC[s.id]||'•')+'</i>'+s.querySelector('h2').textContent+'</a>').join('');
+secs.forEach(s=>{const h=s.querySelector('h2');h.insertAdjacentHTML('afterbegin',(IC[s.id]||'')+' ');h.insertAdjacentHTML('beforeend','<a href="#'+s.id+'" aria-label="Link zum Abschnitt">#</a>')});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){$$('nav a').forEach(a=>a.classList.toggle('act',a.dataset.i===e.target.id))}}),{rootMargin:'-20% 0px -70% 0px'});
+[$('#start'),...secs].forEach(s=>io.observe(s));
+$('#menu').onclick=()=>nav.classList.toggle('open');nav.addEventListener('click',()=>nav.classList.remove('open'));
+addEventListener('scroll',()=>{const h=root.scrollHeight-innerHeight;$('#bar').style.width=(h>0?scrollY/h*100:0)+'%';$('#top').classList.toggle('on',scrollY>700)},{passive:true});
+$('#top').onclick=()=>scrollTo({top:0});
+/* Suche */
+const q=$('#q');
+q.addEventListener('input',()=>{const v=q.value.trim().toLowerCase();let n=0;secs.forEach(s=>{const m=!v||s.textContent.toLowerCase().includes(v);s.hidden=!m;n+=m});$('#none').hidden=n>0;
+if(v==='herobrine')hero();if(v==='notch'){egg('notch','Notch? Der hat hier nichts zu sagen.');toast('Notch','Gegründet wurde der Server von jemand anderem.','🎩')}if(v==='/op me'||v==='op me')toast('Netter Versuch','Dafür brauchst du smpcore.admin.','🚫')});
+/* Code kopieren */
+$$('code').forEach(c=>{if(/^\//.test(c.textContent)&&!c.closest('.hero')){c.classList.add('cp');c.title='Klicken zum Kopieren'}});
+document.addEventListener('click',e=>{const c=e.target.closest('code.cp');if(c&&navigator.clipboard)navigator.clipboard.writeText(c.textContent).then(()=>toast('Kopiert',c.textContent,'📋'),()=>{})});
+$('#ip').onclick=()=>{navigator.clipboard&&navigator.clipboard.writeText('xurosmp.daronlo.com').then(()=>toast('IP kopiert','xurosmp.daronlo.com','📋'),()=>{})};
+/* Server-Status */
+fetch('https://api.mcsrvstat.us/3/xurosmp.daronlo.com').then(r=>r.json()).then(j=>{const s=$('#st');if(j.online){s.className='pill on';s.textContent='Online · '+(j.players?j.players.online+'/'+j.players.max:'')+' Spieler'}else{s.className='pill off';s.textContent='Offline'}}).catch(()=>{$('#st').textContent='Status nicht verfügbar'});
+/* Hero-Chat */
+const CH=[['/kit starter','KIT','Du hast das Starter-Kit erhalten.'],['/afk','AFK','Du bist in der AFK-Zone und verdienst Stars.'],['/shop','SHOP','Shop geöffnet.'],['/clan create Xuro XRO','CLAN','Clan gegründet.'],['/daily','DAILY','Tägliche Belohnung abgeholt.']];
+(async()=>{const box=$('#chat');for(;;){box.innerHTML='';for(const [c,t,m] of CH){const l=document.createElement('p');l.innerHTML='<span class="pr">&gt; </span><span></span>';box.append(l);const sp=l.lastChild;for(const ch of c){sp.textContent+=ch;if(!still)await sleep(55)}await sleep(still?0:300);const r=document.createElement('p');r.innerHTML='<b class="tg">'+t+' ▸</b> '+m;box.append(r);await sleep(still?0:700)}if(still)return;await sleep(4000)}})();
+/* Rechner */
+const fm=n=>Math.round(n).toLocaleString('de-DE'),num=s=>{const m=String(s).trim().toLowerCase().replace(',','.').match(/^([\d.]+)\s*([kmb])?$/);return m?parseFloat(m[1])*({k:1e3,m:1e6,b:1e9}[m[2]]||1):NaN};
+$('#sr').innerHTML=D.ranks.map((r,i)=>'<option value="'+i+'">'+r[0]+' (+'+r[1]+' %)</option>').join('');
+$('#sg').innerHTML=D.goals.map((g,i)=>'<option value="'+i+'">'+g[0]+' ('+g[1]+' Stars)</option>').join('');
+const calc=()=>{const b=D.ranks[$('#sr').value][1],h=+$('#sx').value,ph=60*(1+b/100),g=D.goals[$('#sg').value];$('#sh').textContent=h+' h';$('#so').textContent='≈ '+fm(h*ph)+' Stars in '+h+' h. Für '+g[0]+' brauchst du ca. '+(g[1]/ph).toFixed(1).replace('.',',')+' h AFK.'};
+['sr','sx','sg'].forEach(i=>$('#'+i).oninput=calc);calc();
+$('#ap').oninput=()=>{const p=num($('#ap').value);$('#ao').textContent=isNaN(p)?'Bitte einen Preis eingeben.':'Du erhältst ca. $'+fm(p*.95)+' (Steuer $'+fm(p*.05)+').'};$('#ap').oninput();
+$('#ct').innerHTML=D.crates.map((c,i)=>'<button style="--c:'+c.c+'" data-i="'+i+'">'+c.n+'</button>').join('');
+function crate(i){const c=D.crates[i];$$('#ct button').forEach((b,j)=>b.classList.toggle('on',j==i));$('#cm').textContent=c.m==='CHOOSE'?'Bei dieser Crate wählst du deinen Reward selbst aus (alle Optionen).':'Chance pro Öffnung, berechnet aus den Gewichtungen.';
+$('#cb').innerHTML='<tr><th>Reward</th><th>Chance</th><th></th></tr>'+c.rw.map(r=>'<tr><td>'+r[0]+'</td><td>'+(c.m==='CHOOSE'?'wählbar':String(r[1]).replace('.',',')+' %')+'</td><td style="width:35%"><i class="pb" style="--c:'+c.c+';width:'+(c.m==='CHOOSE'?100:Math.min(100,r[1]*2.5))+'%"></i></td></tr>').join('')}
+$('#ct').onclick=e=>{const b=e.target.closest('button');if(b)crate(+b.dataset.i)};crate(0);
+/* Regeln */
+$('#regeln').insertAdjacentHTML('beforeend','<p><button id="ok">Ich habe die Regeln gelesen</button></p>');
+$('#ok').onclick=e=>{const r=e.target.getBoundingClientRect();burst(80,r.left+r.width/2,r.top,9);toast('Willkommen auf dem XuroSMP','Viel Spaß und fairen Kampf!','⚔️')};
+/* Easter Eggs */
+const CR=['........','.GG..GG.','.GG..GG.','...GG...','..GGGG..','..GGGG..','..G..G..','........'];
+function creeper(){const o=$('#cr');o.innerHTML='<div><div class="face">'+CR.join('').replace(/./g,c=>'<s'+(c=='G'?' class="k"':'')+'></s>').replace(/<s><\/s>/g,'<s></s>')+'</div><p>Sssssss…</p></div>';o.classList.add('on');setTimeout(()=>{o.classList.remove('on');document.body.classList.add('shake');burst(240,innerWidth/2,innerHeight/2,14);setTimeout(()=>document.body.classList.remove('shake'),600)},1400);egg('cr','Das war ein Creeper!')}
+function hero(){const o=$('#hb');o.classList.remove('on');void o.offsetWidth;o.classList.add('on');setTimeout(()=>o.classList.remove('on'),1800);egg('hb','Herobrine hat dich beobachtet')}
+const K='ArrowUp,ArrowUp,ArrowDown,ArrowDown,ArrowLeft,ArrowRight,ArrowLeft,ArrowRight,b,a';let ki=[];
+addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();q.focus();return}ki.push(e.key.length>1?e.key:e.key.toLowerCase());ki=ki.slice(-10);if(ki.join()===K)creeper()});
+let lc=0,sc=0,pc=0;
+$('#logo').onclick=()=>{if(++lc>=7){lc=0;hero()}};
+$('#star').onclick=e=>{if(++sc>=5){sc=0;for(let i=0;i<6;i++)setTimeout(()=>burst(40,Math.random()*innerWidth,-10,3),i*150);egg('star','Nether-Star-Regen')}else burst(12,e.clientX,e.clientY,4)};
+$('#pick').onclick=()=>{if(++pc>=10){pc=0;toast('Diamanten!','Y=-59. Gut gegraben.','💎');burst(100,innerWidth/2,innerHeight,12);egg('pick','Diamantfund')}};
+let idle;const rst=()=>{clearTimeout(idle);idle=setTimeout(()=>{toast('AFK erkannt','+1 Star ★ (leider nur im Spiel)','★');egg('afk','AFK-Zone besucht')},45000)};
+['mousemove','keydown','scroll','touchstart'].forEach(v=>addEventListener(v,rst,{passive:true}));rst();
+const siteCfg=window.SITE||{};$$('[data-discord]').forEach(a=>{if(siteCfg.discord&&!/DEIN-LINK/.test(siteCfg.discord)){a.href=siteCfg.discord;a.target='_blank'}else a.onclick=e=>{e.preventDefault();toast('Discord','Link in config.js eintragen','💬')}});
+console.log('%cXuroSMP','font:700 28px monospace;color:#ffaa00','\nPsst: Es gibt 6 Easter Eggs. Probier den Konami-Code.');
+</script>
+</body>
+</html>

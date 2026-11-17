@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>XuroSMP · Minecraft Survival Server</title>
+<meta name="description" content="XuroSMP: Survival-Server mit Economy, Shop, Crates, Clans, Battle Pass und regelmäßigen Events. Java & Bedrock.">
+<meta property="og:title" content="XuroSMP · Minecraft Survival Server"><meta name="theme-color" content="#120e1e">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%23ffaa00' d='M3 0h2v3h3v2H5v3H3V5H0V3h3z'/%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@700&family=Nunito+Sans:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"></head>
+<body data-page="home">
+<section class="hero"><div><h1>XuroSMP</h1>
+<p>Survival-Server mit eigener Economy, Shop, Crates, Clans, AFK-Zone und Battle Pass. Für Java und Bedrock.</p>
+<div class="row"><button data-ip>IP kopieren</button><a href="#" data-discord><button class="btn2">Discord beitreten</button></a><a href="/wiki"><button class="btn2">Zur Wiki</button></a></div></div>
+<div class="card"><div class="stat"><div><span>Status</span><b data-status class="pill">…</b></div><div><span>Spieler</span><b data-players>–</b></div><div><span>Version</span><b data-version style="font-size:1.1rem">–</b></div></div>
+<p style="margin-top:14px">Server-IP: <code data-ip style="cursor:copy">xurosmp.daronlo.com</code></p></div></section>
+<div class="page">
+<h2>📅 Nächste Events</h2><div id="ev" class="grid"><p class="mu">Lade …</p></div><p><a href="/events">Alle Events ansehen →</a></p>
+<h2 style="margin-top:36px">⚔️ Das erwartet dich</h2>
+<div class="grid">
+<a class="card" href="/wiki#waehrung"><h3>💰 Economy</h3><p>Geld, Stars und Gems. Verdiene sie beim Spielen, in der AFK-Zone und im Farm-Modus.</p></a>
+<a class="card" href="/wiki#shop"><h3>🛒 Shop &amp; Verkauf</h3><p>Kaufe im Shop, verkaufe fast jedes Item und handle im Auktionshaus.</p></a>
+<a class="card" href="/wiki#crates"><h3>🎁 Crates &amp; Keys</h3><p>Stündlicher Keyall und sieben Crates mit seltenen Belohnungen.</p></a>
+<a class="card" href="/wiki#clans"><h3>🛡️ Clans</h3><p>Gründe einen Clan, spiel mit bis zu 30 Mitgliedern und kämpf um die Spitze.</p></a>
+<a class="card" href="/wiki#battlepass"><h3>🎖️ Battle Pass</h3><p>30 Level, tägliche und wöchentliche Quests, Premium-Belohnungen.</p></a>
+<a class="card" href="/wiki#raenge"><h3>👑 Ränge &amp; Kits</h3><p>Von SPIELER bis VIP mit mehr Homes, Kits und Befehlen.</p></a>
+<a class="card" href="/wiki#spawner"><h3>⛏️ Spawner &amp; Tools</h3><p>Smart-Spawner und 3×3-Werkzeuge für schnelleres Farmen.</p></a>
+<a class="card" href="/wiki#extras"><h3>✨ Extras</h3><p>Scoreboard, TAB-Liste, Resource-Pack, /live für Creator und mehr.</p></a></div>
+<h2 style="margin-top:36px">🚀 So joinst du</h2>
+<div class="grid steps"><div class="card"><h3>Minecraft starten</h3><p>Java oder Bedrock. Bedrock-Namen beginnen mit einem Punkt.</p></div><div class="card"><h3>Server hinzufügen</h3><p>Adresse <code data-ip style="cursor:copy">xurosmp.daronlo.com</code> eintragen und verbinden.</p></div><div class="card"><h3>Loslegen</h3><p>Hol dir mit <code>/kit</code> dein Starter-Kit und lies die <a href="/wiki#regeln">Regeln</a>.</p></div></div>
+<h2 style="margin-top:36px">💬 Discord</h2>
+<div class="card"><p>Treffe die Community, erfahre als Erster von Events und melde dich beim Team. <b><span data-dc>–</span></b> online.</p><a href="#" data-discord><button>Jetzt beitreten</button></a></div>
+<h2 style="margin-top:36px">❓ FAQ</h2>
+<details><summary>Kann ich mit Bedrock spielen?</summary><p>Ja. Verbinde dich mit derselben Adresse. Dein Name bekommt einen Punkt davor.</p></details>
+<details><summary>Wie verdiene ich Stars?</summary><p>In der AFK-Zone (<code>/afk</code>), per Kill und beim Abbauen von Erzen im Farm-Modus (<code>/farmmode</code>).</p></details>
+<details><summary>Wie bekomme ich einen Rang?</summary><p>Die Ränge PREMIUM bis VIP gibt es im Gem-Shop. Alle Vorteile stehen in der <a href="/wiki#raenge">Wiki</a>.</p></details>
+<details><summary>Wann gibt es Keys für alle?</summary><p>Jede Stunde bekommt jeder Online-Spieler automatisch einen Key (Keyall).</p></details>
+<details><summary>Ich habe einen Bug gefunden</summary><p>Melde ihn im Discord an das Team. Bugs auszunutzen ist verboten.</p></details>
+</div>
+<script src="config.js"></script><script src="common.js"></script>
+<script>XS.load().then(a=>{const u=a.filter(e=>+XS.end(e)>Date.now()).sort((x,y)=>!!y.pinned-!!x.pinned||new Date(x.start)-new Date(y.start)).slice(0,3),b=$('#ev');b.replaceChildren(...(u.length?u.map(XS.card):[h('p',{class:'mu'},'Aktuell sind keine Events geplant. Schau im Discord vorbei!')]))});</script>
+</body></html>
