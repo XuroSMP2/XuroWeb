@@ -8,7 +8,7 @@ const copy=(t,m)=>navigator.clipboard&&navigator.clipboard.writeText(t).then(()=
 /* Header, Banner, Footer */
 if(document.body.dataset.shell!=='none'){
  const pg=document.body.dataset.page,L=(href,t,id,x='')=>h('a',{class:'hl'+(pg===id?' act':''),href,...(x?{'data-discord':''}:{})},t);
- document.body.prepend(h('header',{},h('a',{class:'logo',href:'/'},'XuroSMP'),L('/','Start','home'),L('/events','Events','events'),L('/wiki','Wiki','wiki'),L('/wiki#regeln','Regeln','r'),L('#','Discord','d',1),h('button',{id:'theme','aria-label':'Hell/Dunkel',style:'margin-left:auto',onclick:()=>{const c=root.dataset.theme||(matchMedia('(prefers-color-scheme:light)').matches?'light':'dark'),n=c==='dark'?'light':'dark';root.dataset.theme=n;store.set('th',n)}},'◐'),h('button',{'data-ip':''},S.ip)));
+ document.body.prepend(h('header',{},h('a',{class:'logo',href:'/'},'XuroSMP'),L('/','Start','home'),L('/events','Events','events'),L('/stats','Bestenlisten','stats'),L('/wiki','Wiki','wiki'),L('/wiki#regeln','Regeln','r'),L('#','Discord','d',1),h('button',{id:'theme','aria-label':'Hell/Dunkel',style:'margin-left:auto',onclick:()=>{const c=root.dataset.theme||(matchMedia('(prefers-color-scheme:light)').matches?'light':'dark'),n=c==='dark'?'light':'dark';root.dataset.theme=n;store.set('th',n)}},'◐'),h('button',{'data-ip':''},S.ip)));
  document.body.append(h('footer',{},'XuroSMP · Kein offizielles Mojang- oder Microsoft-Produkt · ',h('a',{href:'/wiki'},'Wiki'),' · ',h('a',{href:'/events'},'Events')));
  fetch('/api/banner').then(r=>r.json()).then(b=>{if(b.on&&b.text)$('header').after(h('div',{class:'bn'},b.text))}).catch(()=>{});
 }

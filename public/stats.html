@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bestenlisten · XuroSMP</title><meta name="description" content="Bestenlisten, Online-Spieler, Clans und Spielersuche von XuroSMP.">
+<meta name="theme-color" content="#120e1e">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%23ffaa00' d='M3 0h2v3h3v2H5v3H3V5H0V3h3z'/%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@700&family=Nunito+Sans:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"></head>
+<body data-page="stats"><div class="page">
+<h2>🏆 Bestenlisten</h2>
+<div class="card"><div class="stat"><div><span>Online</span><b id="on">–</b></div><div><span>Spieler gesamt</span><b id="tot">–</b></div><div><span>Clans</span><b id="cl">–</b></div></div>
+<p class="mu" id="pl" style="margin-top:12px"></p></div>
+
+<div class="fl" id="tabs" style="margin-top:20px"></div>
+<div class="card tw"><table><thead id="th"></thead><tbody id="tb"><tr><td class="mu">Lade …</td></tr></tbody></table></div>
+
+<h2 style="margin-top:36px">🔎 Spielersuche</h2>
+<form class="f" id="sf" style="max-width:420px"><label>Spielername<input id="q" maxlength="40" autocomplete="off" placeholder="z. B. Steve"></label><button>Suchen</button></form>
+<div id="pr" style="margin-top:14px"></div>
+</div>
+<script src="config.js"></script><script src="common.js"></script>
+<script>
+const nf=new Intl.NumberFormat('de-DE'),num=n=>nf.format(Math.round(n)),
+pt=s=>{const h=Math.floor(s/3600);return h>=24?Math.floor(h/24)+' T '+h%24+' Std':h+' Std '+Math.floor(s%3600/60)+' Min'},
+seen=t=>t?new Date(t).toLocaleDateString('de-DE',{timeZone:'Europe/Berlin'}):'–',
+get=async p=>{const r=await fetch('/api/stats/'+p),j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||'Fehler');return j},
+td=(...c)=>h('tr',{},...c.map(x=>h('td',{},x==null?'–':String(x)))),
+TABS={money:['💰 Geld',p=>'$'+num(p.money)],crystals:['💎 Stars',p=>num(p.crystals)],gems:['🔷 Gems',p=>num(p.gems)],kills:['⚔️ Kills',p=>num(p.kills)+' (Tode: '+num(p.deaths)+')'],playtime:['⏱️ Spielzeit',p=>pt(p.playtimeSeconds)],clans:['🛡️ Clans']};
+let cur='money';
+async function show(t){cur=t;$$('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));
+ try{
+  if(t==='clans'){const j=await get('clans');$('#th').replaceChildren(h('tr',{},...['#','Clan','Leader','Mitglieder','Kills','Bank'].map(x=>h('th',{},x))));
+   $('#tb').replaceChildren(...(j.clans.length?j.clans.map((c,i)=>td(i+1,'['+c.tag+'] '+c.name,c.leader,c.memberCount,c.kills,'$'+num(c.bank))):[td('Noch keine Clans.')]))}
+  else{const j=await get('top/'+t+'?limit=25');$('#th').replaceChildren(h('tr',{},...['#','Spieler','Rang','Wert'].map(x=>h('th',{},x))));
+   $('#tb').replaceChildren(...j.players.map(p=>td(p.position,p.name,p.rank,TABS[t][1](p))))}
+ }catch(e){$('#tb').replaceChildren(h('tr',{},h('td',{class:'mu'},e.message)))}}
+$('#tabs').append(...Object.entries(TABS).map(([k,v])=>h('button',{'data-t':k,class:k===cur?'on':'',onclick:()=>show(k)},v[0])));
+show(cur);
+get('status').then(s=>{$('#on').textContent=s.online+'/'+s.max;$('#tot').textContent=num(s.totalPlayers);$('#cl').textContent=s.clans}).catch(()=>{});
+get('online').then(j=>{$('#pl').textContent=j.players.length?'Gerade online: '+j.players.map(p=>p.name).join(', '):'Gerade ist niemand online.'}).catch(()=>{});
+$('#sf').onsubmit=async e=>{e.preventDefault();const n=$('#q').value.trim(),box=$('#pr');if(!n)return;
+ try{const p=await get('player/'+encodeURIComponent(n));
+  box.replaceChildren(h('div',{class:'card'},h('h3',{},p.name),h('p',{},'Rang: '+p.rank+(p.clan?' · Clan: '+p.clan:'')),
+   h('p',{},'💰 $'+num(p.money)+' · 💎 '+num(p.crystals)+' · 🔷 '+num(p.gems)),h('p',{},'⚔️ '+p.kills+' Kills · '+p.deaths+' Tode'),
+   h('p',{},'⏱️ '+pt(p.playtimeSeconds)+' · zuletzt gesehen: '+seen(p.lastSeen))))
+ }catch(x){box.replaceChildren(h('p',{class:'mu'},x.message==='Spieler nicht gefunden'?'Spieler nicht gefunden.':x.message))}};
+</script></body></html>
