@@ -66,3 +66,34 @@ form.f{display:grid;gap:10px}form.f label{margin:0}form.f input,form.f select,fo
 .btn2{background:var(--s2);color:var(--tx)}.danger{background:var(--e1)}.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .steps{counter-reset:s}.steps .card:before{counter-increment:s;content:counter(s);font:700 2rem 'Pixelify Sans',monospace;color:var(--e2)}
 @media(max-width:700px){header{flex-wrap:wrap}.row2{grid-template-columns:1fr}}
+
+/* ===== Crystal-Design (v2) ===== */
+:root{--glow:rgba(183,140,255,.35)}
+body{background:radial-gradient(1200px 600px at 85% -10%,rgba(183,140,255,.16),transparent 60%),radial-gradient(900px 500px at -10% 20%,rgba(255,170,0,.07),transparent 60%),var(--bg);background-attachment:fixed}
+header{backdrop-filter:blur(8px);background:color-mix(in srgb,var(--s1) 88%,transparent);border-bottom:2px solid var(--bd);box-shadow:0 6px 24px rgba(0,0,0,.25)}
+.logo{filter:drop-shadow(0 0 10px var(--glow))}
+.hero h1{filter:drop-shadow(0 4px 24px var(--glow))}
+.hero:after{content:"";position:absolute;right:4%;top:10%;width:180px;height:180px;background:linear-gradient(135deg,#d9b8ff,#8a4dff 55%,#4a1fa8);clip-path:polygon(50% 0,92% 30%,78% 100%,22% 100%,8% 30%);opacity:.18;filter:blur(1px);z-index:-1;animation:fl 6s ease-in-out infinite alternate}
+@keyframes fl{to{transform:translateY(14px) rotate(6deg)}}
+.card,.sec,.tool,details{border-radius:6px;border-width:2px}
+.sec{box-shadow:0 4px 22px rgba(0,0,0,.22)}
+a.card{transition:transform .15s,border-color .15s,box-shadow .15s}
+a.card:hover{box-shadow:0 8px 28px var(--glow);border-color:var(--cr);transform:translateY(-3px)}
+button{border-radius:4px;transition:filter .15s,transform .1s}
+.card h3{display:flex;align-items:center;gap:6px}
+.tw{-webkit-overflow-scrolling:touch}
+th{white-space:nowrap}
+/* Handy: Navigation bleibt erreichbar */
+@media(max-width:860px){
+ header{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;gap:6px;padding:8px 12px}
+ header::-webkit-scrollbar{display:none}
+ header .hl{display:inline-block!important;white-space:nowrap;flex:none;padding:8px 10px}
+ .logo{flex:none}
+ .hero{gap:18px;padding:22px 16px 10px}.hero:after{display:none}
+ .page{padding:18px 14px 50px}
+ button,.fl button,.chips button{min-height:44px}
+ h2{font-size:1.4rem}
+ .grid{grid-template-columns:1fr}
+ table{font-size:.88rem}
+}
+@media(max-width:420px){.hero h1{font-size:2.4rem}.row{flex-direction:column;align-items:stretch}.row button{width:100%}}

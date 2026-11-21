@@ -154,6 +154,36 @@ header .hl{color:var(--mu);text-decoration:none;font-weight:700;padding:6px 8px}
 <p><b>Smart-Spawner</b> spawnen keine Mobs, sondern erzeugen Loot und XP in einem Lager. Platzieren, dann <b>Rechtsklick</b>: Lager entnehmen, XP einsammeln, alles verkaufen oder weitere Spawner stapeln (bis 100). Abbauen geht nur, wenn das Lager leer ist, und nur beim Besitzer.</p>
 <p><b>Spezial-Tools:</b> Hammer, Excavator und Mega-Hammer bauen 3×3 (Mega 5×5) auf einmal ab. <b>Schleichen</b> baut nur einen Block ab. Die lila Crystal-Ausrüstung gibt es im Stars-Shop.</p></section>
 
+<section class="sec" id="upgrades"><h2>Upgrades</h2>
+<p>Mit <code>/upgrades</code> kaufst du dauerhafte Verbesserungen. Sie gehören dir und bleiben auch bei einem Rangwechsel.</p>
+<div class="tw"><table><tr><th>Upgrade</th><th>Wirkung</th><th>Preis</th></tr>
+<tr><td>Endertruhe erweitern</td><td>+1 Reihe je Stufe (3 Stufen, max. 6 Reihen)</td><td>25.000 / 75.000 / 200.000</td></tr>
+<tr><td>Mehr Homes</td><td>+1 Home je Stufe (5 Stufen)</td><td>10.000 bis 160.000</td></tr>
+<tr><td>Mehr AH-Angebote</td><td>+2 Angebote je Stufe (5 Stufen)</td><td>100 bis 500 Stars</td></tr>
+<tr><td>AFK-Block</td><td>Ein Diamantblock: wer darauf steht, zählt als AFK und bekommt Stars, auch ausserhalb der AFK-Zone</td><td>50.000.000</td></tr></table></div>
+<p class="mu">Die Preise stammen aus der Server-Konfiguration und können sich ändern. Den AFK-Block bekommst du beim Kauf. Du darfst so viele platzieren, wie du Stufen hast. Beim Abbauen kommt er zurück.</p></section>
+
+<section class="sec" id="bank"><h2>Bank &amp; geteilte Homes</h2>
+<p>Du kannst mehrere Bankkonten haben und sie mit Freunden oder deinem Clan teilen.</p>
+<div class="tw"><table><tr><th>Befehl</th><th>Wirkung</th></tr>
+<tr><td><code>/bank create &lt;Name&gt;</code></td><td>Neues Konto anlegen</td></tr>
+<tr><td><code>/bank deposit &lt;Betrag|all|half&gt; [Konto]</code></td><td>Einzahlen</td></tr>
+<tr><td><code>/bank withdraw &lt;Betrag|all|half&gt; [Konto]</code></td><td>Abheben</td></tr>
+<tr><td><code>/bank share &lt;Konto&gt; &lt;Spieler&gt;</code></td><td>Konto teilen (<code>unshare</code> nimmt es zurück)</td></tr>
+<tr><td><code>/bank accounts</code>, <code>/bank info &lt;Konto&gt;</code>, <code>/bank top</code></td><td>Übersicht, Details, Bestenliste</td></tr>
+<tr><td><code>/home share &lt;Home&gt; &lt;Spieler&gt;</code></td><td>Home mit einem Spieler teilen (<code>/home unshare</code> zum Entfernen)</td></tr></table></div>
+<p>Mit <code>/pay * &lt;Betrag&gt;</code> zahlst du allen Online-Spielern Geld.</p></section>
+
+<section class="sec" id="crystal"><h2>Crystal-Ausrüstung &amp; Resource-Pack</h2>
+<p>Die lila Crystal-Ausrüstung (Helm, Brustplatte, Hose, Stiefel, Schwert, Axt, Spitzhacke) gibt es im Stars-Shop. Dazu kommen Spezial-Tools wie die <b>Holzfäller-Axt</b> (fällt den ganzen Baum, Schleichen = nur 1 Block) und die <b>Crystal-Eimer</b> für Lava und Wasser, die nie leer werden.</p>
+<p>Das <b>Resource-Pack</b> zeigt die Items und die Rüstung am Körper in Crystal-Optik. Es wird beim Beitritt angeboten. <a href="/pack/XuroSMP-Pack.zip">Pack manuell herunterladen</a></p>
+<div class="tip"><b>End Crystals</b> haben ein eigenes, sehr schweres Rezept: 4 Netherite-Barren, 2 Ghast-Tränen, 2 Enderaugen und 1 Nether Star.</div>
+<p class="mu">Manche Tools laufen nach einer festen Zeit ab (Standard 3 Tage) und verlieren dann ihre Spezialfunktion. Das steht in der Item-Beschreibung.</p></section>
+
+<section class="sec" id="manhunt"><h2>Manhunt &amp; Strafen</h2>
+<p>Mit <code>/manhunt &lt;Spieler&gt; &lt;Preis&gt; &lt;money|stars|gems&gt; &lt;Zeit&gt;</code> setzt du ein Kopfgeld auf einen Spieler, z. B. <code>30m</code> oder <code>2h</code>. Stirbt er, zeigt der Chat die Rangliste: <i>Am meisten Damage an &lt;Spieler&gt;</i> mit Platz 1 bis 3.</p>
+<p>Das Team kann mit <code>/ban</code>, <code>/tempban</code> und <code>/unban</code> bestrafen. Mit <code>/lookup &lt;Spieler&gt;</code> sieht es die Strafhistorie. Moderatoren dürfen zeitlich begrenzt bannen. Alle Regeln stehen unten bei den <a href="#regeln">Server-Regeln</a>.</p></section>
+
 <section class="sec" id="welt"><h2>Nether, End &amp; Elytra</h2>
 <p>Das Team kann <b>Nether und End jederzeit öffnen oder schließen</b>. Ist eine Dimension geschlossen, kommst du nicht hinein, und wer drin ist, wird zum Spawn gebracht. Für <code>/rtp</code> in Nether und End gilt zusätzlich eine eigene Freischaltung.</p>
 <div class="tip"><b>Elytra</b> gibt es in keinem Shop und keiner Crate. Du bekommst sie nur im <b>End</b> (End-Schiffe), über das <b>Auktionshaus</b> oder per <b>Order</b>.</div></section>
@@ -219,7 +249,7 @@ const amb=still?[]:Array.from({length:40},()=>({x:Math.random()*innerWidth,y:Mat
 function burst(n,x,y,s=8){for(let i=0;i<n;i++)P.push({x,y,vx:(Math.random()-.5)*s*2,vy:(Math.random()-.9)*s,s:4+(Math.random()*6|0),c:cols[Math.random()*5|0],l:90+Math.random()*60})}
 (function loop(){cx.clearRect(0,0,W,H);cx.globalAlpha=.25;for(const a of amb){a.y-=a.v;if(a.y<-6){a.y=H+6;a.x=Math.random()*W}cx.fillStyle=a.c;cx.fillRect(a.x|0,a.y|0,a.s,a.s)}cx.globalAlpha=1;P=P.filter(p=>p.l-->0);for(const p of P){p.vy+=.25;p.x+=p.vx;p.y+=p.vy;cx.fillStyle=p.c;cx.fillRect(p.x|0,p.y|0,p.s,p.s)}requestAnimationFrame(loop)})();
 /* Navigation */
-const IC={waehrung:'💰',shop:'🛒',handel:'⚖️',crates:'🎁',clans:'🛡️',raenge:'👑',kits:'🧰',reisen:'🧭',spawner:'⛏️',welt:'🔥',tools:'🧮',battlepass:'🎖️',extras:'✨',befehle:'⌨️',regeln:'📜'};
+const IC={waehrung:'💰',shop:'🛒',handel:'⚖️',crates:'🎁',clans:'🛡️',raenge:'👑',kits:'🧰',reisen:'🧭',spawner:'⛏️',upgrades:'⬆️',bank:'🏦',crystal:'💎',manhunt:'🎯',welt:'🔥',tools:'🧮',battlepass:'🎖️',extras:'✨',befehle:'⌨️',regeln:'📜'};
 const secs=$$('main .sec'),nav=$('#nav');
 nav.innerHTML='<a href="#start" data-i="start"><i>🏠</i>Start</a>'+secs.map(s=>'<a href="#'+s.id+'" data-i="'+s.id+'"><i>'+(IC[s.id]||'•')+'</i>'+s.querySelector('h2').textContent+'</a>').join('');
 secs.forEach(s=>{const h=s.querySelector('h2');h.insertAdjacentHTML('afterbegin',(IC[s.id]||'')+' ');h.insertAdjacentHTML('beforeend','<a href="#'+s.id+'" aria-label="Link zum Abschnitt">#</a>')});
