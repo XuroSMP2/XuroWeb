@@ -154,6 +154,18 @@ header .hl{color:var(--mu);text-decoration:none;font-weight:700;padding:6px 8px}
 <p><b>Smart-Spawner</b> spawnen keine Mobs, sondern erzeugen Loot und XP in einem Lager. Platzieren, dann <b>Rechtsklick</b>: Lager entnehmen, XP einsammeln, alles verkaufen oder weitere Spawner stapeln (bis 100). Abbauen geht nur, wenn das Lager leer ist, und nur beim Besitzer.</p>
 <p><b>Spezial-Tools:</b> Hammer, Excavator und Mega-Hammer bauen 3×3 (Mega 5×5) auf einmal ab. <b>Schleichen</b> baut nur einen Block ab. Die lila Crystal-Ausrüstung gibt es im Stars-Shop.</p></section>
 
+<section class="sec" id="settings"><h2>Einstellungen</h2>
+<p>Mit <code>/settings</code> stellst du persönliche Optionen per Klick an oder aus.</p>
+<div class="tw"><table><tr><th>Einstellung</th><th>Wirkung</th></tr>
+<tr><td>Monster-Spawns</td><td>Aus: In deiner Nähe spawnen keine feindlichen Mobs (nur wenn alle Spieler dort sie ausgeschaltet haben)</td></tr>
+<tr><td>Scoreboard</td><td>Seitenleiste mit deinen Stats</td></tr>
+<tr><td>Kontostand unter meinem Namen</td><td>Andere sehen dein Geld unter deinem Namen</td></tr>
+<tr><td>Kontostände anderer sehen</td><td>Zeigt das Geld der anderen unter ihren Namen</td></tr>
+<tr><td>Private Nachrichten</td><td>Aus: niemand kann dir per <code>/msg</code> schreiben</td></tr>
+<tr><td>TP-Anfragen</td><td>Aus: niemand kann dir <code>/tpa</code> oder <code>/tpahere</code> schicken</td></tr>
+<tr><td>Geld empfangen</td><td>Aus: niemand kann dir per <code>/pay</code> Geld oder Stars senden</td></tr>
+<tr><td>Nachtsicht</td><td>Dauerhafte Nachtsicht (nur mit Berechtigung)</td></tr></table></div></section>
+
 <section class="sec" id="upgrades"><h2>Upgrades</h2>
 <p>Mit <code>/upgrades</code> kaufst du dauerhafte Verbesserungen. Sie gehören dir und bleiben auch bei einem Rangwechsel.</p>
 <div class="tw"><table><tr><th>Upgrade</th><th>Wirkung</th><th>Preis</th></tr>
@@ -243,7 +255,7 @@ const amb=still?[]:Array.from({length:40},()=>({x:Math.random()*innerWidth,y:Mat
 function burst(n,x,y,s=8){for(let i=0;i<n;i++)P.push({x,y,vx:(Math.random()-.5)*s*2,vy:(Math.random()-.9)*s,s:4+(Math.random()*6|0),c:cols[Math.random()*5|0],l:90+Math.random()*60})}
 (function loop(){cx.clearRect(0,0,W,H);cx.globalAlpha=.25;for(const a of amb){a.y-=a.v;if(a.y<-6){a.y=H+6;a.x=Math.random()*W}cx.fillStyle=a.c;cx.fillRect(a.x|0,a.y|0,a.s,a.s)}cx.globalAlpha=1;P=P.filter(p=>p.l-->0);for(const p of P){p.vy+=.25;p.x+=p.vx;p.y+=p.vy;cx.fillStyle=p.c;cx.fillRect(p.x|0,p.y|0,p.s,p.s)}requestAnimationFrame(loop)})();
 /* Navigation */
-const IC={waehrung:'💰',shop:'🛒',handel:'⚖️',crates:'🎁',clans:'🛡️',raenge:'👑',kits:'🧰',reisen:'🧭',spawner:'⛏️',upgrades:'⬆️',bank:'🏦',crystal:'💎',manhunt:'🎯',welt:'🔥',tools:'🧮',battlepass:'🎖️',extras:'✨',befehle:'⌨️',regeln:'📜'};
+const IC={waehrung:'💰',shop:'🛒',handel:'⚖️',crates:'🎁',clans:'🛡️',raenge:'👑',kits:'🧰',reisen:'🧭',spawner:'⛏️',upgrades:'⬆️',settings:'⚙️',bank:'🏦',crystal:'💎',manhunt:'🎯',welt:'🔥',tools:'🧮',battlepass:'🎖️',extras:'✨',befehle:'⌨️',regeln:'📜'};
 const secs=$$('main .sec'),nav=$('#nav');
 nav.innerHTML='<a href="#start" data-i="start"><i>🏠</i>Start</a>'+secs.map(s=>'<a href="#'+s.id+'" data-i="'+s.id+'"><i>'+(IC[s.id]||'•')+'</i>'+s.querySelector('h2').textContent+'</a>').join('');
 secs.forEach(s=>{const h=s.querySelector('h2');h.insertAdjacentHTML('afterbegin',(IC[s.id]||'')+' ');h.insertAdjacentHTML('beforeend','<a href="#'+s.id+'" aria-label="Link zum Abschnitt">#</a>')});
