@@ -1,0 +1,25 @@
+{
+  "serverName": "XuroSMP",
+  "serverHost": "xurosmp.daronlo.com",
+  "serverPort": 25565,
+  "discord": "https://discord.gg/snQvzggK7q",
+  "website": "https://xurosmp.daronlo.com",
+  "news": [
+    { "title": "Willkommen im XuroClient", "text": "Der Launcher installiert Minecraft, Fabric und erlaubte Mods für dich und verbindet dich mit XuroSMP.", "date": "" }
+  ],
+  "mods": [
+    { "slug": "fabric-api", "name": "Fabric API", "desc": "Grundlage für fast alle Mods. Muss an bleiben.", "default": true, "locked": true },
+    { "slug": "sodium", "name": "Sodium", "desc": "Deutlich mehr FPS durch neue Grafik-Engine.", "default": true },
+    { "slug": "lithium", "name": "Lithium", "desc": "Weniger Lag bei Spiellogik und Weltberechnung.", "default": true },
+    { "slug": "ferrite-core", "name": "FerriteCore", "desc": "Spart Arbeitsspeicher.", "default": true },
+    { "slug": "immediatelyfast", "name": "ImmediatelyFast", "desc": "Schnelleres Zeichnen von Menüs, Chat und Items.", "default": true },
+    { "slug": "entityculling", "name": "Entity Culling", "desc": "Zeichnet nur Mobs, die du sehen kannst.", "default": true },
+    { "slug": "sodium-extra", "name": "Sodium Extra", "desc": "Zusätzliche Grafik-Optionen für Sodium.", "default": false },
+    { "slug": "dynamic-fps", "name": "Dynamic FPS", "desc": "Spart Strom, wenn das Fenster im Hintergrund ist.", "default": true },
+    { "slug": "modmenu", "name": "Mod Menu", "desc": "Zeigt installierte Mods und ihre Einstellungen.", "default": true },
+    { "slug": "zoomify", "name": "Zoomify", "desc": "Zoom per Taste (Standard: C).", "default": true },
+    { "slug": "appleskin", "name": "AppleSkin", "desc": "Zeigt Hunger- und Sättigungswerte von Essen.", "default": true },
+    { "slug": "mouse-tweaks", "name": "Mouse Tweaks", "desc": "Schneller Items im Inventar verschieben.", "default": true },
+    { "slug": "iris", "name": "Iris Shaders", "desc": "Shader-Packs. Braucht Sodium und eine gute Grafikkarte.", "default": false }
+  ]
+}
