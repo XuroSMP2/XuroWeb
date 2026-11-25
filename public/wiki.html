@@ -5,21 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>XuroSMP Wiki &amp; Regeln</title>
 <meta name="description" content="Alles zum XuroSMP: Währungen, Shop, Crates, Clans, Ränge, Kits und die Server-Regeln.">
-<meta property="og:title" content="XuroSMP Wiki &amp; Regeln"><meta property="og:description" content="Währungen, Shop, Crates, Clans, Ränge, Kits und Regeln. IP: xurosmp.daronlo.com"><meta name="theme-color" content="#040919">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%23ffaa00' d='M3 0h2v3h3v2H5v3H3V5H0V3h3z'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#040919">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,600;0,800;1,700;1,800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<meta property="og:site_name" content="XuroSMP"><meta property="og:type" content="website"><meta property="og:locale" content="de_DE"><meta property="og:title" content="XuroSMP Wiki &amp; Regeln"><meta property="og:description" content="Alles zum XuroSMP: Währungen, Shop, Crates, Clans, Ränge, Kits und die Server-Regeln."><meta property="og:image" content="__SITE__/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><link rel="canonical" href="__SITE__/wiki"><link rel="stylesheet" href="style.css">
 <style>.hero.wk{display:grid;grid-template-columns:1.1fr 1fr;gap:28px;align-items:start}.hero.wk h1{font-size:2.6rem}@media(max-width:860px){.hero.wk{grid-template-columns:1fr}}</style>
 </head>
 <body>
 <div id="bar"></div><canvas id="fx"></canvas>
-<header><button id="menu" aria-label="Menü"></button><span class="logo" id="logo">XuroSMP Wiki</span><a class="hl" href="/">Start</a><a class="hl" href="/events">Events</a><a class="hl" href="#" data-discord>Discord</a><input id="q" type="search" placeholder="Suchen … (Strg+K)" aria-label="Suchen"><button id="theme" aria-label="Hell/Dunkel wechseln">◐</button><button id="ip" title="IP kopieren">xurosmp.daronlo.com</button></header>
+<a class="skip" href="#inhalt">Zum Inhalt</a><header><button id="menu" aria-label="Menü"></button><span class="logo" id="logo">XuroSMP Wiki</span><a class="hl" href="/">Start</a><a class="hl" href="/events">Events</a><a class="hl" href="/client">Client</a><a class="hl" href="#" data-discord>Discord</a><input id="q" type="search" placeholder="Suchen … (Strg+K)" aria-label="Suchen"><button id="ip" title="IP kopieren">xurosmp.daronlo.com</button></header>
 <section class="hero wk" id="start"><div><h1>Xuro<em>SMP</em></h1><p>Hier steht alles, was du zum Spielen brauchst. Java und Bedrock (Bedrock-Namen beginnen mit <code>.</code>). Die <a href="#regeln">Server-Regeln</a> gelten ab dem ersten Join.</p>
 <p><b>Schnellstart:</b> <code>/kit</code>, <code>/shop</code>, <code>/afk</code>, <code>/clan</code>, <code>/daily</code></p>
 <div class="row"><span class="pill" id="st">Status wird geladen …</span><a href="#tools"><button>Zu den Rechnern</button></a><button id="star" aria-label="Nether Star"></button></div></div>
 <div class="mc" aria-hidden="true"><div>Chat-Beispiel</div><div id="chat"></div></div></section>
-<div class="wrap"><nav id="nav"></nav><main>
+<div class="wrap"><nav id="nav"></nav><main id="inhalt">
 
 <section class="sec" id="waehrung"><h2>Die drei Währungen</h2>
 <div class="tw"><table><tr><th>Währung</th><th>Wofür</th><th>Wie bekommst du sie?</th></tr>
@@ -191,9 +191,7 @@ const D={"crates":[{"id":"common","n":"Common Crate","c":"#4ade80","m":"RANDOM",
 const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)],sleep=t=>new Promise(r=>setTimeout(r,t));
 const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
 const root=document.documentElement,still=matchMedia('(prefers-reduced-motion:reduce)').matches;
-if(store.get('th'))root.dataset.theme=store.get('th');
-$('#theme').onclick=()=>{const cur=root.dataset.theme||(matchMedia('(prefers-color-scheme:light)').matches?'light':'dark'),n=cur==='dark'?'light':'dark';root.dataset.theme=n;store.set('th',n)};
-function toast(t,s,ic='🏆'){const e=document.createElement('div');e.className='adv';e.innerHTML='<i>'+ic+'</i><div><b></b><span></span></div>';e.querySelector('b').textContent=t;e.querySelector('span').textContent=s;$('#toasts').append(e);setTimeout(()=>e.remove(),4200)}
+function toast(t,s){const e=document.createElement('div');e.className='adv';e.setAttribute('role','status');e.innerHTML='<i class="ic" aria-hidden="true"></i><div><b></b><span></span></div>';e.querySelector('b').textContent=t;e.querySelector('span').textContent=s;$('#toasts').append(e);setTimeout(()=>e.remove(),4200)}
 const found=new Set(JSON.parse(store.get('eggs')||'[]')),upd=()=>$('#eggc').textContent=found.size+'/6';upd();
 function egg(id,name){if(found.has(id))return;found.add(id);store.set('eggs',JSON.stringify([...found]));toast('Advancement Made!',name+' ('+found.size+'/6)');upd()}
 /* Partikel */
@@ -215,11 +213,11 @@ $('#top').onclick=()=>scrollTo({top:0});
 /* Suche */
 const q=$('#q');
 q.addEventListener('input',()=>{const v=q.value.trim().toLowerCase();let n=0;secs.forEach(s=>{const m=!v||s.textContent.toLowerCase().includes(v);s.hidden=!m;n+=m});$('#none').hidden=n>0;
-if(v==='herobrine')hero();if(v==='notch'){egg('notch','Notch? Der hat hier nichts zu sagen.');toast('Notch','Gegründet wurde der Server von jemand anderem.','🎩')}if(v==='/op me'||v==='op me')toast('Netter Versuch','Dafür brauchst du smpcore.admin.','🚫')});
+if(v==='herobrine')hero();if(v==='notch'){egg('notch','Notch? Der hat hier nichts zu sagen.');toast('Notch','Gegründet wurde der Server von jemand anderem.')}if(v==='/op me'||v==='op me')toast('Netter Versuch','Dafür brauchst du smpcore.admin.')});
 /* Code kopieren */
 $$('code').forEach(c=>{if(/^\//.test(c.textContent)&&!c.closest('.hero')){c.classList.add('cp');c.title='Klicken zum Kopieren'}});
-document.addEventListener('click',e=>{const c=e.target.closest('code.cp');if(c&&navigator.clipboard)navigator.clipboard.writeText(c.textContent).then(()=>toast('Kopiert',c.textContent,'📋'),()=>{})});
-$('#ip').onclick=()=>{navigator.clipboard&&navigator.clipboard.writeText('xurosmp.daronlo.com').then(()=>toast('IP kopiert','xurosmp.daronlo.com','📋'),()=>{})};
+document.addEventListener('click',e=>{const c=e.target.closest('code.cp');if(c&&navigator.clipboard)navigator.clipboard.writeText(c.textContent).then(()=>toast('Kopiert',c.textContent),()=>{})});
+$('#ip').onclick=()=>{navigator.clipboard&&navigator.clipboard.writeText('xurosmp.daronlo.com').then(()=>toast('IP kopiert','xurosmp.daronlo.com'),()=>{})};
 /* Server-Status */
 fetch('https://api.mcsrvstat.us/3/xurosmp.daronlo.com').then(r=>r.json()).then(j=>{const s=$('#st');if(j.online){s.className='pill on';s.textContent='Online · '+(j.players?j.players.online+'/'+j.players.max:'')+' Spieler'}else{s.className='pill off';s.textContent='Offline'}}).catch(()=>{$('#st').textContent='Status nicht verfügbar'});
 /* Hero-Chat */
@@ -238,7 +236,7 @@ $('#cb').innerHTML='<tr><th>Reward</th><th>Chance</th><th></th></tr>'+c.rw.map(r
 $('#ct').onclick=e=>{const b=e.target.closest('button');if(b)crate(+b.dataset.i)};crate(0);
 /* Regeln */
 $('#regeln').insertAdjacentHTML('beforeend','<p><button id="ok">Ich habe die Regeln gelesen</button></p>');
-$('#ok').onclick=e=>{const r=e.target.getBoundingClientRect();burst(80,r.left+r.width/2,r.top,9);toast('Willkommen auf dem XuroSMP','Viel Spaß und fairen Kampf!','⚔️')};
+$('#ok').onclick=e=>{const r=e.target.getBoundingClientRect();burst(80,r.left+r.width/2,r.top,9);toast('Willkommen auf dem XuroSMP','Viel Spaß und fairen Kampf!')};
 /* Easter Eggs */
 const CR=['........','.GG..GG.','.GG..GG.','...GG...','..GGGG..','..GGGG..','..G..G..','........'];
 function creeper(){const o=$('#cr');o.innerHTML='<div><div class="face">'+CR.join('').replace(/./g,c=>'<s'+(c=='G'?' class="k"':'')+'></s>').replace(/<s><\/s>/g,'<s></s>')+'</div><p>Sssssss…</p></div>';o.classList.add('on');setTimeout(()=>{o.classList.remove('on');document.body.classList.add('shake');burst(240,innerWidth/2,innerHeight/2,14);setTimeout(()=>document.body.classList.remove('shake'),600)},1400);egg('cr','Das war ein Creeper!')}
@@ -248,10 +246,10 @@ addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()===
 let lc=0,sc=0,pc=0;
 $('#logo').onclick=()=>{if(++lc>=7){lc=0;hero()}};
 $('#star').onclick=e=>{if(++sc>=5){sc=0;for(let i=0;i<6;i++)setTimeout(()=>burst(40,Math.random()*innerWidth,-10,3),i*150);egg('star','Nether-Star-Regen')}else burst(12,e.clientX,e.clientY,4)};
-$('#pick').onclick=()=>{if(++pc>=10){pc=0;toast('Diamanten!','Y=-59. Gut gegraben.','💎');burst(100,innerWidth/2,innerHeight,12);egg('pick','Diamantfund')}};
-let idle;const rst=()=>{clearTimeout(idle);idle=setTimeout(()=>{toast('AFK erkannt','+1 Star ★ (leider nur im Spiel)','★');egg('afk','AFK-Zone besucht')},45000)};
+$('#pick').onclick=()=>{if(++pc>=10){pc=0;toast('Diamanten!','Y=-59. Gut gegraben.');burst(100,innerWidth/2,innerHeight,12);egg('pick','Diamantfund')}};
+let idle;const rst=()=>{clearTimeout(idle);idle=setTimeout(()=>{toast('AFK erkannt','+1 Star ★ (leider nur im Spiel)');egg('afk','AFK-Zone besucht')},45000)};
 ['mousemove','keydown','scroll','touchstart'].forEach(v=>addEventListener(v,rst,{passive:true}));rst();
-const siteCfg=window.SITE||{};$$('[data-discord]').forEach(a=>{if(siteCfg.discord&&!/DEIN-LINK/.test(siteCfg.discord)){a.href=siteCfg.discord;a.target='_blank'}else a.onclick=e=>{e.preventDefault();toast('Discord','Link in config.js eintragen','💬')}});
+const siteCfg=window.SITE||{};$$('[data-discord]').forEach(a=>{if(siteCfg.discord&&!/DEIN-LINK/.test(siteCfg.discord)){a.href=siteCfg.discord;a.target='_blank'}else a.onclick=e=>{e.preventDefault();toast('Discord','Link in config.js eintragen')}});
 console.log('%cXuroSMP','font:700 28px monospace;color:#ffaa00','\nPsst: Es gibt 6 Easter Eggs. Probier den Konami-Code.');
 </script>
 </body>

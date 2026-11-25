@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>XuroClient · Launcher für XuroSMP</title>
+<meta name="description" content="XuroClient installiert Minecraft ab 1.21.4 mit Fabric, lädt erlaubte Performance-Mods und verbindet dich direkt mit XuroSMP. Für Windows, macOS und Linux.">
+<meta name="theme-color" content="#040919">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
+<meta property="og:site_name" content="XuroSMP"><meta property="og:type" content="website"><meta property="og:locale" content="de_DE"><meta property="og:title" content="XuroClient · Launcher für XuroSMP"><meta property="og:description" content="Minecraft ab 1.21.4 mit Fabric, erlaubten Mods und direktem Serverbeitritt. Für Windows, macOS und Linux."><meta property="og:image" content="__SITE__/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><link rel="canonical" href="__SITE__/client">
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,600;0,800;1,700;1,800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"></head>
+<body data-page="client">
+<main id="inhalt">
+<section class="hero cl"><h1>Xuro<em>Client</em></h1>
+<p class="lead">Der Launcher für XuroSMP. Er installiert Minecraft mit Fabric, holt erlaubte Mods für mehr FPS und startet dich direkt auf dem Server.</p>
+<div class="row"><a id="main-dl" href="https://github.com/XuroSMP2/XuroClient/releases/latest"><button>Herunterladen</button></a><a href="#installation"><button class="btn2">So geht es</button></a></div>
+<p class="mu" id="os-note" style="margin-top:14px"></p></section>
+<div class="page">
+<h2 id="download">Download</h2>
+<div class="dl" id="dl">
+<a href="https://github.com/XuroSMP2/XuroClient/releases/latest/download/XuroClient-Windows.zip" data-os="win"><b>Windows</b><span>Zip entpacken, <code>XuroClient.exe</code> starten</span></a>
+<a href="https://github.com/XuroSMP2/XuroClient/releases/latest/download/XuroClient-macOS.zip" data-os="mac"><b>macOS</b><span>Zip entpacken, Programm starten</span></a>
+<a href="https://github.com/XuroSMP2/XuroClient/releases/latest/download/XuroClient-Linux.zip" data-os="linux"><b>Linux</b><span>Zip entpacken, <code>bin/XuroClient</code> starten</span></a>
+</div>
+<p class="mu">Alle Versionen findest du auf der <a href="https://github.com/XuroSMP2/XuroClient/releases">Release-Seite</a>. Java musst du nicht installieren, der Launcher bringt es mit.</p>
+
+<h2 id="installation">Installation</h2>
+<div class="sec"><ol class="steps">
+<li><div><b>Herunterladen und entpacken.</b> Lege den Ordner irgendwohin, wo er bleiben darf, zum Beispiel in deine Programme.</div></li>
+<li><div><b>Starten und anmelden.</b> Unter <i>Konto</i> meldest du dich mit deinem Microsoft-Konto an. Du brauchst Minecraft Java.</div></li>
+<li><div><b>Spielen drücken.</b> Beim ersten Start lädt der Launcher Minecraft, Fabric und die Mods. Das dauert ein paar Minuten. Danach landest du direkt auf XuroSMP.</div></li>
+</ol>
+<div class="tip"><b>Warnung beim ersten Start?</b> Der Launcher ist nicht digital signiert. Unter Windows klickst du bei SmartScreen auf <i>Weitere Informationen</i> und dann auf <i>Trotzdem ausführen</i>. Unter macOS öffnest du ihn mit Rechtsklick und <i>Öffnen</i>.</div></div>
+
+<h2 id="module">Enthaltene Mods</h2>
+<div class="sec"><p>Alle Mods sind auf XuroSMP erlaubt und lassen sich im Launcher einzeln abwählen. Nicht dabei und nicht erlaubt: X-Ray, Freecam, Fullbright und andere Vorteile.</p>
+<ul class="mods" id="mods"><li><span>Lade …</span></li></ul></div>
+
+<h2 id="faq">Fragen</h2>
+<details><summary>Was brauche ich dafür?</summary><p>Windows, macOS oder Linux in 64 Bit, mindestens 4 GB Arbeitsspeicher und eine Internetverbindung. Minecraft Java muss auf deinem Microsoft-Konto liegen.</p></details>
+<details><summary>Welche Minecraft-Versionen gehen?</summary><p>Alle Release-Versionen ab 1.21.4. Auf XuroSMP spielst du mit der Version, die im Launcher bei „Neueste Version“ steht.</p></details>
+<details><summary>Kann ich auch ohne Launcher spielen?</summary><p>Ja. XuroSMP läuft mit normalem Minecraft Java und Bedrock. Der Launcher macht nur die Einrichtung einfacher.</p></details>
+<details><summary>Wo liegen meine Daten?</summary><p>Unter Windows in <code>%APPDATA%\.xuroclient</code>, unter macOS in <code>~/Library/Application Support/xuroclient</code> und unter Linux in <code>~/.xuroclient</code>. Dort sind auch Spielstände und Einstellungen des Launchers. Die Anmeldung speichert der Launcher dort als Zugangstoken, nicht dein Passwort.</p></details>
+<details><summary>Etwas klappt nicht. Was jetzt?</summary><p>Öffne im Launcher den Reiter <i>Konsole</i>, klicke auf <i>Log kopieren</i> und schick uns den Text im Discord.</p></details>
+</div></main>
+<script src="config.js"></script><script src="common.js"></script>
+<script>
+(function(){var ua=navigator.userAgent,os=/Windows/.test(ua)?'win':/Mac/.test(ua)&&!/iPhone|iPad/.test(ua)?'mac':/Linux/.test(ua)&&!/Android/.test(ua)?'linux':'';
+var n={win:'Windows',mac:'macOS',linux:'Linux'};
+if(os){var a=document.querySelector('[data-os="'+os+'"]');a.classList.add('rec');a.querySelector('b').textContent=n[os]+' (für dein System)';document.getElementById('main-dl').href=a.href;document.querySelector('#main-dl button').textContent='Für '+n[os]+' herunterladen'}
+else document.getElementById('os-note').textContent='Der Launcher gibt es für Windows, macOS und Linux. Auf dem Handy brauchst du ihn nicht.';
+fetch('/client/config.json').then(function(r){return r.json()}).then(function(c){var u=document.getElementById('mods');u.replaceChildren();
+(c.mods||[]).forEach(function(m){var li=document.createElement('li'),b=document.createElement('b'),s=document.createElement('span');b.textContent=m.name;s.textContent=m.desc||'';li.append(b,s);u.append(li)})}).catch(function(){document.getElementById('mods').innerHTML='<li><span>Die Liste lässt sich gerade nicht laden. Im Launcher siehst du alle Mods unter „Module“.</span></li>'});
+})();
+</script></body></html>

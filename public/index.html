@@ -2,13 +2,13 @@
 <html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>XuroSMP · Minecraft Survival Server</title>
 <meta name="description" content="XuroSMP: Survival-Server mit Economy, Shop, Crates, Clans, Battle Pass und regelmäßigen Events. Java & Bedrock.">
-<meta property="og:title" content="XuroSMP · Minecraft Survival Server"><meta name="theme-color" content="#040919">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%23ffaa00' d='M3 0h2v3h3v2H5v3H3V5H0V3h3z'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#040919">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,600;0,800;1,700;1,800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css"></head>
+<meta property="og:site_name" content="XuroSMP"><meta property="og:type" content="website"><meta property="og:locale" content="de_DE"><meta property="og:title" content="XuroSMP · Minecraft Survival Server"><meta property="og:description" content="XuroSMP: Survival-Server mit Economy, Shop, Crates, Clans, Battle Pass und regelmäßigen Events. Java & Bedrock."><meta property="og:image" content="__SITE__/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><link rel="canonical" href="__SITE__/"><link rel="stylesheet" href="style.css"></head>
 <body data-page="home">
-<section class="hero"><h1>Xuro<em>SMP</em><span class="splash" id="splash">Java und Bedrock!</span></h1>
+<main id="inhalt"><section class="hero"><h1>Xuro<em>SMP</em><span class="splash" id="splash">Java und Bedrock!</span></h1>
 <p class="lead">Survival-Server für Java und Bedrock. Mit eigener Wirtschaft, Clans, Battle Pass und wöchentlichen Events.</p>
 <div class="slist">
 <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><rect width="16" height="16" fill="#1b1325"/><path fill="#6a3fb5" d="M7 1h2v1h1v1h1v2h1v3h1v3h-1v2h-1v1H5v-1H4v-2H3V8h1V5h1V3h1V2h1z"/><path fill="#a47be8" d="M7 2h2v1h1v2h1v3h1v3h-1v2H6V3h1z"/><path fill="#d6bfff" d="M7 3h1v2H7zm-1 3h1v3H6z"/><path fill="#e3a72f" d="M5 13h6v1H5z"/></svg>
@@ -34,6 +34,8 @@
 <li><a href="/wiki#manhunt"><b>Manhunt</b><span>Kopfgeld auf Spieler mit Schadens-Rangliste.</span></a></li>
 <li><a href="/wiki#settings"><b>Einstellungen</b><span>Monster-Spawns, Nachrichten, TPA und mehr mit <code>/settings</code>.</span></a></li>
 </ul></div>
+<h2>XuroClient</h2>
+<div class="sec"><p>Der eigene Launcher für XuroSMP installiert Minecraft mit Fabric und erlaubten Performance-Mods und verbindet dich direkt mit dem Server.</p><div class="row" style="margin-top:12px"><a href="/client"><button>Zum Download</button></a></div></div>
 <h2>Beitreten</h2>
 <div class="sec"><ol class="join"><li>Minecraft starten (Java oder Bedrock, Bedrock-Namen beginnen mit einem Punkt).</li>
 <li>Server mit der Adresse <code data-ip style="cursor:copy">xurosmp.daronlo.com</code> hinzufügen und verbinden.</li>
@@ -51,6 +53,7 @@
 <details><summary>Wann gibt es Keys für alle?</summary><p>Jede Stunde bekommt jeder Online-Spieler einen Key.</p></details>
 <details><summary>Ich habe einen Bug gefunden</summary><p>Melde ihn im Discord dem Team. Bugs auszunutzen ist verboten.</p></details></div>
 </div>
+</main>
 <script>(function(){var s=['Java und Bedrock!','Kein Dupe erlaubt!','Schon /daily geholt?','Jetzt mit Crystals!','Bank mit Freunden teilen!','Vorsicht vor Manhunt!'];var e=document.getElementById('splash');if(e)e.textContent=s[Math.floor(Math.random()*s.length)]})()</script>
 <script src="config.js"></script><script src="common.js"></script>
 <script>XS.load().then(a=>{const u=a.filter(e=>+XS.end(e)>Date.now()).sort((x,y)=>!!y.pinned-!!x.pinned||new Date(x.start)-new Date(y.start)).slice(0,3),b=$('#ev');b.replaceChildren(...(u.length?u.map(XS.card):[h('p',{class:'mu'},'Aktuell sind keine Events geplant. Schau im Discord vorbei!')]))});</script>
