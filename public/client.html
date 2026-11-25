@@ -30,8 +30,8 @@
 </ol>
 <div class="tip"><b>Warnung beim ersten Start?</b> Der Launcher ist nicht digital signiert. Unter Windows klickst du bei SmartScreen auf <i>Weitere Informationen</i> und dann auf <i>Trotzdem ausführen</i>. Unter macOS öffnest du ihn mit Rechtsklick und <i>Öffnen</i>.</div></div>
 
-<h2 id="module">Enthaltene Mods</h2>
-<div class="sec"><p>Alle Mods sind auf XuroSMP erlaubt und lassen sich im Launcher einzeln abwählen. Nicht dabei und nicht erlaubt: X-Ray, Freecam, Fullbright und andere Vorteile.</p>
+<h2 id="module">Modpacks</h2>
+<div class="sec"><p>Das <b>XuroSMP Standard</b>-Pack ist schon eingerichtet. Du kannst darin alles einzeln abwählen oder im Launcher eigene Modpacks bauen und Mods, Ressourcenpakete und Shader direkt von Modrinth hinzufügen. Auf XuroSMP erlaubt sind nur Mods ohne unfairen Vorteil, also kein X-Ray, Freecam oder Fullbright. Das Standard-Pack enthält:</p>
 <ul class="mods" id="mods"><li><span>Lade …</span></li></ul></div>
 
 <h2 id="faq">Fragen</h2>
@@ -49,6 +49,6 @@ if(os){var a=document.querySelector('[data-os="'+os+'"]');a.classList.add('rec')
 document.querySelectorAll('#dl a').forEach(function(a){fetch(a.href,{method:'HEAD'}).then(function(r){if(!r.ok)throw 0}).catch(function(){a.removeAttribute('href');a.removeAttribute('download');a.classList.remove('rec');a.classList.add('off');a.querySelector('span').textContent='Noch nicht verfügbar';if(os&&a.dataset.os===os){var m=document.getElementById('main-dl');m.removeAttribute('href');m.querySelector('button').disabled=true;m.querySelector('button').textContent='Für '+n[os]+' bald verfügbar'}})});
 if(!os)document.getElementById('os-note').textContent='Der Launcher gibt es für Windows, macOS und Linux. Auf dem Handy brauchst du ihn nicht.';
 fetch('/client/config.json').then(function(r){return r.json()}).then(function(c){var u=document.getElementById('mods');u.replaceChildren();
-(c.mods||[]).forEach(function(m){var li=document.createElement('li'),b=document.createElement('b'),s=document.createElement('span');b.textContent=m.name;s.textContent=m.desc||'';li.append(b,s);u.append(li)})}).catch(function(){document.getElementById('mods').innerHTML='<li><span>Die Liste lässt sich gerade nicht laden. Im Launcher siehst du alle Mods unter „Module“.</span></li>'});
+((c.packs&&c.packs[0]&&c.packs[0].entries)||c.mods||[]).forEach(function(m){var li=document.createElement('li'),b=document.createElement('b'),s=document.createElement('span');b.textContent=m.name;s.textContent=m.desc||'';li.append(b,s);u.append(li)})}).catch(function(){document.getElementById('mods').innerHTML='<li><span>Die Liste lässt sich gerade nicht laden. Im Launcher siehst du alle Mods unter „Module“.</span></li>'});
 })();
 </script></body></html>

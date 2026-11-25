@@ -5,21 +5,182 @@
   "discord": "https://discord.gg/snQvzggK7q",
   "website": "https://xurosmp.daronlo.com",
   "news": [
-    { "title": "Willkommen im XuroClient", "text": "Der Launcher installiert Minecraft, Fabric und erlaubte Mods für dich und verbindet dich mit XuroSMP.", "date": "" }
+    {
+      "title": "Willkommen im XuroClient",
+      "text": "Der Launcher installiert Minecraft, Fabric und erlaubte Mods für dich und verbindet dich mit XuroSMP.",
+      "date": ""
+    }
   ],
-  "mods": [
-    { "slug": "fabric-api", "name": "Fabric API", "desc": "Grundlage für fast alle Mods. Muss an bleiben.", "default": true, "locked": true },
-    { "slug": "sodium", "name": "Sodium", "desc": "Deutlich mehr FPS durch neue Grafik-Engine.", "default": true },
-    { "slug": "lithium", "name": "Lithium", "desc": "Weniger Lag bei Spiellogik und Weltberechnung.", "default": true },
-    { "slug": "ferrite-core", "name": "FerriteCore", "desc": "Spart Arbeitsspeicher.", "default": true },
-    { "slug": "immediatelyfast", "name": "ImmediatelyFast", "desc": "Schnelleres Zeichnen von Menüs, Chat und Items.", "default": true },
-    { "slug": "entityculling", "name": "Entity Culling", "desc": "Zeichnet nur Mobs, die du sehen kannst.", "default": true },
-    { "slug": "sodium-extra", "name": "Sodium Extra", "desc": "Zusätzliche Grafik-Optionen für Sodium.", "default": false },
-    { "slug": "dynamic-fps", "name": "Dynamic FPS", "desc": "Spart Strom, wenn das Fenster im Hintergrund ist.", "default": true },
-    { "slug": "modmenu", "name": "Mod Menu", "desc": "Zeigt installierte Mods und ihre Einstellungen.", "default": true },
-    { "slug": "zoomify", "name": "Zoomify", "desc": "Zoom per Taste (Standard: C).", "default": true },
-    { "slug": "appleskin", "name": "AppleSkin", "desc": "Zeigt Hunger- und Sättigungswerte von Essen.", "default": true },
-    { "slug": "mouse-tweaks", "name": "Mouse Tweaks", "desc": "Schneller Items im Inventar verschieben.", "default": true },
-    { "slug": "iris", "name": "Iris Shaders", "desc": "Shader-Packs. Braucht Sodium und eine gute Grafikkarte.", "default": false }
+  "packs": [
+    {
+      "id": "xurosmp",
+      "name": "XuroSMP Standard",
+      "desc": "Das empfohlene Pack: mehr FPS, Sprachchat und freie Sicht im Kampf.",
+      "entries": [
+        {
+          "slug": "fabric-api",
+          "name": "Fabric API",
+          "type": "mod",
+          "desc": "Grundlage für fast alle Mods. Muss an bleiben.",
+          "default": true,
+          "locked": true
+        },
+        {
+          "slug": "sodium",
+          "name": "Sodium",
+          "type": "mod",
+          "desc": "Deutlich mehr FPS durch neue Grafik-Engine.",
+          "default": true
+        },
+        {
+          "slug": "lithium",
+          "name": "Lithium",
+          "type": "mod",
+          "desc": "Weniger Lag bei Spiellogik und Weltberechnung.",
+          "default": true
+        },
+        {
+          "slug": "ferrite-core",
+          "name": "FerriteCore",
+          "type": "mod",
+          "desc": "Spart Arbeitsspeicher.",
+          "default": true
+        },
+        {
+          "slug": "immediatelyfast",
+          "name": "ImmediatelyFast",
+          "type": "mod",
+          "desc": "Schnelleres Zeichnen von Menüs, Chat und Items.",
+          "default": true
+        },
+        {
+          "slug": "entityculling",
+          "name": "Entity Culling",
+          "type": "mod",
+          "desc": "Zeichnet nur Mobs, die du sehen kannst.",
+          "default": true
+        },
+        {
+          "slug": "dynamic-fps",
+          "name": "Dynamic FPS",
+          "type": "mod",
+          "desc": "Spart Strom, wenn das Fenster im Hintergrund ist.",
+          "default": true
+        },
+        {
+          "slug": "modmenu",
+          "name": "Mod Menu",
+          "type": "mod",
+          "desc": "Zeigt installierte Mods und ihre Einstellungen.",
+          "default": true
+        },
+        {
+          "slug": "zoomify",
+          "name": "Zoomify",
+          "type": "mod",
+          "desc": "Zoom per Taste (Standard: C).",
+          "default": true
+        },
+        {
+          "slug": "appleskin",
+          "name": "AppleSkin",
+          "type": "mod",
+          "desc": "Zeigt Hunger- und Sättigungswerte von Essen.",
+          "default": true
+        },
+        {
+          "slug": "mouse-tweaks",
+          "name": "Mouse Tweaks",
+          "type": "mod",
+          "desc": "Schneller Items im Inventar verschieben.",
+          "default": true
+        },
+        {
+          "slug": "simple-voice-chat",
+          "name": "Simple Voice Chat",
+          "type": "mod",
+          "desc": "Sprachchat in der Nähe. Funktioniert nur, wenn der Server es auch hat.",
+          "default": true
+        },
+        {
+          "slug": "low-static-fire",
+          "name": "Low Static Fire",
+          "type": "mod",
+          "desc": "Kleines Feuer, das dir nicht die Sicht nimmt.",
+          "default": true
+        },
+        {
+          "slug": "low-shields",
+          "name": "Low Shield",
+          "type": "resourcepack",
+          "desc": "Senkt den Schild, damit er weniger Bildschirm verdeckt.",
+          "default": true
+        },
+        {
+          "slug": "sodium-extra",
+          "name": "Sodium Extra",
+          "type": "mod",
+          "desc": "Zusätzliche Grafik-Optionen für Sodium.",
+          "default": false
+        },
+        {
+          "slug": "iris",
+          "name": "Iris Shaders",
+          "type": "mod",
+          "desc": "Shader-Packs. Braucht Sodium und eine gute Grafikkarte.",
+          "default": false
+        }
+      ]
+    },
+    {
+      "id": "performance",
+      "name": "Nur Performance",
+      "desc": "Schlank: nur FPS-Mods, nichts anderes.",
+      "entries": [
+        {
+          "slug": "fabric-api",
+          "name": "Fabric API",
+          "type": "mod",
+          "desc": "Grundlage für fast alle Mods. Muss an bleiben.",
+          "default": true,
+          "locked": true
+        },
+        {
+          "slug": "sodium",
+          "name": "Sodium",
+          "type": "mod",
+          "desc": "Deutlich mehr FPS durch neue Grafik-Engine.",
+          "default": true
+        },
+        {
+          "slug": "lithium",
+          "name": "Lithium",
+          "type": "mod",
+          "desc": "Weniger Lag bei Spiellogik und Weltberechnung.",
+          "default": true
+        },
+        {
+          "slug": "ferrite-core",
+          "name": "FerriteCore",
+          "type": "mod",
+          "desc": "Spart Arbeitsspeicher.",
+          "default": true
+        },
+        {
+          "slug": "immediatelyfast",
+          "name": "ImmediatelyFast",
+          "type": "mod",
+          "desc": "Schnelleres Zeichnen von Menüs, Chat und Items.",
+          "default": true
+        },
+        {
+          "slug": "entityculling",
+          "name": "Entity Culling",
+          "type": "mod",
+          "desc": "Zeichnet nur Mobs, die du sehen kannst.",
+          "default": true
+        }
+      ]
+    }
   ]
 }
