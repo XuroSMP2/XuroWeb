@@ -109,6 +109,7 @@ main:focus{outline:none}
 .dl a:hover{border-color:#6cb0ff;box-shadow:0 0 34px rgba(var(--glow),.45);transform:translateY(-2px);color:#fff}
 .dl a b{font:800 italic 1.25rem 'Exo 2',sans-serif}.dl a span{color:var(--mu);font-size:.9rem}
 .dl a.rec{background:linear-gradient(180deg,#2f7bff,#1546c8);border-color:#8fc0ff;box-shadow:0 0 30px rgba(var(--glow),.6)}.dl a.rec span{color:#d6e6ff}
+.dl a.off{opacity:.5;pointer-events:none}button:disabled{filter:grayscale(.8);opacity:.6;cursor:not-allowed;box-shadow:none}
 .steps{counter-reset:s;list-style:none;padding:0;margin:0;display:grid;gap:12px}
 .steps li{counter-increment:s;display:grid;grid-template-columns:40px 1fr;gap:14px;align-items:start;max-width:none}
 .steps li:before{content:counter(s);display:grid;place-items:center;width:36px;height:36px;border-radius:10px;font:800 italic 1.05rem 'Exo 2',sans-serif;color:#fff;background:linear-gradient(180deg,#2f7bff,#1546c8);box-shadow:0 0 14px rgba(var(--glow),.5)}

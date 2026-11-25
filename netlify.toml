@@ -33,3 +33,9 @@
   for = "/pack/*"
   [headers.values]
     Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/client/*.zip"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+    Content-Disposition = "attachment"
