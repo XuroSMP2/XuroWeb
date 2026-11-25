@@ -11,7 +11,7 @@
     X-Frame-Options = "DENY"
     Strict-Transport-Security = "max-age=31536000"
     Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=()"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.mcsrvstat.us https://api.mcstatus.io https://discord.com; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.mcsrvstat.us https://api.mcstatus.io https://discord.com https://api.github.com; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
 
 [[headers]]
   for = "/admin*"
@@ -34,8 +34,22 @@
   [headers.values]
     Cache-Control = "public, max-age=3600"
 
-[[headers]]
-  for = "/client/*.zip"
-  [headers.values]
-    Cache-Control = "public, max-age=3600"
-    Content-Disposition = "attachment"
+
+# Downloads: Die Adresse bleibt auf dieser Seite, die Datei kommt direkt aus dem neuesten Release.
+[[redirects]]
+  from = "/client/XuroClient-Windows.zip"
+  to = "https://github.com/XuroSMP2/XuroClient/releases/latest/download/XuroClient-Windows.zip"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/client/XuroClient-macOS.zip"
+  to = "https://github.com/XuroSMP2/XuroClient/releases/latest/download/XuroClient-macOS.zip"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/client/XuroClient-Linux.zip"
+  to = "https://github.com/XuroSMP2/XuroClient/releases/latest/download/XuroClient-Linux.zip"
+  status = 302
+  force = true

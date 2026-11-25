@@ -16,9 +16,9 @@
 <div class="page">
 <h2 id="download">Download</h2>
 <div class="dl" id="dl">
-<a href="/client/XuroClient-Windows.zip" download data-os="win"><b>Windows</b><span>Zip entpacken, <code>XuroClient.exe</code> starten</span></a>
-<a href="/client/XuroClient-macOS.zip" download data-os="mac"><b>macOS</b><span>Zip entpacken, Programm starten</span></a>
-<a href="/client/XuroClient-Linux.zip" download data-os="linux"><b>Linux</b><span>Zip entpacken, <code>bin/XuroClient</code> starten</span></a>
+<a href="/client/XuroClient-Windows.zip" download data-os="win" data-file="XuroClient-Windows.zip"><b>Windows</b><span>Zip entpacken, <code>XuroClient.exe</code> starten</span></a>
+<a href="/client/XuroClient-macOS.zip" download data-os="mac" data-file="XuroClient-macOS.zip"><b>macOS</b><span>Zip entpacken, Programm starten</span></a>
+<a href="/client/XuroClient-Linux.zip" download data-os="linux" data-file="XuroClient-Linux.zip"><b>Linux</b><span>Zip entpacken, <code>bin/XuroClient</code> starten</span></a>
 </div>
 <p class="mu">Java musst du nicht installieren, der Launcher bringt es mit.</p>
 
@@ -46,7 +46,12 @@
 (function(){var ua=navigator.userAgent,os=/Windows/.test(ua)?'win':/Mac/.test(ua)&&!/iPhone|iPad/.test(ua)?'mac':/Linux/.test(ua)&&!/Android/.test(ua)?'linux':'';
 var n={win:'Windows',mac:'macOS',linux:'Linux'};
 if(os){var a=document.querySelector('[data-os="'+os+'"]');a.classList.add('rec');a.querySelector('b').textContent=n[os]+' (für dein System)';document.getElementById('main-dl').href=a.href;document.querySelector('#main-dl button').textContent='Für '+n[os]+' herunterladen'}
-document.querySelectorAll('#dl a').forEach(function(a){fetch(a.href,{method:'HEAD'}).then(function(r){if(!r.ok)throw 0}).catch(function(){a.removeAttribute('href');a.removeAttribute('download');a.classList.remove('rec');a.classList.add('off');a.querySelector('span').textContent='Noch nicht verfügbar';if(os&&a.dataset.os===os){var m=document.getElementById('main-dl');m.removeAttribute('href');m.querySelector('button').disabled=true;m.querySelector('button').textContent='Für '+n[os]+' bald verfügbar'}})});
+function off(a){a.removeAttribute('href');a.removeAttribute('download');a.classList.remove('rec');a.classList.add('off');a.querySelector('span').textContent='Noch nicht verfügbar';
+if(os&&a.dataset.os===os){var m=document.getElementById('main-dl');m.removeAttribute('href');m.querySelector('button').disabled=true;m.querySelector('button').textContent='Für '+n[os]+' bald verfügbar'}}
+fetch('https://api.github.com/repos/XuroSMP2/XuroClient/releases/latest',{headers:{Accept:'application/vnd.github+json'}}).then(function(r){if(r.status===404){document.querySelectorAll('#dl a').forEach(off);return null}if(!r.ok)return null;return r.json()}).then(function(rel){
+if(!rel)return;var size={};(rel.assets||[]).forEach(function(x){size[x.name]=x.size});
+document.querySelectorAll('#dl a').forEach(function(a){var f=a.dataset.file;if(!(f in size))off(a);else a.querySelector('span').append(' \u00b7 '+Math.round(size[f]/1048576)+' MB')});
+if(rel.tag_name)document.getElementById('os-note').textContent='Aktuelle Version: '+rel.tag_name}).catch(function(){});
 if(!os)document.getElementById('os-note').textContent='Der Launcher gibt es für Windows, macOS und Linux. Auf dem Handy brauchst du ihn nicht.';
 fetch('/client/config.json').then(function(r){return r.json()}).then(function(c){var u=document.getElementById('mods');u.replaceChildren();
 ((c.packs&&c.packs[0]&&c.packs[0].entries)||c.mods||[]).forEach(function(m){var li=document.createElement('li'),b=document.createElement('b'),s=document.createElement('span');b.textContent=m.name;s.textContent=m.desc||'';li.append(b,s);u.append(li)})}).catch(function(){document.getElementById('mods').innerHTML='<li><span>Die Liste lässt sich gerade nicht laden. Im Launcher siehst du alle Mods unter „Module“.</span></li>'});
