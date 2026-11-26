@@ -10,7 +10,7 @@ if(document.body.dataset.shell!=='none'){
  const pg=document.body.dataset.page,L=(href,t,id,x='')=>h('a',{class:'hl'+(pg===id?' act':''),href,...(x?{'data-discord':''}:{})},t);
  document.body.prepend(h('a',{class:'skip',href:'#inhalt'},'Zum Inhalt'),h('header',{},h('a',{class:'logo',href:'/'},'XuroSMP'),L('/','Start','home'),L('/events','Events','events'),L('/client','Client','client'),L('/stats','Bestenlisten','stats'),L('/wiki','Wiki','wiki'),L('/wiki#regeln','Regeln','r'),L('#','Discord','d',1),h('button',{'data-ip':''},S.ip)));
  document.body.append(h('footer',{},'XuroSMP · Kein offizielles Mojang- oder Microsoft-Produkt · ',h('a',{href:'/wiki'},'Wiki'),' · ',h('a',{href:'/events'},'Events')));
- fetch('/api/banner').then(r=>r.json()).then(b=>{if(b.on&&b.text)$('header').after(h('div',{class:'bn'},b.text))}).catch(()=>{});
+ fetch('/api/banner').then(r=>r.json()).then(b=>{if(b.on&&b.text){const bn=h('div',{class:'bn',role:'status'}),t=h('span',{class:'bn-t'},b.text);bn.append(t);$('header').after(bn);const fit=()=>{bn.classList.remove('run');bn.querySelectorAll('.bn-c').forEach(x=>x.remove());if(t.scrollWidth>bn.clientWidth-32){const c=h('span',{class:'bn-t bn-c','aria-hidden':'true'},b.text);bn.append(c);bn.style.setProperty('--bn-d',Math.max(12,Math.round(b.text.length*0.33))+'s');bn.classList.add('run')}};fit();let w=innerWidth;addEventListener('resize',()=>{if(innerWidth!==w){w=innerWidth;fit()}})}}).catch(()=>{});
 }
 document.addEventListener('click',e=>{if(e.target.closest('[data-ip]'))copy(S.ip,'IP kopiert');const d=e.target.closest('[data-discord]');if(d&&d.getAttribute('href')==='#'){e.preventDefault();toast('Discord','Link in config.js eintragen')}});
 const dc=/DEIN-LINK/.test(S.discord)?'':S.discord;$$('[data-discord]').forEach(a=>{if(dc){a.href=dc;a.target='_blank';a.rel='noopener'}});
@@ -19,7 +19,7 @@ if(S.guild)fetch('https://discord.com/api/guilds/'+S.guild+'/widget.json').then(
 async function status(){for(const u of['https://api.mcsrvstat.us/3/'+S.ip,'https://api.mcstatus.io/v2/status/java/'+S.ip]){try{const j=await(await fetch(u)).json();return{on:!!j.online,p:j.players&&j.players.online,m:j.players&&j.players.max,v:typeof j.version==='object'&&j.version?j.version.name_clean:j.version}}catch(e){}}return null}
 status().then(s=>{$$('[data-status]').forEach(e=>{e.className='pill '+(s?(s.on?'on':'off'):'');e.textContent=s?(s.on?'Online':'Offline'):'Status nicht verfügbar'});if(s&&s.on){$$('[data-players]').forEach(e=>e.textContent=s.p+'/'+s.m);$$('[data-version]').forEach(e=>e.textContent=s.v||'')}});
 /* Events */
-const TY={pvp:['PvP','#ff5555'],bauen:['Bauen','#4ade80'],community:['Community','#b78cff'],gewinnspiel:['Gewinnspiel','#ffaa00'],sonstiges:['Event','#a49fc4']};
+const TY={pvp:['PvP','#ff5555'],bauen:['Bauen','#4ade80'],community:['Community','#b78cff'],gewinnspiel:['Gewinnspiel','#ffaa00'],sonstiges:['Event','#b89fc4']};
 const XS={TY,
  fmt:d=>new Date(d).toLocaleString('de-DE',{weekday:'long',day:'2-digit',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit',timeZone:'Europe/Berlin'})+' Uhr',
  end:e=>e.end?new Date(e.end):new Date(+new Date(e.start)+7200e3),

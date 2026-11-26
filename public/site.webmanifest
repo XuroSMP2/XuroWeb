@@ -4,8 +4,8 @@
  "description": "Minecraft Survival Server",
  "start_url": "/",
  "display": "browser",
- "background_color": "#040919",
- "theme_color": "#040919",
+ "background_color": "#0f0419",
+ "theme_color": "#0f0419",
  "lang": "de",
  "icons": [
   {

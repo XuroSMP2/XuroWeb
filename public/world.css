@@ -1,8 +1,8 @@
 /* "Der Schacht": die Startseite ist ein Minenschacht. Jede Sektion ist eine Gesteinsschicht, links zeigt eine Tiefenanzeige die Höhe (Y). */
-:root{--pix:'Pixelify Sans','Exo 2',sans-serif;--ice:#9ee0ff;--cobalt:#3a86ff;--amy:#9b6bff;--coin:#ffc23d}
-.world{--l0:#12275a;--l1:#0f2050;--l2:#0c1a42;--l3:#09143a;--l4:#070f2e;--l5:#050a20}
-.world body,body.world{background:#050a20}
-.layer{position:relative;isolation:isolate;padding:clamp(48px,7vw,88px) 0 clamp(48px,7vw,80px);background:var(--bg-l);border-top:3px solid rgba(120,175,255,.22)}
+:root{--pix:'Pixelify Sans','Exo 2',sans-serif;--ice:#c19eff;--cobalt:#983aff;--amy:#dc6bff;--coin:#ffc23d}
+.world{--l0:#37125a;--l1:#310f50;--l2:#290c42;--l3:#24093a;--l4:#1d072e;--l5:#140520}
+.world body,body.world{background:#140520}
+.layer{position:relative;isolation:isolate;padding:clamp(48px,7vw,88px) 0 clamp(48px,7vw,80px);background:var(--bg-l);border-top:3px solid rgba(184,120,255,.22)}
 .layer:before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
  background-image:linear-gradient(45deg,rgba(255,255,255,.028) 25%,transparent 25% 75%,rgba(255,255,255,.028) 75%),linear-gradient(45deg,rgba(255,255,255,.028) 25%,transparent 25% 75%,rgba(255,255,255,.028) 75%);
  background-size:48px 48px;background-position:0 0,24px 24px}
@@ -11,87 +11,87 @@
 .layer .in{max-width:1080px;margin:0 auto;padding:0 24px}
 .layer h2{display:block;margin:0 0 .5em;font:600 clamp(2.1rem,5vw,3.6rem)/1 var(--pix);font-style:normal;letter-spacing:-.01em;color:#fff}
 .layer h2:before{content:none}
-.layer .sub{max-width:52ch;margin:0 0 2.2rem;color:#a9bbe6;font-size:1.08rem}
-#oberflaeche{--bg-l:linear-gradient(180deg,#183a86 0,#102a66 46%,#0e2257 100%);padding-top:clamp(44px,7vw,84px)}
-#events{--bg-l:#0d2152}
-#features{--bg-l:#0a1a46}
-#client{--bg-l:#08143a}
-#beitreten{--bg-l:#060f2f}
-#fragen{--bg-l:#040a22}
+.layer .sub{max-width:52ch;margin:0 0 2.2rem;color:#c8a9e6;font-size:1.08rem}
+#oberflaeche{--bg-l:linear-gradient(180deg,#501886 0,#3c1066 46%,#340e57 100%);padding-top:clamp(44px,7vw,84px)}
+#events{--bg-l:#310d52}
+#features{--bg-l:#2a0a46}
+#client{--bg-l:#23083a}
+#beitreten{--bg-l:#1c062f}
+#fragen{--bg-l:#150422}
 /* Funkelnde Erze: kleine Pixel-Glinte, nach unten mehr und heller */
 #features .in:before,#client .in:before,#beitreten .in:before,#fragen .in:before{content:"";position:absolute;width:8px;height:8px;left:6%;top:14%;background:var(--ice);opacity:.55;
  box-shadow:210px 120px 0 var(--cobalt),520px -10px 0 var(--ice),760px 90px 0 var(--amy),980px 300px 0 var(--cobalt),90px 380px 0 var(--amy),420px 470px 0 var(--ice),860px 520px 0 var(--cobalt);pointer-events:none}
 .layer .in{position:relative}
 /* Hero */
 .hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:30px;align-items:center}
-.world h1.mark{margin:0;font:800 italic clamp(3.6rem,10.5vw,7.6rem)/.95 'Exo 2',sans-serif;color:#fff;letter-spacing:-.015em;text-shadow:0 0 50px rgba(58,134,255,.5);position:relative;display:inline-block}
+.world h1.mark{margin:0;font:800 italic clamp(3.6rem,10.5vw,7.6rem)/.95 'Exo 2',sans-serif;color:#fff;letter-spacing:-.015em;text-shadow:0 0 50px rgba(152,58,255,.5);position:relative;display:inline-block}
 .world h1.mark em{font-style:inherit;color:var(--ice)}
 .world h1.mark .splash{position:absolute;right:-.1em;bottom:-.55em;font:600 1.1rem/1 var(--pix);color:var(--coin);transform:rotate(-6deg);text-shadow:none;white-space:nowrap}
-.world .lead{font-size:1.2rem;color:#d3e0ff;margin:58px 0 26px;max-width:46ch}
-.world .slist{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;padding:14px 18px;border-radius:6px;background:rgba(5,10,32,.72);border:2px solid #3a86ff;box-shadow:0 6px 0 #0a1a52,0 0 40px rgba(58,134,255,.25);max-width:560px;margin-bottom:22px}
+.world .lead{font-size:1.2rem;color:#ead3ff;margin:58px 0 26px;max-width:46ch}
+.world .slist{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;padding:14px 18px;border-radius:6px;background:rgba(20,5,32,.72);border:2px solid #983aff;box-shadow:0 6px 0 #310a52,0 0 40px rgba(152,58,255,.25);max-width:560px;margin-bottom:22px}
 .world .slist svg{width:44px;height:44px;image-rendering:pixelated}
 .world .slist .r1{display:flex;justify-content:space-between;gap:10px;font:600 1.05rem var(--pix)}
-.world .slist .r2,.world .slist .r3{color:#a9bbe6;font-size:.88rem}.world .slist .r3{display:flex;gap:12px;align-items:center}
-.world .slist .addr code{font:600 .85rem var(--pix);background:#0a1a52;padding:4px 8px;border-radius:4px}
+.world .slist .r2,.world .slist .r3{color:#c8a9e6;font-size:.88rem}.world .slist .r3{display:flex;gap:12px;align-items:center}
+.world .slist .addr code{font:600 .85rem var(--pix);background:#310a52;padding:4px 8px;border-radius:4px}
 .world .row{display:flex;flex-wrap:wrap;gap:12px}
-.world button{border-radius:4px;font:600 1.02rem var(--pix);letter-spacing:.01em;padding:11px 22px;border:2px solid #7db5ff;background:#2a6df0;box-shadow:0 5px 0 #123a9e;text-shadow:none;transition:transform .08s,box-shadow .08s}
-.world button:hover{filter:none;background:#3a7dff;box-shadow:0 5px 0 #123a9e}
-.world button:active{transform:translateY(4px);box-shadow:0 1px 0 #123a9e}
-.world .btn2{background:#0c1d52!important;border:2px solid #3a86ff!important;box-shadow:0 5px 0 #06113a!important;color:#d8e6ff}
-.world .btn2:hover{background:#12296e!important}
+.world button{border-radius:4px;font:600 1.02rem var(--pix);letter-spacing:.01em;padding:11px 22px;border:2px solid #b97dff;background:#8d2af0;box-shadow:0 5px 0 #5b129e;text-shadow:none;transition:transform .08s,box-shadow .08s}
+.world button:hover{filter:none;background:#9c3aff;box-shadow:0 5px 0 #5b129e}
+.world button:active{transform:translateY(4px);box-shadow:0 1px 0 #5b129e}
+.world .btn2{background:#320c52!important;border:2px solid #983aff!important;box-shadow:0 5px 0 #23063a!important;color:#ebd8ff}
+.world .btn2:hover{background:#43126e!important}
 /* Geode: Kristallgruppe aus CSS-Facetten */
 .geode{position:relative;height:clamp(320px,42vw,500px);display:grid;place-items:end center}
 .geode i{position:absolute;bottom:6%;display:block;transform-origin:50% 100%;
- background:linear-gradient(115deg,#e8f8ff 0,#8fd3ff 18%,#3a86ff 48%,#1a3fb8 78%,#0c1f6e 100%);filter:drop-shadow(0 0 22px rgba(80,160,255,.6))}
-.geode i:after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 52%,rgba(5,10,40,.45) 52%);clip-path:inherit}
+ background:linear-gradient(115deg,#f0e8ff 0,#bb8fff 18%,#983aff 48%,#6f1ab8 78%,#420c6e 100%);filter:drop-shadow(0 0 22px rgba(159,80,255,.6))}
+.geode i:after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 52%,rgba(25,5,40,.45) 52%);clip-path:inherit}
 .geode .s1{left:41%;width:23%;height:86%;clip-path:polygon(50% 0,100% 20%,92% 100%,8% 100%,0 20%)}
-.geode .s2{left:18%;width:19%;height:58%;clip-path:polygon(40% 0,100% 26%,90% 100%,0 100%,6% 22%);transform:rotate(-14deg);filter:drop-shadow(0 0 18px rgba(155,107,255,.55));background:linear-gradient(115deg,#f1e8ff 0,#c3a1ff 20%,#9b6bff 50%,#5a2fc8 80%,#2a1478 100%)}
+.geode .s2{left:18%;width:19%;height:58%;clip-path:polygon(40% 0,100% 26%,90% 100%,0 100%,6% 22%);transform:rotate(-14deg);filter:drop-shadow(0 0 18px rgba(220,107,255,.55));background:linear-gradient(115deg,#f1e8ff 0,#eaa1ff 20%,#dc6bff 50%,#a12fc8 80%,#5c1478 100%)}
 .geode .s3{left:62%;width:20%;height:64%;clip-path:polygon(55% 0,100% 18%,100% 100%,6% 100%,0 24%);transform:rotate(12deg)}
 .geode .s4{left:31%;width:12%;height:38%;clip-path:polygon(50% 0,100% 30%,90% 100%,10% 100%,0 30%);transform:rotate(-30deg);opacity:.9}
-.geode .s5{left:76%;width:11%;height:34%;clip-path:polygon(50% 0,100% 30%,90% 100%,10% 100%,0 30%);transform:rotate(30deg);opacity:.9;background:linear-gradient(115deg,#f1e8ff 0,#c3a1ff 20%,#9b6bff 50%,#5a2fc8 80%,#2a1478 100%)}
-.geode .rock{left:6%;right:6%;bottom:0;height:11%;clip-path:polygon(0 60%,8% 20%,22% 40%,40% 0,60% 30%,78% 10%,92% 36%,100% 70%,100% 100%,0 100%);background:#0a1642;filter:none}
+.geode .s5{left:76%;width:11%;height:34%;clip-path:polygon(50% 0,100% 30%,90% 100%,10% 100%,0 30%);transform:rotate(30deg);opacity:.9;background:linear-gradient(115deg,#f1e8ff 0,#eaa1ff 20%,#dc6bff 50%,#a12fc8 80%,#5c1478 100%)}
+.geode .rock{left:6%;right:6%;bottom:0;height:11%;clip-path:polygon(0 60%,8% 20%,22% 40%,40% 0,60% 30%,78% 10%,92% 36%,100% 70%,100% 100%,0 100%);background:#290a42;filter:none}
 .geode .rock:after{background:none}
 @media(prefers-reduced-motion:no-preference){
  .geode i{animation:grow .9s cubic-bezier(.2,.8,.2,1) both}.geode .s1{animation-delay:.1s}.geode .s2{animation-delay:.28s}.geode .s3{animation-delay:.4s}.geode .s4{animation-delay:.55s}.geode .s5{animation-delay:.65s}
  @keyframes grow{from{opacity:0;translate:0 40px;scale:1 .2}to{opacity:1;translate:0;scale:1}}}
 /* Erz-Liste */
 .world .idx{display:grid;grid-template-columns:repeat(2,1fr);gap:0 56px}
-.world .idx li{border:0;border-top:2px dotted rgba(120,170,255,.28)}
+.world .idx li{border:0;border-top:2px dotted rgba(186,120,255,.28)}
 .world .idx a{display:block;padding:18px 4px}
 .world .idx b{display:block;font:600 1.25rem var(--pix);color:#fff;margin-bottom:2px}
-.world .idx span{color:#a9bbe6}
+.world .idx span{color:#c8a9e6}
 .world .idx a:hover{background:none}.world .idx a:hover b{color:var(--ice)}
 /* Client */
 .split2{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:44px;align-items:center}
-.world .shot img{border-radius:6px;border:2px solid #3a86ff;box-shadow:0 8px 0 #06113a,0 0 50px rgba(58,134,255,.3)}
-.world .split2 p{color:#c4d3f5;max-width:44ch;margin:0 0 20px}
+.world .shot img{border-radius:6px;border:2px solid #983aff;box-shadow:0 8px 0 #23063a,0 0 50px rgba(152,58,255,.3)}
+.world .split2 p{color:#ddc4f5;max-width:44ch;margin:0 0 20px}
 /* Beitreten */
 .dive{list-style:none;margin:0 0 56px;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:22px;counter-reset:s}
-.dive li{counter-increment:s;padding:20px 20px 22px;background:rgba(5,10,32,.6);border:2px solid #264aa6;border-radius:6px;position:relative}
-.dive li:before{content:counter(s);position:absolute;top:-18px;left:16px;width:34px;height:34px;display:grid;place-items:center;font:600 1.1rem var(--pix);background:#2a6df0;border:2px solid #7db5ff;border-radius:4px}
-.dive code{font:600 .85rem var(--pix);background:#0a1a52;padding:2px 6px;border-radius:4px;color:var(--ice)}
+.dive li{counter-increment:s;padding:20px 20px 22px;background:rgba(20,5,32,.6);border:2px solid #6926a6;border-radius:6px;position:relative}
+.dive li:before{content:counter(s);position:absolute;top:-18px;left:16px;width:34px;height:34px;display:grid;place-items:center;font:600 1.1rem var(--pix);background:#8d2af0;border:2px solid #b97dff;border-radius:4px}
+.dive code{font:600 .85rem var(--pix);background:#310a52;padding:2px 6px;border-radius:4px;color:var(--ice)}
 .duo{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
-.duo>div{padding:24px;background:rgba(5,10,32,.5);border-left:4px solid var(--cobalt)}
-.duo h3{margin:0 0 6px;font:600 1.5rem var(--pix);color:#fff}.duo p{margin:0 0 16px;color:#b6c6ee}
+.duo>div{padding:24px;background:rgba(20,5,32,.5);border-left:4px solid var(--cobalt)}
+.duo h3{margin:0 0 6px;font:600 1.5rem var(--pix);color:#fff}.duo p{margin:0 0 16px;color:#d3b6ee}
 .duo>div:nth-child(2){border-color:var(--amy)}
 /* Fragen */
-.world details{border-radius:6px;border:0;border-top:2px dotted rgba(120,170,255,.28);background:none;box-shadow:none;padding:16px 4px;margin:0}
-.world details:last-child{border-bottom:2px dotted rgba(120,170,255,.28)}
+.world details{border-radius:6px;border:0;border-top:2px dotted rgba(186,120,255,.28);background:none;box-shadow:none;padding:16px 4px;margin:0}
+.world details:last-child{border-bottom:2px dotted rgba(186,120,255,.28)}
 .world summary{font:600 1.2rem var(--pix);color:#fff}
 .world details[open] summary{color:var(--ice)}
 .world details p{max-width:60ch}
 /* Grundgestein */
-.world footer{max-width:none;margin:0;padding:48px 24px 70px;background:#02040f;color:#6f84b8;text-align:center;position:relative}
-.world footer:before{content:"Y -64 · Grundgestein, tiefer geht es nicht";display:block;margin-bottom:10px;font:600 1rem var(--pix);color:#3f4b78}
+.world footer{max-width:none;margin:0;padding:48px 24px 70px;background:#09020f;color:#956fb8;text-align:center;position:relative}
+.world footer:before{content:"Y -64 · Grundgestein, tiefer geht es nicht";display:block;margin-bottom:10px;font:600 1rem var(--pix);color:#5e3f78}
 /* Tiefenanzeige */
-#gauge{position:fixed;left:18px;top:96px;bottom:34px;width:62px;z-index:8;pointer-events:none;font:600 .78rem var(--pix);color:#8fa6dc}
-#gauge .rail{position:absolute;left:30px;top:0;bottom:0;width:4px;background:repeating-linear-gradient(180deg,#2c4fb0 0 10px,transparent 10px 16px);opacity:.7}
-#gauge a{pointer-events:auto;position:absolute;left:0;transform:translateY(-50%);display:flex;align-items:center;gap:8px;color:#8fa6dc;text-decoration:none;white-space:nowrap}
-#gauge a:before{content:"";width:14px;height:4px;background:#5b86f0;margin-left:23px}
-#gauge a span{position:absolute;left:48px;opacity:0;transition:opacity .15s;background:#050a20;padding:3px 8px;border:2px solid #2c4fb0;border-radius:3px;color:#fff}
+#gauge{position:fixed;left:18px;top:96px;bottom:34px;width:62px;z-index:8;pointer-events:none;font:600 .78rem var(--pix);color:#b78fdc}
+#gauge .rail{position:absolute;left:30px;top:0;bottom:0;width:4px;background:repeating-linear-gradient(180deg,#722cb0 0 10px,transparent 10px 16px);opacity:.7}
+#gauge a{pointer-events:auto;position:absolute;left:0;transform:translateY(-50%);display:flex;align-items:center;gap:8px;color:#b78fdc;text-decoration:none;white-space:nowrap}
+#gauge a:before{content:"";width:14px;height:4px;background:#a85bf0;margin-left:23px}
+#gauge a span{position:absolute;left:48px;opacity:0;transition:opacity .15s;background:#140520;padding:3px 8px;border:2px solid #722cb0;border-radius:3px;color:#fff}
 #gauge a:hover span,#gauge a:focus-visible span{opacity:1}
 #gauge a.on:before{background:var(--ice);width:22px;margin-left:15px;box-shadow:0 0 10px var(--ice)}
-#gauge .y{position:absolute;left:0;width:60px;transform:translateY(-50%);text-align:center;background:#050a20;border:2px solid var(--cobalt);border-radius:4px;padding:3px 0;color:#fff;font-size:.85rem;transition:top .12s linear}
+#gauge .y{position:absolute;left:0;width:60px;transform:translateY(-50%);text-align:center;background:#140520;border:2px solid var(--cobalt);border-radius:4px;padding:3px 0;color:#fff;font-size:.85rem;transition:top .12s linear}
 @media(max-width:1280px){#gauge a span{display:none}}
 @media(max-width:1180px){#gauge{display:none}}
 @media(max-width:900px){.hero-grid,.split2{grid-template-columns:1fr}.world .idx{grid-template-columns:1fr}.dive{grid-template-columns:1fr;gap:30px}.duo{grid-template-columns:1fr}.geode{height:300px;order:-1}.world .lead{margin-top:44px}}
