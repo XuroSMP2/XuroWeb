@@ -5,22 +5,24 @@
 <meta name="theme-color" content="#040919">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,600;0,800;1,700;1,800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-<meta property="og:site_name" content="XuroSMP"><meta property="og:type" content="website"><meta property="og:locale" content="de_DE"><meta property="og:title" content="XuroSMP · Minecraft Survival Server"><meta property="og:description" content="XuroSMP: Survival-Server mit Economy, Shop, Crates, Clans, Battle Pass und regelmäßigen Events. Java & Bedrock."><meta property="og:image" content="__SITE__/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><link rel="canonical" href="__SITE__/"><link rel="stylesheet" href="style.css"></head>
-<body data-page="home">
-<main id="inhalt"><section class="hero"><h1>Xuro<em>SMP</em><span class="splash" id="splash">Java und Bedrock!</span></h1>
-<p class="lead">Survival-Server für Java und Bedrock. Mit eigener Wirtschaft, Clans, Battle Pass und wöchentlichen Events.</p>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,600;0,800;1,700;1,800&family=Inter:wght@400;600;700&family=Pixelify+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+<meta property="og:site_name" content="XuroSMP"><meta property="og:type" content="website"><meta property="og:locale" content="de_DE"><meta property="og:title" content="XuroSMP · Minecraft Survival Server"><meta property="og:description" content="XuroSMP: Survival-Server mit Economy, Shop, Crates, Clans, Battle Pass und regelmäßigen Events. Java & Bedrock."><meta property="og:image" content="__SITE__/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><link rel="canonical" href="__SITE__/"><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="world.css"></head>
+<body data-page="home" class="world">
+<main id="inhalt">
+<section class="layer" id="oberflaeche" data-label="Oberfläche" data-y="64"><div class="in hero-grid"><div>
+<h1 class="mark">Xuro<em>SMP</em><span class="splash" id="splash">Java und Bedrock!</span></h1>
+<p class="lead">Survival-Server für Java und Bedrock mit eigener Wirtschaft, Clans, Battle Pass und wöchentlichen Events.</p>
 <div class="slist">
 <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><rect width="16" height="16" fill="#1b1325"/><path fill="#6a3fb5" d="M7 1h2v1h1v1h1v2h1v3h1v3h-1v2h-1v1H5v-1H4v-2H3V8h1V5h1V3h1V2h1z"/><path fill="#a47be8" d="M7 2h2v1h1v2h1v3h1v3h-1v2H6V3h1z"/><path fill="#d6bfff" d="M7 3h1v2H7zm-1 3h1v3H6z"/><path fill="#e3a72f" d="M5 13h6v1H5z"/></svg>
 <div><div class="r1"><b>XuroSMP</b><span class="cnt"><span data-players>–</span> Spieler online</span></div>
 <div class="r2">Survival mit Economy, Clans und Battle Pass</div>
 <div class="r3"><b data-status class="pill">…</b><span>Version <span data-version>–</span></span></div></div>
 <div class="addr"><code data-ip style="cursor:copy">xurosmp.daronlo.com</code></div></div>
-<div class="row"><button data-ip>IP kopieren</button><a href="#" data-discord><button class="btn2">Discord beitreten</button></a><a href="/wiki"><button class="btn2">Wiki lesen</button></a></div></section>
-<div class="page">
-<h2>Nächste Events</h2><div id="ev" class="grid"><p class="mu">Lade …</p></div><p style="margin-top:12px"><a href="/events" >Alle Events ansehen</a></p>
-<h2>Was es gibt</h2>
-<div class="sec"><ul class="idx">
+<div class="row"><button data-ip>IP kopieren</button><a href="#" data-discord><button class="btn2">Discord beitreten</button></a><a href="/wiki"><button class="btn2">Wiki lesen</button></a></div>
+</div><div class="geode" aria-hidden="true"><i class="rock"></i><i class="s2"></i><i class="s3"></i><i class="s4"></i><i class="s5"></i><i class="s1"></i></div></div></section>
+<section class="layer" id="events" data-label="Events" data-y="48"><div class="in"><h2>Nächste Events</h2><p class="sub">Was als Nächstes auf dem Server passiert.</p><div id="ev" class="grid"><p class="mu">Lade …</p></div><p style="margin-top:16px"><a href="/events">Alle Events ansehen</a></p></div></section>
+<section class="layer" id="features" data-label="Features" data-y="16"><div class="in"><h2>Was es gibt</h2><p class="sub">Alles, was du auf XuroSMP findest. Ein Klick führt ins Wiki.</p>
+<ul class="idx">
 <li><a href="/wiki#waehrung"><b>Economy</b><span>Geld, Stars und Gems. Verdienen durch Spielen, in der AFK-Zone und im Farm-Modus.</span></a></li>
 <li><a href="/wiki#shop"><b>Shop und Verkauf</b><span>Kaufen im Shop, fast jedes Item verkaufen, Handel im Auktionshaus.</span></a></li>
 <li><a href="/wiki#crates"><b>Crates und Keys</b><span>Stündlicher Keyall und sieben Crates.</span></a></li>
@@ -33,28 +35,23 @@
 <li><a href="/wiki#crystal"><b>Crystal-Ausrüstung</b><span>Rüstung, Holzfäller-Axt und unendliche Eimer.</span></a></li>
 <li><a href="/wiki#manhunt"><b>Manhunt</b><span>Kopfgeld auf Spieler mit Schadens-Rangliste.</span></a></li>
 <li><a href="/wiki#settings"><b>Einstellungen</b><span>Monster-Spawns, Nachrichten, TPA und mehr mit <code>/settings</code>.</span></a></li>
-</ul></div>
-<h2>XuroClient</h2>
-<div class="sec"><figure class="shot"><img loading="lazy" src="/img/launcher-start.webp" width="1100" height="653" alt="Der XuroClient Launcher"></figure><p>Der eigene Launcher für XuroSMP installiert Minecraft mit Fabric, das passende Modpack mit Performance-Mods und Sprachchat und verbindet dich direkt mit dem Server. Eigene Modpacks sind möglich.</p><div class="row" style="margin-top:12px"><a href="/client"><button>Zum Download</button></a></div></div>
-<h2>Beitreten</h2>
-<div class="sec"><ol class="join"><li>Minecraft starten (Java oder Bedrock, Bedrock-Namen beginnen mit einem Punkt).</li>
+</ul></div></section>
+<section class="layer" id="client" data-label="Client" data-y="-12"><div class="in split2"><div><h2>XuroClient</h2><p>Der eigene Launcher für XuroSMP installiert Minecraft mit Fabric, das passende Modpack mit Performance-Mods und Sprachchat und verbindet dich direkt mit dem Server. Eigene Modpacks baust du selbst.</p><div class="row"><a href="/client"><button>Zum Download</button></a></div></div>
+<figure class="shot"><img loading="lazy" src="/img/launcher-start.webp" width="1100" height="653" alt="Der XuroClient Launcher"></figure></div></section>
+<section class="layer" id="beitreten" data-label="Beitreten" data-y="-30"><div class="in"><h2>Beitreten</h2><p class="sub">In drei Schritten auf dem Server.</p>
+<ol class="dive"><li>Minecraft starten, Java oder Bedrock. Bedrock-Namen beginnen mit einem Punkt.</li>
 <li>Server mit der Adresse <code data-ip style="cursor:copy">xurosmp.daronlo.com</code> hinzufügen und verbinden.</li>
-<li>Mit <code>/kit</code> das Starter-Kit holen und die <a href="/wiki#regeln">Regeln</a> lesen.</li></ol></div>
-<h2>Resource-Pack</h2>
-<div class="sec"><p>Eigene Texturen für die Crystal-Items und die Rüstung. Der Server bietet das Pack beim Beitritt an. Du kannst es auch von Hand laden.</p>
-<p><a href="/pack/XuroSMP-Pack.zip" download><button>XuroSMP-Pack.zip laden</button></a></p></div>
-<h2>Discord</h2>
-<div class="sec"><p><span data-dc>–</span> Mitglieder online. Hier gibt es Event-Ankündigungen und den Kontakt zum Team.</p>
-<p><a href="#" data-discord><button>Zum Discord</button></a></p></div>
-<h2>Häufige Fragen</h2>
+<li>Mit <code>/kit</code> das Starter-Kit holen und die <a href="/wiki#regeln">Regeln</a> lesen.</li></ol>
+<div class="duo"><div><h3>Resource-Pack</h3><p>Eigene Texturen für die Crystal-Items und die Rüstung. Der Server bietet das Pack beim Beitritt an. Du kannst es auch von Hand laden.</p><a href="/pack/XuroSMP-Pack.zip" download><button>XuroSMP-Pack.zip laden</button></a></div>
+<div><h3>Discord</h3><p><span data-dc>–</span> Mitglieder online. Hier gibt es Event-Ankündigungen und den Kontakt zum Team.</p><a href="#" data-discord><button>Zum Discord</button></a></div></div></div></section>
+<section class="layer" id="fragen" data-label="Fragen" data-y="-48"><div class="in"><h2>Häufige Fragen</h2><p class="sub">Kurze Antworten auf das, was neue Spieler am häufigsten wissen wollen.</p>
 <div><details><summary>Kann ich mit Bedrock spielen?</summary><p>Ja, mit derselben Adresse. Dein Name bekommt einen Punkt davor.</p></details>
 <details><summary>Wie verdiene ich Stars?</summary><p>In der AFK-Zone (<code>/afk</code>), durch Kills und beim Erzabbau im Farm-Modus (<code>/farmmode</code>).</p></details>
 <details><summary>Wie bekomme ich einen Rang?</summary><p>Die Ränge PREMIUM bis VIP gibt es im Gem-Shop. Alle Vorteile stehen im <a href="/wiki#raenge">Wiki</a>.</p></details>
 <details><summary>Wann gibt es Keys für alle?</summary><p>Jede Stunde bekommt jeder Online-Spieler einen Key.</p></details>
-<details><summary>Ich habe einen Bug gefunden</summary><p>Melde ihn im Discord dem Team. Bugs auszunutzen ist verboten.</p></details></div>
-</div>
+<details><summary>Ich habe einen Bug gefunden</summary><p>Melde ihn im Discord dem Team. Bugs auszunutzen ist verboten.</p></details></div></div></section>
 </main>
 <script>(function(){var s=['Java und Bedrock!','Kein Dupe erlaubt!','Schon /daily geholt?','Jetzt mit Crystals!','Bank mit Freunden teilen!','Vorsicht vor Manhunt!'];var e=document.getElementById('splash');if(e)e.textContent=s[Math.floor(Math.random()*s.length)]})()</script>
-<script src="config.js"></script><script src="common.js"></script>
+<script src="world.js" defer></script><script src="config.js"></script><script src="common.js"></script>
 <script>XS.load().then(a=>{const u=a.filter(e=>+XS.end(e)>Date.now()).sort((x,y)=>!!y.pinned-!!x.pinned||new Date(x.start)-new Date(y.start)).slice(0,3),b=$('#ev');b.replaceChildren(...(u.length?u.map(XS.card):[h('p',{class:'mu'},'Aktuell sind keine Events geplant. Schau im Discord vorbei!')]))});</script>
 </body></html>
