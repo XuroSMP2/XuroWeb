@@ -54,6 +54,6 @@ document.querySelectorAll('#dl a').forEach(function(a){var f=a.dataset.file;if(!
 if(rel.tag_name)document.getElementById('os-note').textContent='Aktuelle Version: '+rel.tag_name}).catch(function(){});
 if(!os)document.getElementById('os-note').textContent='Der Launcher gibt es für Windows, macOS und Linux. Auf dem Handy brauchst du ihn nicht.';
 fetch('/client/config.json').then(function(r){return r.json()}).then(function(c){var u=document.getElementById('mods');u.replaceChildren();
-((c.packs&&c.packs[0]&&c.packs[0].entries)||c.mods||[]).forEach(function(m){var li=document.createElement('li'),b=document.createElement('b'),s=document.createElement('span');b.textContent=m.name;s.textContent=m.desc||'';li.append(b,s);u.append(li)})}).catch(function(){document.getElementById('mods').innerHTML='<li><span>Die Liste lässt sich gerade nicht laden. Im Launcher siehst du alle Mods unter „Module“.</span></li>'});
+((c.packs&&c.packs[0]&&c.packs[0].entries)||c.mods||[]).forEach(function(m){var li=document.createElement('li'),b=document.createElement('b'),s=document.createElement('span');b.textContent=m.name;s.textContent=m.desc||'';li.append(b,s);u.append(li)})}).catch(function(){document.getElementById('mods').innerHTML='<li><span>Die Liste lässt sich gerade nicht laden. Im Launcher siehst du alle Mods unter „Mods“.</span></li>'});
 })();
 </script></body></html>
