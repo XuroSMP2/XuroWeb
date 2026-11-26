@@ -131,3 +131,10 @@ main:focus{outline:none}
 @media(max-width:420px){.row{flex-direction:column;align-items:stretch}.row button{width:100%}.splash{right:0;bottom:-1.5em}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation-duration:.01s!important;transition:none!important}}
 @media print{header,nav,#top,#toasts,footer{display:none}body{background:#fff;color:#000}.sec{border-color:#999;break-inside:avoid;box-shadow:none;background:#fff}}
+
+.shot{margin:0 0 18px}.shot img{display:block;width:100%;height:auto;border-radius:18px;border:1px solid rgba(var(--glow),.55);box-shadow:0 0 40px rgba(var(--glow),.28),0 24px 60px rgba(0,0,0,.5)}
+.shot figcaption{margin-top:8px;color:#9fb6e8;font-size:.9rem;text-align:center}
+.shots{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:18px}.shots .shot{margin:0}
+.hero.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:36px;align-items:center;max-width:1240px}
+.hero.split .shot{margin:0}.hero.split .lead{margin-top:22px}
+@media(max-width:900px){.hero.split{grid-template-columns:1fr}.shots{grid-template-columns:1fr}}
