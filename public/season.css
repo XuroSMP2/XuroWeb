@@ -1,0 +1,50 @@
+/* Weihnachtsdesign. Alles hängt an html.xmas, ohne die Klasse ändert sich nichts. */
+.xmas{--xred:#e63946;--xgrn:#2fbf71;--xgold:#ffd24a}
+.xmas body{background:#080313!important}
+#xs-sky,#xs-trees{position:fixed;left:0;right:0;pointer-events:none}
+#xs-sky{inset:0;z-index:-3;background:linear-gradient(180deg,#2a0f5c 0,#1a0a3d 38%,#0e0526 70%,#080313 100%);overflow:hidden}
+#xs-trees{bottom:0;z-index:-2;line-height:0}
+#xs-snow{position:fixed;inset:0;z-index:30;pointer-events:none}
+.xs-aur{position:absolute;left:-10%;right:-10%;height:46vh;top:4vh;filter:blur(46px);mix-blend-mode:screen;opacity:.42;border-radius:50%}
+.xs-aur.a1{background:linear-gradient(100deg,transparent 5%,#2fe6a8 30%,#6a5cff 60%,transparent 90%)}
+.xs-aur.a2{top:14vh;opacity:.4;background:linear-gradient(80deg,transparent 10%,#ff6ad5 40%,#8a4dff 70%,transparent 95%)}
+.xs-moon{position:absolute;right:9vw;top:9vh;width:84px;height:84px;border-radius:50%;background:radial-gradient(circle at 36% 34%,#fffdf3,#efe4ff 60%,#cdb9f5);box-shadow:0 0 60px 18px rgba(220,200,255,.35),0 0 160px 60px rgba(160,110,255,.2)}
+.xs-moon:after{content:"";position:absolute;left:44px;top:20px;width:14px;height:14px;border-radius:50%;background:rgba(170,150,210,.35);box-shadow:-24px 30px 0 -3px rgba(170,150,210,.3),8px 38px 0 -5px rgba(170,150,210,.25)}
+.xs-stars{position:absolute;left:0;top:0;width:2px;height:2px;border-radius:50%;background:#fff;
+ box-shadow:6vw 8vh #fff,14vw 22vh #e8dcff,22vw 6vh #fff,31vw 15vh #e8dcff,38vw 30vh #fff,46vw 9vh #fff,53vw 24vh #e8dcff,61vw 5vh #fff,69vw 19vh #fff,77vw 33vh #e8dcff,84vw 12vh #fff,92vw 27vh #fff,3vw 38vh #e8dcff,18vw 44vh #fff,27vw 52vh #e8dcff,43vw 47vh #fff,57vw 41vh #fff,73vw 49vh #e8dcff,88vw 45vh #fff,96vw 8vh #fff,11vw 31vh #fff,66vw 37vh #fff,35vw 3vh #fff,81vw 3vh #e8dcff}
+.xs-stars.s2{opacity:.7;transform:translate(3vw,5vh) scale(1.4)}
+.xmas p.xs-count{display:inline-block;margin:64px 0 0;padding:8px 18px;border-radius:6px;background:var(--xred);color:#fff;font:600 1.1rem 'Pixelify Sans','Exo 2',sans-serif;border:2px solid #ffb3ba;box-shadow:0 5px 0 #8f1626}
+.xmas .world .lead{margin-top:26px}
+/* Zuckerstangen-Streifen */
+.xmas header{border-bottom:0!important}
+.xmas header:before{content:"";position:absolute;left:0;right:0;bottom:0;height:5px;background:repeating-linear-gradient(135deg,var(--xred) 0 10px,#fff 10px 20px)}
+.xmas .layer{background:linear-gradient(180deg,rgba(26,9,58,.42),rgba(10,3,26,.62))!important;border-top:0!important;backdrop-filter:blur(2px)}
+.xmas .layer:before{background-image:none!important}
+.xmas .layer:after{content:"";top:0!important;height:5px!important;opacity:1!important;background:repeating-linear-gradient(135deg,var(--xred) 0 10px,#fff 10px 20px)!important;z-index:1}
+.xmas #oberflaeche:after{display:none}
+.xmas .layer h2{text-shadow:0 0 24px rgba(255,210,74,.25)}
+.xmas body.world footer{background:linear-gradient(180deg,rgba(8,3,19,.2),#080313 70%)!important}
+.xmas #app{background:rgba(10,3,26,.72);max-width:1240px;margin:0 auto;padding:18px 20px;min-height:60vh}
+.xmas .bn,.xmas .warn{padding-top:30px}
+.xmas body.world footer:before{content:"Frohe Weihnachten vom XuroSMP-Team"!important;color:#ffd24a!important}
+/* Weihnachtsmütze am Logo */
+.xmas .logo{position:relative}
+.xmas .logo:after,.xmas h1.mark:after{content:"";position:absolute;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 54'%3E%3Cpath d='M7 40C8 22 20 8 36 8c9 0 17 5 21 15 2 6 2 12 1 17z' fill='%23e63946'/%3E%3Cpath d='M36 8c10 0 18 7 22 32H42C44 27 42 16 36 8z' fill='%23a3122a' opacity='.55'/%3E%3Cpath d='M12 24c4-9 11-13 19-14' stroke='%23ff8a97' stroke-width='3' fill='none' stroke-linecap='round' opacity='.7'/%3E%3Crect x='2' y='35' width='60' height='13' rx='6.5' fill='%23fff'/%3E%3Crect x='2' y='42' width='60' height='6' rx='3' fill='%23ddd0f2'/%3E%3Ccircle cx='55' cy='11' r='7.5' fill='%23fff'/%3E%3Ccircle cx='57' cy='13' r='4.5' fill='%23ddd0f2'/%3E%3C/svg%3E") no-repeat center/contain;filter:drop-shadow(0 2px 3px rgba(0,0,0,.45))}
+.xmas .logo:after{left:-9px;top:-14px;width:34px;height:29px;transform:rotate(-16deg)}
+.xmas h1.mark:after{left:-.1em;top:-.27em;width:.62em;height:.53em;transform:rotate(-14deg)}
+/* Schneehauben auf den Kristallen */
+.xmas .geode i.s1:before,.xmas .geode i.s3:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#fff 0,#f3ecff 15%,transparent 15.5%);z-index:2}
+.xmas .geode i.s2:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#fff 0,#f3ecff 20%,transparent 20.5%);z-index:2}
+/* Lichterkette */
+#xs-lights{position:absolute;left:0;right:0;top:100%;height:50px;pointer-events:none;z-index:2;margin-top:4px}
+#xs-lights svg{display:block}
+.xs-b{animation:xsb 2.4s ease-in-out infinite alternate}
+@keyframes xsb{from{opacity:.45}to{opacity:1}}
+@media(prefers-reduced-motion:no-preference){
+ .xs-aur.a1{animation:aur1 38s ease-in-out infinite alternate}.xs-aur.a2{animation:aur2 52s ease-in-out infinite alternate}
+ .xs-stars{animation:tw 4s ease-in-out infinite alternate}.xs-stars.s2{animation-duration:6s;animation-delay:-2s}
+ @keyframes aur1{from{transform:translateX(-6%) skewX(-8deg)}to{transform:translateX(8%) skewX(10deg)}}
+ @keyframes aur2{from{transform:translateX(7%) skewX(8deg)}to{transform:translateX(-7%) skewX(-9deg)}}
+ @keyframes tw{from{opacity:.35}to{opacity:1}}}
+@media(prefers-reduced-motion:reduce){.xs-b{animation:none}}
+@media(max-width:900px){.xs-moon{width:56px;height:56px;right:6vw}.xmas .logo:after{left:-7px;top:-12px;width:28px;height:24px}#xs-lights{display:none}}
