@@ -98,6 +98,6 @@
 
 .geode{display:grid;place-items:center;position:relative}
 .geode:before{content:"";position:absolute;left:8%;right:8%;bottom:4%;height:34%;background:radial-gradient(closest-side,rgba(170,110,255,.55),rgba(170,110,255,0));filter:blur(14px);pointer-events:none}
-.geode canvas{position:relative;height:100%;width:auto;max-width:100%;aspect-ratio:80/70;image-rendering:pixelated;filter:drop-shadow(0 0 26px rgba(150,95,255,.5)) drop-shadow(0 14px 18px rgba(0,0,0,.45))}
+.geode canvas{position:relative;height:100%;width:auto;max-width:100%;aspect-ratio:560/490;filter:drop-shadow(0 0 26px rgba(150,95,255,.5)) drop-shadow(0 14px 18px rgba(0,0,0,.45))}
 .xmas .geode:before{background:radial-gradient(closest-side,rgba(190,150,255,.5),rgba(190,150,255,0))}
 @media(max-width:900px){.geode canvas{height:auto;width:min(100%,360px)}}
