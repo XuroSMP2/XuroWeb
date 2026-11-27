@@ -1,6 +1,6 @@
-/* Saisonales Design: vom 29.11. bis 6.1. automatisch Weihnachten. Test: ?xmas=1 oder ?xmas=0 an die Adresse hängen. */
+/* Saisonales Design: ab 27.11. bis 6.1. automatisch Weihnachten. Test: ?xmas=1 oder ?xmas=0 an die Adresse hängen. */
 (function(){
- var d=new Date(),m=d.getMonth()+1,t=d.getDate(),on=(m===11&&t>=29)||m===12||(m===1&&t<=6);
+ var d=new Date(),m=d.getMonth()+1,t=d.getDate(),on=(m===11&&t>=27)||m===12||(m===1&&t<=6);
  try{var q=location.search.match(/[?&]xmas=([01])/);if(q)sessionStorage.setItem('xmas',q[1]);var s=sessionStorage.getItem('xmas');if(s!==null)on=s==='1'}catch(e){}
  if(!on)return;
  var root=document.documentElement;root.classList.add('xmas');
