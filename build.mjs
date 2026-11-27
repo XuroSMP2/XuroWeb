@@ -8,7 +8,7 @@ for (const f of readdirSync(dir).filter((x) => x.endsWith(".html"))) {
   if (s.includes("__SITE__")) writeFileSync(dir + f, s.replaceAll("__SITE__", site));
 }
 if (site) {
-  const pages = ["", "wiki", "events", "stats", "client"];
+  const pages = ["", "wiki", "events", "stats", "client", "advent"];
   const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
     pages.map((p) => `  <url><loc>${site}/${p}</loc></url>`).join("\n") + `\n</urlset>\n`;
   writeFileSync(dir + "sitemap.xml", xml);

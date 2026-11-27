@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Adventskalender · XuroSMP</title><meta name="description" content="Der XuroSMP-Adventskalender: jeden Tag vom 1. bis 24. Dezember ein Türchen mit Belohnung. Nur am jeweiligen Tag abholbar.">
+<meta name="theme-color" content="#0f0419">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,600;0,800;1,700;1,800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<meta property="og:site_name" content="XuroSMP"><meta property="og:type" content="website"><meta property="og:locale" content="de_DE"><meta property="og:title" content="Adventskalender · XuroSMP"><meta property="og:description" content="Jeden Tag ein Türchen vom 1. bis 24. Dezember. Nur am jeweiligen Tag abholbar."><meta property="og:image" content="__SITE__/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><link rel="canonical" href="__SITE__/advent"><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="season.css"><script src="season.js"></script></head>
+<body data-page="advent"><main class="page" id="inhalt">
+<h1 class="t">Adventskalender</h1>
+<p id="state" class="adv-state"></p>
+<div class="adv-grid" id="doors" role="list"></div>
+<section class="adv-box" id="detail" aria-live="polite"></section>
+<div class="adv-two">
+<section class="adv-box"><h2>So funktioniert's</h2><ul class="adv-ul">
+<li>Der Kalender startet <b>automatisch am 1. Dezember</b> und hat 24 Türchen.</li>
+<li>Öffnen geht im Spiel mit <code>/advent</code>. Türchen N lässt sich <b>nur am N. Dezember</b> öffnen.</li>
+<li>Verpasste Türchen können <b>nicht nachgeholt</b> werden. Komm jeden Tag online!</li>
+<li>Der Tag wechselt um Mitternacht (deutsche Zeit).</li>
+<li>Bedrock und Java spielen mit, alles läuft über ein Menü.</li></ul></section>
+<section class="adv-box"><h2>Treue-Bonus</h2><p>Öffne <b>alle 24 Türchen</b>, jedes an seinem Tag, und du bekommst am 24. Dezember zusätzlich:</p><ul class="adv-ul" id="perfect"></ul></section>
+<section class="adv-box"><h2>Bescherung an Heiligabend</h2><p>Am <b>24.12. um 18 Uhr</b> bekommen alle Spieler, die gerade online sind, 3 Weihnachts-Keys und 25 Gems. Dazu gibt es Schnee um dich herum (<code>/xmas snow</code>) und mit <code>/gift &lt;Spieler&gt;</code> kannst du Items verschenken.</p></section>
+<section class="adv-box"><h2>Weihnachts-Pack</h2><p>Das Weihnachts-Resource-Pack bringt rote Geschenk-Truhen, Zuckerstangen, Plätzchen und einen Weihnachtsstern. Es wird in der Weihnachtszeit automatisch beim Join geladen.</p></section>
+</div></main>
+<style>
+.adv-state{font-size:1.1rem;padding:14px 18px;border:1px solid var(--bd);border-radius:12px;background:rgba(var(--glow),.08)}
+.adv-state b{color:#fff}
+.adv-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:22px 0}
+.dr{position:relative;aspect-ratio:1;border-radius:14px;border:1px solid var(--bd);background:var(--pn);color:var(--tx);font:800 1.7rem/1 'Exo 2',Inter,sans-serif;font-style:italic;display:grid;place-items:center;cursor:pointer;transition:transform .15s,border-color .15s,box-shadow .15s}
+.dr small{position:absolute;bottom:8px;left:0;right:0;text-align:center;font:600 .66rem/1 Inter,sans-serif;font-style:normal;color:var(--mu)}
+.dr:hover{transform:translateY(-2px);border-color:#ae6cff}
+.dr.fut{opacity:.55;background:repeating-linear-gradient(135deg,var(--pn) 0 8px,#190a29 8px 16px)}
+.dr.pas{background:#1a0d28;color:#8c7aa3}
+.dr.now{border-color:#ff5c6c;background:linear-gradient(160deg,#5a1230,#2a0a3a);box-shadow:0 0 0 2px rgba(255,92,108,.4),0 0 30px rgba(255,92,108,.35)}
+.dr.now small{color:#ffd0d6}
+.dr.sel{outline:2px solid #ae6cff;outline-offset:2px}
+.adv-box{border:1px solid var(--bd);border-radius:14px;background:var(--pn);padding:6px 20px 16px}
+.adv-box h2{margin-top:.8em;font-size:1.25rem}
+.adv-box h3{margin:.8em 0 .4em}
+.adv-ul{margin:.3em 0;padding-left:1.2em;color:var(--mu)}.adv-ul li{margin:.35em 0}
+.adv-two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+#detail{min-height:76px}
+.rw{display:flex;flex-wrap:wrap;gap:8px;margin:.6em 0}.rw span{padding:6px 12px;border-radius:999px;border:1px solid var(--bd);background:rgba(var(--glow),.12);font-weight:600}
+@media(max-width:700px){.adv-grid{grid-template-columns:repeat(4,1fr);gap:8px}.dr{font-size:1.25rem}.adv-two{grid-template-columns:1fr}}
+@media(max-width:420px){.adv-grid{grid-template-columns:repeat(3,1fr)}}
+@media(prefers-reduced-motion:reduce){.dr{transition:none}}
+</style>
+<script src="config.js"></script><script src="common.js"></script>
+<script>
+const AD={"d": {"1": ["$2.500", "8× Weihnachtsplätzchen"], "2": ["2 Stars", "16× Steak"], "3": ["$5.000", "1× Weihnachts-Key"], "4": ["5 Gems", "16× Brot"], "5": ["$7.500", "3× Zuckerstange"], "6": ["4 Stars", "16× Eisenbarren"], "7": ["1× Weihnachts-Key", "16× Weihnachtsplätzchen"], "8": ["$10.000", "5 Gems"], "9": ["5 Stars", "12× Goldbarren"], "10": ["2× Weihnachts-Key", "24× Schweinekotelett"], "11": ["$12.500", "2× Diamanten"], "12": ["10 Gems", "16× Erfahrungsflaschen"], "13": ["6 Stars", "1× Geschenk"], "14": ["2× Weihnachts-Key", "$10.000"], "15": ["$15.000", "16× Smaragde"], "16": ["10 Gems", "16× Goldene Karotten"], "17": ["8 Stars", "2× Common Key"], "18": ["3× Weihnachts-Key", "4× Diamanten"], "19": ["$20.000", "1× Netherit-Schrott"], "20": ["15 Gems", "32× Weihnachtsplätzchen"], "21": ["10 Stars", "1× Rare Key"], "22": ["$25.000", "3× Weihnachts-Key"], "23": ["20 Gems", "4× Goldene Äpfel", "1× Weihnachtsstern"], "24": ["$50.000", "15 Stars", "25 Gems", "5× Weihnachts-Key", "1× Heiligabend-Geschenk"]}, "p": ["50 Gems", "1× Legendary Key", "5× Weihnachts-Key", "1× Totem der Unsterblichkeit"]};
+const $a=s=>document.querySelector(s);
+function berlin(){const q=new URLSearchParams(location.search).get('date');if(/^\d{4}-\d{2}-\d{2}$/.test(q||''))return q.split('-').map(Number);
+ const p=new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Berlin',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date()).split('-').map(Number);return p}
+const [Y,M,D]=berlin();
+const phase=M===12?(D<=24?'run':'end'):M===1?'end':'pre';
+const today=phase==='run'?D:0;
+let sel=today||0;
+function state(){const s=$a('#state');
+ if(phase==='run')s.innerHTML='Heute ist <b>Türchen '+D+'</b> dran. Im Spiel mit <code>/advent</code> öffnen – nur heute möglich.';
+ else if(phase==='pre'){const n=Math.round((Date.UTC(Y,11,1)-Date.UTC(Y,M-1,D))/864e5);s.innerHTML='Der Kalender startet in <b>'+n+(n===1?' Tag':' Tagen')+'</b>, am <b>1. Dezember</b>.'}
+ else s.innerHTML='Der Adventskalender ist für dieses Jahr vorbei. <b>Frohes Fest!</b> Im nächsten Dezember geht es wieder los.'}
+function detail(){const d=$a('#detail');
+ if(!sel){d.innerHTML='<h2>Türchen anschauen</h2><p class="mu">Tippe ein Türchen an. Der Inhalt ist ab dem jeweiligen Tag sichtbar.</p>';return}
+ const open=phase==='end'||sel<=today;
+ d.innerHTML='<h2>Türchen '+sel+'</h2>'+(open?'<div class="rw">'+AD.d[sel].map(x=>'<span>'+x+'</span>').join('')+'</div><p class="mu">'+(sel===today?'Heute abholbar: <code>/advent</code> im Spiel.':'Dieses Türchen war nur am '+sel+'. Dezember abholbar.')+'</p>':'<p class="mu">Öffnet sich am '+sel+'. Dezember. Was drin ist, bleibt bis dahin eine Überraschung.</p>')}
+function doors(){const g=$a('#doors');g.replaceChildren();
+ for(let i=1;i<=24;i++){const st=phase==='run'?(i===today?'now':i<today?'pas':'fut'):phase==='end'?'pas':'fut';
+  const b=document.createElement('button');b.type='button';b.className='dr '+st+(sel===i?' sel':'');b.setAttribute('role','listitem');b.setAttribute('aria-label','Türchen '+i);
+  b.innerHTML=i+'<small>'+(st==='now'?'HEUTE':st==='pas'?'vorbei':i+'. Dez.')+'</small>';
+  b.onclick=()=>{sel=i;doors();detail()};g.append(b)}}
+$a('#perfect').innerHTML=AD.p.map(x=>'<li>'+x+'</li>').join('');
+state();doors();detail();
+</script></body></html>

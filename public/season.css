@@ -48,3 +48,5 @@
  @keyframes tw{from{opacity:.35}to{opacity:1}}}
 @media(prefers-reduced-motion:reduce){.xs-b{animation:none}}
 @media(max-width:900px){.xs-moon{width:56px;height:56px;right:6vw}.xmas .logo:after{left:-7px;top:-12px;width:28px;height:24px}#xs-lights{display:none}}
+
+.xm-only{display:none}.xmas .xm-only,body[data-page=advent] .xm-only{display:revert}
