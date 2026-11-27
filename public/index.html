@@ -19,7 +19,7 @@
 <div class="r3"><b data-status class="pill">…</b><span>Version <span data-version>–</span></span></div></div>
 <div class="addr"><code data-ip style="cursor:copy">xurosmp.daronlo.com</code></div></div>
 <div class="row"><button data-ip>IP kopieren</button><a href="#" data-discord><button class="btn2">Discord beitreten</button></a><a href="/wiki"><button class="btn2">Wiki lesen</button></a></div>
-</div><div class="geode" aria-hidden="true"><i class="rock"></i><i class="s2"></i><i class="s3"></i><i class="s4"></i><i class="s5"></i><i class="s1"></i></div></div></section>
+</div><div class="geode"><canvas id="crystal" width="80" height="70" role="img" aria-label="Eine Gruppe Amethyst-Kristalle"></canvas></div></div></section>
 <section class="layer" id="events" data-label="Events" data-y="48"><div class="in"><h2>Nächste Events</h2><p class="sub">Was als Nächstes auf dem Server passiert.</p><div id="ev" class="grid"><p class="mu">Lade …</p></div><p style="margin-top:16px"><a href="/events">Alle Events ansehen</a></p></div></section>
 <section class="layer" id="features" data-label="Features" data-y="16"><div class="in"><h2>Was es gibt</h2><p class="sub">Alles, was du auf XuroSMP findest. Ein Klick führt ins Wiki.</p>
 <ul class="idx">
@@ -52,6 +52,6 @@
 <details><summary>Ich habe einen Bug gefunden</summary><p>Melde ihn im Discord dem Team. Bugs auszunutzen ist verboten.</p></details></div></div></section>
 </main>
 <script>(function(){var s=['Java und Bedrock!','Kein Dupe erlaubt!','Schon /daily geholt?','Jetzt mit Crystals!','Bank mit Freunden teilen!','Vorsicht vor Manhunt!'];var e=document.getElementById('splash');if(e)e.textContent=s[Math.floor(Math.random()*s.length)]})()</script>
-<script src="world.js" defer></script><script src="config.js"></script><script src="common.js"></script>
+<script src="world.js" defer></script><script src="crystal.js" defer></script><script src="config.js"></script><script src="common.js"></script>
 <script>XS.load().then(a=>{const u=a.filter(e=>+XS.end(e)>Date.now()).sort((x,y)=>!!y.pinned-!!x.pinned||new Date(x.start)-new Date(y.start)).slice(0,3),b=$('#ev');b.replaceChildren(...(u.length?u.map(XS.card):[h('p',{class:'mu'},'Aktuell sind keine Events geplant. Schau im Discord vorbei!')]))});</script>
 </body></html>
