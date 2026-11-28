@@ -26,3 +26,31 @@ Die Seite liest ihre Daten über `netlify/functions/stats.mjs`. Der API-Key blei
 **Alternative: Proxy** (nur wenn der Port 8085 erreichbar ist): zusätzlich `SMPCORE_API_URL` setzen, z. B. `http://xurosmp.daronlo.com:8085`. Wird nur genutzt, wenn keine frischen Push-Daten da sind.
 
 Öffentliche Routen: `/api/stats/status`, `/online`, `/top/{money|crystals|gems|kills|deaths|playtime}`, `/player/{name}`, `/clans`, `/clans/{name}`.
+
+## Changelog & Discord-Bot (alles über Netlify, kein eigener Bot-Server nötig)
+
+**Changelog:** `/changelog` (öffentlich) und Verwaltung unter `/admin`. Neue Einträge können direkt in Discord gepostet werden.
+**Events:** Events aus `/admin` landen automatisch im Discord-Event-Tab und als Nachricht im Event-Kanal (Änderungen/Löschen werden mitgezogen). 1 Stunde vorher und beim Start kommt eine Erinnerung.
+**Advent:** Vom 1.–24.12. gibt es um Mitternacht (Berlin) automatisch einen Post „Türchen N ist offen".
+**Slash-Befehle:** `/events /changelog /status /ip /advent /regeln /wiki /top /spieler`.
+
+### Einrichtung
+1. https://discord.com/developers/applications → *New Application*. Unter **Bot**: Token erzeugen (`DISCORD_BOT_TOKEN`). Unter **General Information**: *Application ID* (`DISCORD_APP_ID`) und *Public Key* (`DISCORD_PUBLIC_KEY`) kopieren.
+2. Bot einladen: **OAuth2 → URL Generator**, Scopes `bot` + `applications.commands`, Rechte *View Channels, Send Messages, Embed Links, Manage Events, Manage Messages*. Link öffnen, Server wählen.
+3. In Discord (Entwicklermodus an) Rechtsklick auf die Kanäle → *ID kopieren*.
+4. Netlify → Site configuration → Environment variables (danach neu deployen):
+
+| Variable | Pflicht | Inhalt |
+|---|---|---|
+| `DISCORD_BOT_TOKEN` | ja | Bot-Token |
+| `DISCORD_APP_ID` | ja | Application-ID |
+| `DISCORD_PUBLIC_KEY` | ja (Slash-Befehle) | Public Key |
+| `DISCORD_EVENTS_CHANNEL_ID` | ja | Kanal für Events und Erinnerungen |
+| `DISCORD_CHANGELOG_CHANNEL_ID` | optional | Kanal für Changelogs (sonst Event-Kanal) |
+| `DISCORD_NEWS_CHANNEL_ID` | optional | Kanal für den Advents-Post (sonst Event-Kanal) |
+| `DISCORD_PING_ROLE_ID` | optional | Rolle, die bei Events/Updates gepingt wird |
+| `DISCORD_GUILD_ID` | optional | Standard: dein Server |
+| `SERVER_IP` | optional | Standard: xurosmp.daronlo.com |
+
+5. Developer Portal → General Information → **Interactions Endpoint URL**: `https://DEINE-SEITE.netlify.app/api/discord` (Discord prüft sie sofort).
+6. `/admin` öffnen: im Bereich *Discord* erst **Testnachricht senden**, dann **Slash-Befehle registrieren**.

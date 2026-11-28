@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Changelog · XuroSMP</title><meta name="description" content="Alle Updates von XuroSMP: neue Features, Verbesserungen und Fehlerbehebungen.">
+<meta name="theme-color" content="#0f0419">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,600;0,800;1,700;1,800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<meta property="og:site_name" content="XuroSMP"><meta property="og:type" content="website"><meta property="og:locale" content="de_DE"><meta property="og:title" content="Changelog · XuroSMP"><meta property="og:description" content="Alle Updates von XuroSMP auf einen Blick."><meta property="og:image" content="__SITE__/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><link rel="canonical" href="__SITE__/changelog"><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="season.css"><script src="season.js"></script></head>
+<body data-page="changelog"><main class="page" id="inhalt" style="max-width:820px">
+<h1 class="t">Changelog</h1>
+<p class="mu">Alle Updates auf einen Blick. Neue Einträge landen automatisch auch im Discord.</p>
+<div id="log"><p class="mu">Lade …</p></div>
+</main>
+<style>
+.cl{border:1px solid var(--bd);border-radius:14px;background:var(--pn);padding:6px 20px 16px;margin:16px 0}
+.cl header{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;justify-content:space-between;margin:.8em 0 .2em}
+.cl h2{margin:0;font-size:1.3rem}.cl time{color:var(--mu);font-size:.9rem}
+.cl .v{display:inline-block;padding:2px 10px;border-radius:999px;background:rgba(var(--glow),.2);border:1px solid var(--bd);font-weight:700;font-size:.85rem;margin-right:8px;font-style:normal}
+.cl h3{font-size:1rem;margin:1em 0 .3em}.cl ul{margin:.2em 0;padding-left:1.2em}.cl li{margin:.3em 0}
+</style>
+<script src="config.js"></script><script src="common.js"></script>
+<script>
+const SEC=[['neu','Neu'],['verbessert','Verbessert'],['behoben','Behoben'],['sonstiges','Sonstiges']];
+(async()=>{const box=document.querySelector('#log');let a=[];
+ try{const r=await fetch('/api/changelog');if(!r.ok)throw 0;a=await r.json()}catch(e){box.innerHTML='<p class="mu">Der Changelog ist gerade nicht erreichbar.</p>';return}
+ if(!a.length){box.innerHTML='<p class="mu">Noch keine Einträge. Hier erscheinen alle kommenden Updates.</p>';return}
+ box.replaceChildren(...a.map(c=>{const s=h('section',{class:'cl'});
+  s.append(h('header',{},h('h2',{},c.version?h('span',{class:'v'},c.version):'',c.title),h('time',{datetime:c.date},new Date(c.date+'T12:00:00').toLocaleDateString('de-DE',{day:'numeric',month:'long',year:'numeric'}))));
+  if(c.intro)s.append(h('p',{},c.intro));
+  for(const [k,n] of SEC){const l=(c.sections||{})[k]||[];if(l.length)s.append(h('h3',{},n),h('ul',{},...l.map(x=>h('li',{},x))))}
+  return s}))})();
+</script></body></html>

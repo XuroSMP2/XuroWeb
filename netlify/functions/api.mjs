@@ -1,9 +1,10 @@
-// XuroSMP API: Events + Banner (Netlify Blobs) und Admin-Login.
+// XuroSMP API: Events + Changelog + Banner + Discord-Sync (Netlify Blobs) und Admin-Login.
 // Nötig in Netlify (Site configuration -> Environment variables): ADMIN_PASSWORD (und optional ADMIN_SECRET)
 import { getStore } from "@netlify/blobs";
+import * as D from "../lib/discord.mjs";
 import { createHmac, createHash, timingSafeEqual, randomUUID } from "node:crypto";
 
-export const config = { path: ["/api/login", "/api/banner", "/api/events", "/api/events/*"] };
+export const config = { path: ["/api/login", "/api/banner", "/api/events", "/api/events/*", "/api/changelog", "/api/changelog/*", "/api/discord-admin/*"] };
 
 const HDR = { "content-type": "application/json; charset=utf-8", "cache-control": "no-store" };
 const out = (d, s = 200) => new Response(JSON.stringify(d), { status: s, headers: HDR });
@@ -34,6 +35,15 @@ function clean(b) {
     description: str(b.description, 1500),
     pinned: !!b.pinned,
   };
+}
+
+const lines = (v) => (Array.isArray(v) ? v : String(v ?? "").split("\n")).map((x) => str(x, 200)).filter(Boolean).slice(0, 40);
+function cleanLog(b) {
+  const date = /^\d{4}-\d{2}-\d{2}$/.test(String(b.date)) ? b.date : new Date().toISOString().slice(0, 10);
+  if (!str(b.title, 100)) return null;
+  const sections = Object.fromEntries(D.SECTIONS.map(([k]) => [k, lines(b.sections?.[k])]));
+  if (!Object.values(sections).some((l) => l.length) && !str(b.intro, 800)) return null;
+  return { version: str(b.version, 30), title: str(b.title, 100), date, intro: str(b.intro, 800), sections };
 }
 
 export default async (req) => {
@@ -68,6 +78,51 @@ export default async (req) => {
     return out({ error: "Methode nicht erlaubt." }, 405);
   }
 
+  if (path.startsWith("/api/changelog")) {
+    const cid = path.slice(15).replace(/^\//, "");
+    const logs = (await store.get("changelog", { type: "json" })) ?? [];
+    if (req.method === "GET") return out(logs.sort((a, b) => b.date.localeCompare(a.date) || (b.created || 0) - (a.created || 0)).map(({ msg, ...c }) => c));
+    const d = needAuth(); if (d) return d;
+    const b = await body();
+    if (req.method === "POST" && !cid) {
+      const c = cleanLog(b); if (!c) return out({ error: "Titel und mindestens ein Punkt sind Pflicht." }, 400);
+      const e = { id: randomUUID(), created: Date.now(), ...c }; let warnings = [];
+      if (b.announce) { const r = await D.announceChangelog(e); e.msg = r.msg; warnings = r.warn; }
+      logs.push(e); await store.setJSON("changelog", logs); return out({ ...e, warnings }, 201);
+    }
+    const i = logs.findIndex((x) => x.id === cid);
+    if (i < 0) return out({ error: "Eintrag nicht gefunden." }, 404);
+    if (req.method === "PUT") {
+      const c = cleanLog(b); if (!c) return out({ error: "Titel und mindestens ein Punkt sind Pflicht." }, 400);
+      const e = { ...logs[i], ...c }; let warnings = [];
+      if (b.announce) { const r = await D.announceChangelog(e); e.msg = r.msg || e.msg; warnings = r.warn; }
+      logs[i] = e; await store.setJSON("changelog", logs); return out({ ...e, warnings });
+    }
+    if (req.method === "DELETE") { await D.removeChangelogMessage(logs[i]); logs.splice(i, 1); await store.setJSON("changelog", logs); return out({ ok: true }); }
+    return out({ error: "Methode nicht erlaubt." }, 405);
+  }
+
+  if (path.startsWith("/api/discord-admin/")) {
+    const d = needAuth(); if (d) return d;
+    const act = path.slice(19);
+    if (act === "status") return out({ token: D.configured(), app: !!D.env("DISCORD_APP_ID"), publicKey: !!D.env("DISCORD_PUBLIC_KEY"), events: !!D.env("DISCORD_EVENTS_CHANNEL_ID"), changelog: !!(D.env("DISCORD_CHANGELOG_CHANNEL_ID") || D.env("DISCORD_EVENTS_CHANNEL_ID")), news: !!(D.env("DISCORD_NEWS_CHANNEL_ID") || D.env("DISCORD_EVENTS_CHANNEL_ID")), role: !!D.env("DISCORD_PING_ROLE_ID") });
+    if (req.method !== "POST") return out({ error: "POST erwartet." }, 405);
+    try {
+      if (act === "register") return out({ ok: true, count: await D.registerCommands() });
+      if (act === "test") {
+        const c = D.channel("EVENTS"); if (!c) return out({ error: "DISCORD_EVENTS_CHANNEL_ID fehlt." }, 400);
+        await D.post(c, "", { title: "✅ Verbindung steht", description: "Der XuroSMP-Bot kann hier schreiben.", color: D.COLOR.ok });
+        return out({ ok: true });
+      }
+      if (act === "sync") {
+        const evs = (await store.get("events", { type: "json" })) ?? []; const warnings = []; let n = 0;
+        for (const e of evs) { if (+new Date(e.end || +new Date(e.start) + 2 * 3600e3) < Date.now()) continue; n++; warnings.push(...(await D.syncEvent(store, e, { announce: false }))); }
+        return out({ ok: true, count: n, warnings });
+      }
+    } catch (x) { return out({ error: x.message }, 502); }
+    return out({ error: "Unbekannte Aktion." }, 404);
+  }
+
   const id = path.startsWith("/api/events/") ? path.slice(12) : "";
   const list = (await store.get("events", { type: "json" })) ?? [];
   if (req.method === "GET" && !id) return out(list);
@@ -76,14 +131,16 @@ export default async (req) => {
   if (req.method === "POST" && !id) {
     const e = clean(await body()); if (!e) return out({ error: "Titel und gültiges Startdatum sind Pflicht." }, 400);
     const ev = { id: randomUUID(), ...e }; list.push(ev);
-    await store.setJSON("events", list); return out(ev, 201);
+    await store.setJSON("events", list);
+    return out({ ...ev, warnings: await D.syncEvent(store, ev).catch((x) => [x.message]) }, 201);
   }
   const i = list.findIndex((x) => x.id === id);
   if (i < 0) return out({ error: "Event nicht gefunden." }, 404);
   if (req.method === "PUT") {
     const e = clean(await body()); if (!e) return out({ error: "Titel und gültiges Startdatum sind Pflicht." }, 400);
-    list[i] = { id, ...e }; await store.setJSON("events", list); return out(list[i]);
+    list[i] = { id, ...e }; await store.setJSON("events", list);
+    return out({ ...list[i], warnings: await D.syncEvent(store, list[i], { announce: true }).catch((x) => [x.message]) });
   }
-  if (req.method === "DELETE") { list.splice(i, 1); await store.setJSON("events", list); return out({ ok: true }); }
+  if (req.method === "DELETE") { list.splice(i, 1); await store.setJSON("events", list); return out({ ok: true, warnings: await D.removeEvent(store, id).catch((x) => [x.message]) }); }
   return out({ error: "Methode nicht erlaubt." }, 405);
 };

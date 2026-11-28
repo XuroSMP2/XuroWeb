@@ -15,6 +15,21 @@
 <label><input type="checkbox" id="pin" style="width:auto"> Oben anpinnen</label>
 <div class="row"><button>Speichern</button><button type="button" class="btn2" id="cx" hidden>Abbrechen</button></div></form>
 <p id="msg" class="out"></p><div id="list" class="grid" style="grid-template-columns:1fr"></div>
+<h2 style="margin-top:30px">Changelog</h2>
+<form class="f card" id="cf"><h3 id="cft">Neuer Eintrag</h3>
+<div class="row2"><label>Version (optional)<input id="cv" maxlength="30" placeholder="z. B. 1.2.0"></label><label>Datum<input type="date" id="cd" required></label></div>
+<label>Titel<input id="ct" maxlength="100" required placeholder="z. B. Weihnachts-Update"></label>
+<label>Einleitung (optional)<textarea id="ci" rows="2" maxlength="800"></textarea></label>
+<label>Neu (eine Zeile pro Punkt)<textarea id="cn" rows="3"></textarea></label>
+<label>Verbessert<textarea id="cb" rows="3"></textarea></label>
+<label>Behoben<textarea id="cf2" rows="3"></textarea></label>
+<label>Sonstiges<textarea id="cs" rows="2"></textarea></label>
+<label><input type="checkbox" id="ca" style="width:auto" checked> In Discord posten (bei Bearbeiten: Nachricht aktualisieren)</label>
+<div class="row"><button>Speichern</button><button type="button" class="btn2" id="ccx" hidden>Abbrechen</button></div></form>
+<div id="clist" class="grid" style="grid-template-columns:1fr"></div>
+<h2 style="margin-top:30px">Discord</h2><div class="card f" id="dcard"><p id="dst" class="out">Prüfe Verbindung …</p>
+<div class="row"><button type="button" class="btn2" id="dt">Testnachricht senden</button><button type="button" class="btn2" id="dr">Slash-Befehle registrieren</button><button type="button" class="btn2" id="ds">Events jetzt synchronisieren</button></div>
+<p class="mu" style="font-size:.9rem">Events, die du hier speichern, erscheinen automatisch im Discord-Event-Tab und im Event-Kanal. Erinnerungen (1 Stunde vorher, Start) und der tägliche Advents-Post laufen von allein.</p></div>
 <h2 style="margin-top:30px">Banner</h2><form class="f card" id="bf"><label>Text (erscheint oben auf jeder Seite)<input id="bt" maxlength="200"></label><label><input type="checkbox" id="bo" style="width:auto"> Banner anzeigen</label><button>Banner speichern</button></form>
 </div></main>
 <script src="config.js"></script><script src="common.js"></script>
@@ -24,7 +39,7 @@ const api=async(p,o={})=>{const r=await fetch('/api'+p,{...o,headers:{'content-t
 const say=(t,bad)=>{$('#msg').textContent=t;$('#msg').style.color=bad?'var(--e1)':'var(--ok)'};
 const loc=i=>{if(!i)return'';const d=new Date(i);d.setMinutes(d.getMinutes()-d.getTimezoneOffset());return d.toISOString().slice(0,16)};
 $('#ty').append(...Object.entries(TY).map(([k,v])=>h('option',{value:k},v[0])));
-function show(){$('#login').hidden=!!tok;$('#app').hidden=!tok;if(tok)load()}
+function show(){$('#login').hidden=!!tok;$('#app').hidden=!tok;if(tok){load();loadLog();dstat()}}
 function out(){tok='';sessionStorage.removeItem('xt');show()}
 $('#out').onclick=out;
 $('#lf').onsubmit=async e=>{e.preventDefault();try{tok=(await api('/login',{method:'POST',body:JSON.stringify({password:$('#pw').value})})).token;sessionStorage.setItem('xt',tok);$('#pw').value='';show()}catch(x){toast('Login',x.message)}};
@@ -33,8 +48,26 @@ function draw(){$('#list').replaceChildren(...evs.map(e=>h('div',{class:'card ev
 function fill(e){edit=e.id;$('#ft').textContent='Event bearbeiten';$('#cx').hidden=false;$('#t').value=e.title;$('#ty').value=e.type;$('#l').value=e.location;$('#s').value=loc(e.start);$('#e').value=loc(e.end);$('#p').value=e.prize;$('#d').value=e.description;$('#pin').checked=e.pinned;scrollTo({top:0,behavior:'smooth'})}
 function reset(){edit='';$('#ft').textContent='Neues Event';$('#cx').hidden=true;$('#ef').reset()}
 $('#cx').onclick=reset;
-$('#ef').onsubmit=async ev=>{ev.preventDefault();const b={title:$('#t').value,type:$('#ty').value,location:$('#l').value,start:new Date($('#s').value).toISOString(),end:$('#e').value?new Date($('#e').value).toISOString():'',prize:$('#p').value,description:$('#d').value,pinned:$('#pin').checked};try{await api(edit?'/events/'+edit:'/events',{method:edit?'PUT':'POST',body:JSON.stringify(b)});say('Gespeichert. Das Event ist live.');reset();load()}catch(x){say(x.message,1)}};
-async function del(e){if(!confirm('„'+e.title+'“ wirklich löschen?'))return;try{await api('/events/'+e.id,{method:'DELETE'});say('Gelöscht.');load()}catch(x){say(x.message,1)}}
+$('#ef').onsubmit=async ev=>{ev.preventDefault();const b={title:$('#t').value,type:$('#ty').value,location:$('#l').value,start:new Date($('#s').value).toISOString(),end:$('#e').value?new Date($('#e').value).toISOString():'',prize:$('#p').value,description:$('#d').value,pinned:$('#pin').checked};try{const d=await api(edit?'/events/'+edit:'/events',{method:edit?'PUT':'POST',body:JSON.stringify(b)});warnTxt(d,'Gespeichert. Das Event ist live und in Discord synchronisiert.');reset();load()}catch(x){say(x.message,1)}};
+async function del(e){if(!confirm('„'+e.title+'“ wirklich löschen?'))return;try{const d=await api('/events/'+e.id,{method:'DELETE'});warnTxt(d,'Gelöscht (auch in Discord).');load()}catch(x){say(x.message,1)}}
 $('#bf').onsubmit=async e=>{e.preventDefault();try{await api('/banner',{method:'PUT',body:JSON.stringify({text:$('#bt').value,on:$('#bo').checked})});say('Banner gespeichert.')}catch(x){say(x.message,1)}};
+
+let logs=[],cedit='';
+const lines=v=>v.split('\n').map(x=>x.trim()).filter(Boolean);
+const warnTxt=(d,ok)=>{const w=(d&&d.warnings)||[];say(w.length?ok+' Hinweis: '+w.join(' · '):ok,!!w.length)};
+async function loadLog(){try{logs=await api('/changelog');drawLog()}catch(x){say(x.message,1)}}
+function drawLog(){$('#clist').replaceChildren(...logs.map(c=>h('div',{class:'card ev'},h('b',{},(c.version?c.version+' – ':'')+c.title),h('p',{},c.date),h('div',{class:'fl'},h('button',{class:'btn2',onclick:()=>cfill(c)},'Bearbeiten'),h('button',{class:'danger',onclick:()=>cdel(c)},'Löschen')))))}
+function cfill(c){cedit=c.id;$('#cft').textContent='Eintrag bearbeiten';$('#ccx').hidden=false;$('#cv').value=c.version;$('#cd').value=c.date;$('#ct').value=c.title;$('#ci').value=c.intro||'';const s=c.sections||{};$('#cn').value=(s.neu||[]).join('\n');$('#cb').value=(s.verbessert||[]).join('\n');$('#cf2').value=(s.behoben||[]).join('\n');$('#cs').value=(s.sonstiges||[]).join('\n');$('#cf').scrollIntoView({behavior:'smooth'})}
+function creset(){cedit='';$('#cft').textContent='Neuer Eintrag';$('#ccx').hidden=true;$('#cf').reset();$('#cd').value=new Date().toISOString().slice(0,10)}
+$('#ccx').onclick=creset;creset();
+$('#cf').onsubmit=async e=>{e.preventDefault();const b={version:$('#cv').value,date:$('#cd').value,title:$('#ct').value,intro:$('#ci').value,announce:$('#ca').checked,sections:{neu:lines($('#cn').value),verbessert:lines($('#cb').value),behoben:lines($('#cf2').value),sonstiges:lines($('#cs').value)}};
+ try{const d=await api(cedit?'/changelog/'+cedit:'/changelog',{method:cedit?'PUT':'POST',body:JSON.stringify(b)});warnTxt(d,'Changelog gespeichert.');creset();loadLog()}catch(x){say(x.message,1)}};
+async function cdel(c){if(!confirm('„'+c.title+'“ wirklich löschen?'))return;try{await api('/changelog/'+c.id,{method:'DELETE'});say('Gelöscht.');loadLog()}catch(x){say(x.message,1)}}
+async function dstat(){try{const s=await api('/discord-admin/status');const k=[['token','Bot-Token'],['app','App-ID'],['publicKey','Public Key'],['events','Event-Kanal'],['changelog','Changelog-Kanal'],['news','News-Kanal']];
+ $('#dst').innerHTML=k.map(([f,n])=>(s[f]?'✅ ':'⚠️ ')+n).join(' &nbsp; ');}catch(x){$('#dst').textContent=x.message}}
+const dpost=async(a,ok)=>{try{const d=await api('/discord-admin/'+a,{method:'POST',body:'{}'});warnTxt(d,ok(d))}catch(x){say(x.message,1)}};
+$('#dt').onclick=()=>dpost('test',()=>'Testnachricht gesendet.');
+$('#dr').onclick=()=>dpost('register',d=>d.count+' Slash-Befehle registriert.');
+$('#ds').onclick=()=>dpost('sync',d=>d.count+' Events synchronisiert.');
 show();
 </script></body></html>
