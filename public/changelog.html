@@ -15,17 +15,19 @@
 .cl header{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;justify-content:space-between;margin:.8em 0 .2em}
 .cl h2{margin:0;font-size:1.3rem}.cl time{color:var(--mu);font-size:.9rem}
 .cl .v{display:inline-block;padding:2px 10px;border-radius:999px;background:rgba(var(--glow),.2);border:1px solid var(--bd);font-weight:700;font-size:.85rem;margin-right:8px;font-style:normal}
-.cl h3{font-size:1rem;margin:1em 0 .3em}.cl ul{margin:.2em 0;padding-left:1.2em}.cl li{margin:.3em 0}
+.cl .ch{display:block;color:var(--mu);font-size:.78rem;margin-bottom:2px}.cl h3{font-size:1rem;margin:1em 0 .3em}.cl ul{margin:.2em 0;padding-left:1.2em}.cl li{margin:.3em 0}
 </style>
 <script src="config.js"></script><script src="common.js"></script>
 <script>
-const SEC=[['neu','Neu'],['verbessert','Verbessert'],['behoben','Behoben'],['sonstiges','Sonstiges']];
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const md=t=>esc(String(t).replace(/<a?:\w+:\d+>/g,'').replace(/<@&?\d+>/g,'')).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/`([^`]+)`/g,'<code>$1</code>').replace(/\*(.+?)\*/g,'<i>$1</i>');
+const el=(tag,html,cls)=>{const e=document.createElement(tag);e.innerHTML=html;if(cls)e.className=cls;return e};
 (async()=>{const box=document.querySelector('#log');let a=[];
  try{const r=await fetch('/api/changelog');if(!r.ok)throw 0;a=await r.json()}catch(e){box.innerHTML='<p class="mu">Der Changelog ist gerade nicht erreichbar.</p>';return}
  if(!a.length){box.innerHTML='<p class="mu">Noch keine Einträge. Hier erscheinen alle kommenden Updates.</p>';return}
  box.replaceChildren(...a.map(c=>{const s=h('section',{class:'cl'});
-  s.append(h('header',{},h('h2',{},c.version?h('span',{class:'v'},c.version):'',c.title),h('time',{datetime:c.date},new Date(c.date+'T12:00:00').toLocaleDateString('de-DE',{day:'numeric',month:'long',year:'numeric'}))));
-  if(c.intro)s.append(h('p',{},c.intro));
-  for(const [k,n] of SEC){const l=(c.sections||{})[k]||[];if(l.length)s.append(h('h3',{},n),h('ul',{},...l.map(x=>h('li',{},x))))}
+  s.append(h('header',{},h('div',{},el('small',esc(c.heading||'Changelog'),'ch'),el('h2',(c.version?'<span class="v">'+esc(c.version)+'</span>':'')+md(c.title))),h('time',{datetime:c.date},new Date(c.date+'T12:00:00').toLocaleDateString('de-DE',{day:'numeric',month:'long',year:'numeric'}))));
+  if(c.intro)s.append(el('p',md(c.intro).replace(/\n/g,'<br>')));
+  for(const x of c.sections||[])s.append(el('h3',md(x.title)),el('ul',x.items.map(i=>'<li>'+md(i)+'</li>').join('')));
   return s}))})();
 </script></body></html>

@@ -23,7 +23,7 @@ export async function dc(method, path, body) {
 }
 
 const unix = (iso) => Math.floor(new Date(iso).getTime() / 1000);
-const cut = (s, n) => (String(s || "").length > n ? String(s).slice(0, n - 1) + "…" : String(s || ""));
+export const cut = (s, n) => (String(s || "").length > n ? String(s).slice(0, n - 1) + "…" : String(s || ""));
 
 export function eventEmbed(ev) {
   const [label, color] = TYPES[ev.type] || TYPES.sonstiges;
@@ -38,19 +38,23 @@ export function eventEmbed(ev) {
   };
 }
 
-export const SECTIONS = [["neu", "✨ Neu"], ["verbessert", "🔧 Verbessert"], ["behoben", "🐛 Behoben"], ["sonstiges", "📌 Sonstiges"]];
-
-export function changelogEmbed(c) {
-  const fields = [];
-  for (const [k, label] of SECTIONS) {
-    const l = (c.sections?.[k] || []).filter(Boolean);
-    if (l.length) fields.push({ name: label, value: cut(l.map((x) => "• " + x).join("\n"), 1024) });
+/** Changelog als Discord-Text (Markdown) in Nachrichten à max. 1900 Zeichen, an Abschnittsgrenzen geteilt. */
+export function changelogMessages(c, withPing = true) {
+  const head = `# 🆕 ${c.heading || "Ingame Changelog"}\n\n` + (withPing && env("DISCORD_PING_ROLE_ID") ? `<@&${env("DISCORD_PING_ROLE_ID")}>\n` : "")
+    + `# ${c.title}${c.version ? " (" + c.version + ")" : ""}` + (c.intro ? `\n${c.intro}` : "");
+  const blocks = [head];
+  for (const sec of c.sections || []) blocks.push(`## ${sec.title}\n` + (sec.items || []).map((x) => "* " + x).join("\n"));
+  const msgs = [];
+  let cur = "";
+  const push = (t) => { if ((cur + "\n" + t).length > 1900 && cur) { msgs.push(cur); cur = t; } else cur = cur ? cur + "\n" + t : t; };
+  for (const bl of blocks) {
+    if (bl.length <= 1900) { push(bl); continue; }
+    let part = "";
+    for (const ln of bl.split("\n")) { if ((part + "\n" + ln).length > 1900) { push(part); part = ln; } else part = part ? part + "\n" + ln : ln; }
+    if (part) push(part);
   }
-  return {
-    title: cut(`📝 ${c.version ? c.version + " – " : ""}${c.title}`, 256), url: site() + "/changelog", color: COLOR.main,
-    description: cut(c.intro, 800) || undefined, fields: fields.slice(0, 10),
-    footer: { text: "XuroSMP Changelog · " + c.date },
-  };
+  if (cur) msgs.push(cur);
+  return msgs;
 }
 
 export const channel = (kind) => env("DISCORD_" + kind + "_CHANNEL_ID") || env("DISCORD_EVENTS_CHANNEL_ID");
@@ -106,18 +110,25 @@ export async function removeEvent(store, id) {
 }
 
 // ---------- Changelog ----------
-export async function announceChangelog(c) {
+export async function announceChangelog(c, ping = true) {
   const chan = channel("CHANGELOG");
   if (!configured() || !chan) return { warn: ["Kein Changelog-Kanal gesetzt (DISCORD_CHANGELOG_CHANNEL_ID)."] };
+  const texts = changelogMessages(c, ping);
+  const old = c.msgs || [];
   try {
-    const embed = changelogEmbed(c);
-    if (c.msg) { try { await dc("PATCH", `/channels/${chan}/messages/${c.msg}`, { embeds: [embed] }); return { msg: c.msg, warn: [] }; } catch (x) { if (x.status !== 404) throw x; } }
-    return { msg: (await post(chan, ping() + "**Neues Update!**", embed)).id, warn: [] };
+    const ids = [];
+    if (old.length === texts.length) {
+      for (let i = 0; i < texts.length; i++) { try { await dc("PATCH", `/channels/${chan}/messages/${old[i]}`, { content: texts[i], allowed_mentions: allow() }); ids.push(old[i]); } catch (x) { if (x.status === 404) ids.push((await dc("POST", `/channels/${chan}/messages`, { content: texts[i], allowed_mentions: allow() })).id); else throw x; } }
+    } else {
+      await removeChangelogMessage(c);
+      for (const t of texts) ids.push((await dc("POST", `/channels/${chan}/messages`, { content: t, allowed_mentions: allow() })).id);
+    }
+    return { msgs: ids, warn: [] };
   } catch (x) { return { warn: ["Changelog: " + x.message] }; }
 }
 
 export async function removeChangelogMessage(c) {
-  try { if (c.msg && channel("CHANGELOG")) await dc("DELETE", `/channels/${channel("CHANGELOG")}/messages/${c.msg}`); } catch { /* egal */ }
+  for (const id of c.msgs || []) { try { await dc("DELETE", `/channels/${channel("CHANGELOG")}/messages/${id}`); } catch { /* egal */ } }
 }
 
 // ---------- Slash-Befehle ----------

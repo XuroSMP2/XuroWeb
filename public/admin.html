@@ -17,14 +17,15 @@
 <p id="msg" class="out"></p><div id="list" class="grid" style="grid-template-columns:1fr"></div>
 <h2 style="margin-top:30px">Changelog</h2>
 <form class="f card" id="cf"><h3 id="cft">Neuer Eintrag</h3>
-<div class="row2"><label>Version (optional)<input id="cv" maxlength="30" placeholder="z. B. 1.2.0"></label><label>Datum<input type="date" id="cd" required></label></div>
-<label>Titel<input id="ct" maxlength="100" required placeholder="z. B. Weihnachts-Update"></label>
-<label>Einleitung (optional)<textarea id="ci" rows="2" maxlength="800"></textarea></label>
-<label>Neu (eine Zeile pro Punkt)<textarea id="cn" rows="3"></textarea></label>
-<label>Verbessert<textarea id="cb" rows="3"></textarea></label>
-<label>Behoben<textarea id="cf2" rows="3"></textarea></label>
-<label>Sonstiges<textarea id="cs" rows="2"></textarea></label>
-<label><input type="checkbox" id="ca" style="width:auto" checked> In Discord posten (bei Bearbeiten: Nachricht aktualisieren)</label>
+<details><summary>Fertigen Discord-Text einfügen (wird automatisch zerlegt)</summary><textarea id="cimp" rows="6" placeholder="# 🆕 Ingame Changelog&#10;# Titel&#10;Einleitung&#10;## 🛠️ Was ist neu?&#10;* Punkt"></textarea><button type="button" class="btn2" id="cimpb">Übernehmen</button></details>
+<div class="row2"><label>Kopfzeile<input id="ch" maxlength="60" value="Ingame Changelog"></label><label>Datum<input type="date" id="cd" required></label></div>
+<label>Titel (Emoji und Discord-Emojis wie &lt;:name:id&gt; sind erlaubt)<input id="ct" maxlength="150" required placeholder="z. B. Sonderangebot zum Goldrausch"></label>
+<label>Einleitung<textarea id="ci" rows="3" maxlength="1200"></textarea></label>
+<label>Version (optional)<input id="cv" maxlength="30" placeholder="z. B. 1.2.0"></label>
+<div id="csecs"></div>
+<div class="row"><button type="button" class="btn2" id="cadd">+ Abschnitt</button></div>
+<label><input type="checkbox" id="ca" style="width:auto" checked> In Discord posten (bei Bearbeiten: Nachrichten aktualisieren)</label>
+<label><input type="checkbox" id="cp" style="width:auto" checked> Rolle pingen</label>
 <div class="row"><button>Speichern</button><button type="button" class="btn2" id="ccx" hidden>Abbrechen</button></div></form>
 <div id="clist" class="grid" style="grid-template-columns:1fr"></div>
 <h2 style="margin-top:30px">Discord</h2><div class="card f" id="dcard"><p id="dst" class="out">Prüfe Verbindung …</p>
@@ -53,14 +54,26 @@ async function del(e){if(!confirm('„'+e.title+'“ wirklich löschen?'))return
 $('#bf').onsubmit=async e=>{e.preventDefault();try{await api('/banner',{method:'PUT',body:JSON.stringify({text:$('#bt').value,on:$('#bo').checked})});say('Banner gespeichert.')}catch(x){say(x.message,1)}};
 
 let logs=[],cedit='';
-const lines=v=>v.split('\n').map(x=>x.trim()).filter(Boolean);
+const DEF=['🛠️ Was ist neu?','📌 Gut zu wissen','💡 Schon gemerkt?'];
 const warnTxt=(d,ok)=>{const w=(d&&d.warnings)||[];say(w.length?ok+' Hinweis: '+w.join(' · '):ok,!!w.length)};
+function secBox(t='',items=[]){const w=h('div',{class:'card',style:'margin:8px 0;padding:12px'});const ti=h('input',{maxlength:'100',placeholder:'Abschnittstitel, z. B. 🛠️ Was ist neu?'});ti.value=t;const ta=h('textarea',{rows:'4',placeholder:'Eine Zeile pro Punkt (Markdown: **fett**, `code`)'});ta.value=items.join('\n');
+ w.append(ti,ta,h('button',{type:'button',class:'btn2',onclick:()=>w.remove()},'Abschnitt entfernen'));w.ti=ti;w.ta=ta;return w}
+const secs=()=>[...$('#csecs').children].map(w=>({title:w.ti.value.trim(),items:w.ta.value.split('\n').map(x=>x.replace(/^\s*[*\-•]\s+/,'').trim()).filter(Boolean)})).filter(x=>x.title&&x.items.length);
+$('#cadd').onclick=()=>$('#csecs').append(secBox());
+function parseDc(t){const o={heading:'Ingame Changelog',title:'',intro:'',sections:[]};let sec=null,intro=[],seenTitle=false,first=true;
+ for(let l of t.split('\n')){l=l.replace(/\s+$/,'');if(!l.trim()||/^<@&?\d+>\s*$/.test(l.trim()))continue;
+  let m;if((m=l.match(/^##\s+(.*)/))){sec={title:m[1].trim(),items:[]};o.sections.push(sec);continue}
+  if((m=l.match(/^#\s+(.*)/))){const x=m[1].trim();if(first&&/changelog/i.test(x)){o.heading=x.replace(/^\p{Extended_Pictographic}\uFE0F?\s*/u,'')||o.heading;first=false;continue}first=false;if(!seenTitle){o.title=x.replace(/\s+/g,' ');seenTitle=true}continue}
+  first=false;if(sec){if((m=l.match(/^\s*[*\-•]\s+(.*)/)))sec.items.push(m[1].trim());else if(sec.items.length)sec.items[sec.items.length-1]+=' '+l.trim()}else intro.push(l.trim())}
+ o.intro=intro.join('\n');return o}
+function setForm(c){$('#ch').value=c.heading||'Ingame Changelog';$('#cd').value=c.date||new Date().toISOString().slice(0,10);$('#ct').value=c.title||'';$('#ci').value=c.intro||'';$('#cv').value=c.version||'';$('#csecs').replaceChildren(...(c.sections||[]).map(x=>secBox(x.title,x.items)))}
+$('#cimpb').onclick=()=>{const o=parseDc($('#cimp').value);if(!o.title&&!o.sections.length){say('Kein Changelog-Text erkannt.',1);return}setForm({...o,date:$('#cd').value});say('Text übernommen. Prüfe die Felder und speichere.')};
 async function loadLog(){try{logs=await api('/changelog');drawLog()}catch(x){say(x.message,1)}}
-function drawLog(){$('#clist').replaceChildren(...logs.map(c=>h('div',{class:'card ev'},h('b',{},(c.version?c.version+' – ':'')+c.title),h('p',{},c.date),h('div',{class:'fl'},h('button',{class:'btn2',onclick:()=>cfill(c)},'Bearbeiten'),h('button',{class:'danger',onclick:()=>cdel(c)},'Löschen')))))}
-function cfill(c){cedit=c.id;$('#cft').textContent='Eintrag bearbeiten';$('#ccx').hidden=false;$('#cv').value=c.version;$('#cd').value=c.date;$('#ct').value=c.title;$('#ci').value=c.intro||'';const s=c.sections||{};$('#cn').value=(s.neu||[]).join('\n');$('#cb').value=(s.verbessert||[]).join('\n');$('#cf2').value=(s.behoben||[]).join('\n');$('#cs').value=(s.sonstiges||[]).join('\n');$('#cf').scrollIntoView({behavior:'smooth'})}
-function creset(){cedit='';$('#cft').textContent='Neuer Eintrag';$('#ccx').hidden=true;$('#cf').reset();$('#cd').value=new Date().toISOString().slice(0,10)}
+function drawLog(){$('#clist').replaceChildren(...logs.map(c=>h('div',{class:'card ev'},h('b',{},c.title),h('p',{},c.date+(c.version?' · '+c.version:'')),h('div',{class:'fl'},h('button',{class:'btn2',onclick:()=>cfill(c)},'Bearbeiten'),h('button',{class:'danger',onclick:()=>cdel(c)},'Löschen')))))}
+function cfill(c){cedit=c.id;$('#cft').textContent='Eintrag bearbeiten';$('#ccx').hidden=false;setForm(c);$('#cf').scrollIntoView({behavior:'smooth'})}
+function creset(){cedit='';$('#cft').textContent='Neuer Eintrag';$('#ccx').hidden=true;$('#cf').reset();setForm({date:new Date().toISOString().slice(0,10),heading:'Ingame Changelog',sections:DEF.map(t=>({title:t,items:[]}))})}
 $('#ccx').onclick=creset;creset();
-$('#cf').onsubmit=async e=>{e.preventDefault();const b={version:$('#cv').value,date:$('#cd').value,title:$('#ct').value,intro:$('#ci').value,announce:$('#ca').checked,sections:{neu:lines($('#cn').value),verbessert:lines($('#cb').value),behoben:lines($('#cf2').value),sonstiges:lines($('#cs').value)}};
+$('#cf').onsubmit=async e=>{e.preventDefault();const b={heading:$('#ch').value,version:$('#cv').value,date:$('#cd').value,title:$('#ct').value,intro:$('#ci').value,announce:$('#ca').checked,ping:$('#cp').checked,sections:secs()};
  try{const d=await api(cedit?'/changelog/'+cedit:'/changelog',{method:cedit?'PUT':'POST',body:JSON.stringify(b)});warnTxt(d,'Changelog gespeichert.');creset();loadLog()}catch(x){say(x.message,1)}};
 async function cdel(c){if(!confirm('„'+c.title+'“ wirklich löschen?'))return;try{await api('/changelog/'+c.id,{method:'DELETE'});say('Gelöscht.');loadLog()}catch(x){say(x.message,1)}}
 async function dstat(){try{const s=await api('/discord-admin/status');const k=[['token','Bot-Token'],['app','App-ID'],['publicKey','Public Key'],['events','Event-Kanal'],['changelog','Changelog-Kanal'],['news','News-Kanal']];

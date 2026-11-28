@@ -29,7 +29,7 @@ Die Seite liest ihre Daten über `netlify/functions/stats.mjs`. Der API-Key blei
 
 ## Changelog & Discord-Bot (alles über Netlify, kein eigener Bot-Server nötig)
 
-**Changelog:** `/changelog` (öffentlich) und Verwaltung unter `/admin`. Neue Einträge können direkt in Discord gepostet werden.
+**Changelog:** `/changelog` (öffentlich) und Verwaltung unter `/admin`. Aufbau wie ein Discord-Text: Kopfzeile (`# 🆕 Ingame Changelog`), Rollen-Ping, Titel, Einleitung und beliebige Abschnitte (`## 🛠️ Was ist neu?`) mit Aufzählungen. Einen fertigen Discord-Text kannst du im Admin einfügen, er wird automatisch zerlegt. Der Bot postet ihn im gleichen Format (lange Texte werden an Abschnittsgrenzen auf mehrere Nachrichten verteilt).
 **Events:** Events aus `/admin` landen automatisch im Discord-Event-Tab und als Nachricht im Event-Kanal (Änderungen/Löschen werden mitgezogen). 1 Stunde vorher und beim Start kommt eine Erinnerung.
 **Advent:** Vom 1.–24.12. gibt es um Mitternacht (Berlin) automatisch einen Post „Türchen N ist offen".
 **Slash-Befehle:** `/events /changelog /status /ip /advent /regeln /wiki /top /spieler`.

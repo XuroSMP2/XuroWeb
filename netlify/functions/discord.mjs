@@ -2,7 +2,7 @@
 // Developer Portal -> General Information -> "Interactions Endpoint URL": https://DEINE-SEITE.netlify.app/api/discord
 import { getStore } from "@netlify/blobs";
 import { createPublicKey, verify } from "node:crypto";
-import { env, site, COLOR, eventEmbed, changelogEmbed } from "../lib/discord.mjs";
+import { env, site, COLOR, eventEmbed, changelogMessages } from "../lib/discord.mjs";
 import { DOORS, PERFECT, adventState } from "../lib/advent.mjs";
 
 export const config = { path: "/api/discord" };
@@ -37,7 +37,7 @@ const handlers = {
   },
   async changelog(store) {
     const c = ((await store.get("changelog", { type: "json" })) ?? []).sort((a, b) => b.date.localeCompare(a.date))[0];
-    return c ? reply(changelogEmbed(c)) : reply({ title: "📝 Changelog", description: "Noch keine Einträge.", color: COLOR.main, url: site() + "/changelog" });
+    return c ? text(changelogMessages(c, false)[0]) : reply({ title: "📝 Changelog", description: "Noch keine Einträge.", color: COLOR.main, url: site() + "/changelog" });
   },
   async status(store) {
     const s = await snapshot(store);

@@ -37,13 +37,14 @@ function clean(b) {
   };
 }
 
-const lines = (v) => (Array.isArray(v) ? v : String(v ?? "").split("\n")).map((x) => str(x, 200)).filter(Boolean).slice(0, 40);
 function cleanLog(b) {
   const date = /^\d{4}-\d{2}-\d{2}$/.test(String(b.date)) ? b.date : new Date().toISOString().slice(0, 10);
-  if (!str(b.title, 100)) return null;
-  const sections = Object.fromEntries(D.SECTIONS.map(([k]) => [k, lines(b.sections?.[k])]));
-  if (!Object.values(sections).some((l) => l.length) && !str(b.intro, 800)) return null;
-  return { version: str(b.version, 30), title: str(b.title, 100), date, intro: str(b.intro, 800), sections };
+  if (!str(b.title, 150)) return null;
+  const sections = (Array.isArray(b.sections) ? b.sections : []).slice(0, 8)
+    .map((x) => ({ title: str(x?.title, 100), items: (Array.isArray(x?.items) ? x.items : []).map((i) => str(i, 500)).filter(Boolean).slice(0, 40) }))
+    .filter((x) => x.title && x.items.length);
+  if (!sections.length && !str(b.intro, 1200)) return null;
+  return { heading: str(b.heading, 60) || "Ingame Changelog", version: str(b.version, 30), title: str(b.title, 150), date, intro: str(b.intro, 1200), sections };
 }
 
 export default async (req) => {
@@ -81,13 +82,13 @@ export default async (req) => {
   if (path.startsWith("/api/changelog")) {
     const cid = path.slice(15).replace(/^\//, "");
     const logs = (await store.get("changelog", { type: "json" })) ?? [];
-    if (req.method === "GET") return out(logs.sort((a, b) => b.date.localeCompare(a.date) || (b.created || 0) - (a.created || 0)).map(({ msg, ...c }) => c));
+    if (req.method === "GET") return out(logs.sort((a, b) => b.date.localeCompare(a.date) || (b.created || 0) - (a.created || 0)).map(({ msgs, ...c }) => c));
     const d = needAuth(); if (d) return d;
     const b = await body();
     if (req.method === "POST" && !cid) {
       const c = cleanLog(b); if (!c) return out({ error: "Titel und mindestens ein Punkt sind Pflicht." }, 400);
       const e = { id: randomUUID(), created: Date.now(), ...c }; let warnings = [];
-      if (b.announce) { const r = await D.announceChangelog(e); e.msg = r.msg; warnings = r.warn; }
+      if (b.announce) { const r = await D.announceChangelog(e, b.ping !== false); e.msgs = r.msgs; warnings = r.warn; }
       logs.push(e); await store.setJSON("changelog", logs); return out({ ...e, warnings }, 201);
     }
     const i = logs.findIndex((x) => x.id === cid);
@@ -95,7 +96,7 @@ export default async (req) => {
     if (req.method === "PUT") {
       const c = cleanLog(b); if (!c) return out({ error: "Titel und mindestens ein Punkt sind Pflicht." }, 400);
       const e = { ...logs[i], ...c }; let warnings = [];
-      if (b.announce) { const r = await D.announceChangelog(e); e.msg = r.msg || e.msg; warnings = r.warn; }
+      if (b.announce) { const r = await D.announceChangelog(e, b.ping !== false); e.msgs = r.msgs || e.msgs; warnings = r.warn; }
       logs[i] = e; await store.setJSON("changelog", logs); return out({ ...e, warnings });
     }
     if (req.method === "DELETE") { await D.removeChangelogMessage(logs[i]); logs.splice(i, 1); await store.setJSON("changelog", logs); return out({ ok: true }); }
